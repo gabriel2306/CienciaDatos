@@ -68,14 +68,14 @@ El tercer an\'alisis de los datos se basa en calcular las \textbf{medidas de dis
 \textit{Desviaci\'on t\'ipica: }Para corregir los resultados, se hace el c\'alculo
 a trav\'es de:
 <<sd, eval=FALSE>>=
-sdr=sd(Radio)/sqrt(12/11)
+sdr<-sd(Radio)/sqrt(12/11)
 @
 
 \item
 \textit{Varianza: }Al igual que en el caso anterior es necesario corregir el 
 resultado por lo que se usa:
 <<var, eval=FALSE>>=
-varr=var(Radio)*11/12
+varr<-var(Radio)*11/12
 @
 \end{enumerate}
 
@@ -83,7 +83,7 @@ varr=var(Radio)*11/12
 El cuarto an\'alisis de los datos se basa en las \textbf{medidas de ordenaci\'on,} antes de los c\'alculos es necesario ordenar
 los datos en funci\'on de la variable usada, en este caso el radio.
 <<orden, eval=FALSE>>=
-so=s[order(s$Radio),]
+so<-satelites[order(Radio),]
 @
 
 \bigskip
@@ -93,16 +93,131 @@ Una vez ordenados los datos se puede proceder a calcular:
 \item
 \textit{Mediana:}
 <<mediana, eval=FALSE>>=
-mediant=median(s$Radio)
+mediant<-median(Radio)
 @
 
 \item
 \textit{Cuartiles:}
 <<var, eval=FALSE>>=
-cuar1=quantile(s$Radio,0.25)
-cuar2=quantile(s$Radio,0.5)
-cuar3=quantile(s$Radio,0.75)
-cuar54=quantile(s$Radio,0.54)
+cuar1<-quantile(Radio,0.25)
+cuar2<-quantile(Radio,0.5)
+cuar3<-quantile(Radio,0.75)
+cuar54<-quantile(Radio,0.54)
+@
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\bigskip
+A continuaci\'on pasaremos a trabajar con un fichero generado por SPSS, 
+\texttt{cardata.sav}.\\
+
+\bigskip
+En primer lugar hay que leer este fichero pero no disponemos de la librer\'ia
+necesaria para hacerlo, para cargarla usamos:
+<<lib, eval=FALSE>>=
+library(foreign)
+@
+Esta librer\'ia se trata de una librer\'ia est\'andar de R.
+
+\bigskip
+Una vez cargada procedemos a su lectura
+<<spss, eval=FALSE>>=
+A<-read.spss("cardata.sav")
+@
+
+\bigskip
+Para trabajar con la variable mpg, y hacer este trabajo m\'as
+c\'omodo, la cargamos en una variable:
+<<mpg, eval=FALSE>>=
+mpg<-A$mpg
+@
+
+\bigskip
+La variable mpg contiene valores NA, es decir, valores que no se encuentran disponibles 
+por lo que es imposible realizar c\'alculos con ella. Para eliminar estos valores usamos:
+<<na, eval=FALSE>>=
+mpg<-mpg[!is.na(mpg)]
+@
+
+\bigskip
+En el primer an\'alisis de los datos se cuantifica la \textbf{frecuencia}
+de aparici\'on de los mismos. 
+
+\begin{enumerate}
+\item
+\textit{Frecuencia absoluta: }
+<<table, eval=FALSE>>=
+frabsmpg<-table(mpg)
+@
+
+\item
+\textit{Frecuencia absoluta acumulada: }
+<<cumsum, eval=FALSE>>=
+frabsacummpg<-cumsum(table(mpg))
+@
+
+\item
+\textit{Frecuencia relativa: }En este caso es necesario crear una funci\'on
+para poder calcular este valor. La funci\'on es:
+<<function, eval=FALSE>>=
+frecrel<-function(mpg){table(mpg)/length(mpg)}
+@
+
+\item
+\textit{Frecuencia relativa acumulada: }Haremos uso de la funci\'on definida anteriormente:
+<<function1, eval=FALSE>>=
+frecrelacum<-function(mpg){cumsum(table(mpg)/length(mpg))}
+@
+\end{enumerate}
+
+\bigskip
+El segundo an\'alisis de los datos se basa en calcular la \textbf{media aritm\'etica:}
+<<media, eval=FALSE>>=
+mm<-mean(mpg)
+@
+
+\bigskip
+El tercer an\'alisis de los datos se basa en calcular las \textbf{medidas de dispersi\'on:}
+\begin{enumerate}
+\item
+\textit{Desviaci\'on t\'ipica: }Para corregir los resultados, se hace el c\'alculo
+a trav\'es de:
+<<sd, eval=FALSE>>=
+sdm<-sd(mpg)/sqrt(12/11)
+@
+
+\item
+\textit{Varianza: }Al igual que en el caso anterior es necesario corregir el 
+resultado por lo que se usa:
+<<var, eval=FALSE>>=
+varm<-var(mpg)*11/12
+@
+\end{enumerate}
+
+\bigskip
+El cuarto an\'alisis de los datos se basa en las \textbf{medidas de ordenaci\'on,} antes de los c\'alculos es necesario ordenar
+los datos en funci\'on de la variable usada, en este caso el mpg.
+%<<orden, eval=FALSE>>=
+%mo=A[order(mpg),]
+%@
+
+\bigskip
+Una vez ordenados los datos se puede proceder a calcular:
+
+\begin{enumerate}
+\item
+\textit{Mediana:}
+<<mediana, eval=TRUE>>=
+mediantm<-median(mpg)
+@
+
+\item
+\textit{Cuartiles:}
+<<var, eval=FALSE>>=
+cuar1m<-quantile(mpg,0.25)
+cuar2m<-quantile(mpg,0.5)
+cuar3m<-quantile(mpg,0.75)
+cuar54m<-quantile(mpg,0.54)
 @
 \end{enumerate}
 
