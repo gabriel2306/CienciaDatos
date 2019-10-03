@@ -3,6 +3,7 @@
 \title{R-PL1}
 \author{Gabriel L\'opez, Sergio Sanz, \'Alvaro Zamorano}
 
+\usepackage{Sweave}
 \begin{document}
 
 \maketitle
@@ -13,16 +14,20 @@ En esta parte de la pr\'actica trabajaremos con el fichero
 \bigskip
 En primer lugar hay que leer este fichero, para ello usamos
 la funci\'on:
-<<read, eval=FALSE>>=
-satelites<-read.table("satelites.txt")
-@
+\begin{Schunk}
+\begin{Sinput}
+> satelites<-read.table("satelites.txt")
+\end{Sinput}
+\end{Schunk}
 
 \bigskip
 Para trabajar con la variable radio, y hacer este trabajo m\'as
 c\'omodo, la cargamos en una variable:
-<<read, eval=FALSE>>=
-Radio<-satelites$Radio
-@
+\begin{Schunk}
+\begin{Sinput}
+> Radio<-satelites$Radio
+\end{Sinput}
+\end{Schunk}
 
 \bigskip
 En el primer an\'alisis de los datos se cuantifica la \textbf{frecuencia}
@@ -31,35 +36,45 @@ de aparici\'on de los mismos.
 \begin{enumerate}
 \item
 \textit{Frecuencia absoluta: }
-<<table, eval=FALSE>>=
-frabsradio<-table(Radio)
-@
+\begin{Schunk}
+\begin{Sinput}
+> frabsradio<-table(Radio)
+\end{Sinput}
+\end{Schunk}
 
 \item
 \textit{Frecuencia absoluta acumulada: }
-<<cumsum, eval=FALSE>>=
-frabsacumradio<-cumsum(table(Radio))
-@
+\begin{Schunk}
+\begin{Sinput}
+> frabsacumradio<-cumsum(table(Radio))
+\end{Sinput}
+\end{Schunk}
 
 \item
 \textit{Frecuencia relativa: }En este caso es necesario crear una funci\'on
 para poder calcular este valor. La funci\'on es:
-<<function, eval=FALSE>>=
-frecrel<-function(Radio){table(Radio)/length(Radio)}
-@
+\begin{Schunk}
+\begin{Sinput}
+> frecrel<-function(Radio){table(Radio)/length(Radio)}
+\end{Sinput}
+\end{Schunk}
 
 \item
 \textit{Frecuencia relativa acumulada: }Haremos uso de la funci\'on definida anteriormente:
-<<function1, eval=FALSE>>=
-frecrelacum<-function(Radio){cumsum(table(Radio)/length(Radio))}
-@
+\begin{Schunk}
+\begin{Sinput}
+> frecrelacum<-function(Radio){cumsum(table(Radio)/length(Radio))}
+\end{Sinput}
+\end{Schunk}
 \end{enumerate}
 
 \bigskip
 El segundo an\'alisis de los datos se basa en calcular la \textbf{media aritm\'etica:}
-<<media, eval=FALSE>>=
-mr=mean(Radio)
-@
+\begin{Schunk}
+\begin{Sinput}
+> mr=mean(Radio)
+\end{Sinput}
+\end{Schunk}
 
 \bigskip
 El tercer an\'alisis de los datos se basa en calcular las \textbf{medidas de dispersi\'on:}
@@ -67,24 +82,30 @@ El tercer an\'alisis de los datos se basa en calcular las \textbf{medidas de dis
 \item
 \textit{Desviaci\'on t\'ipica: }Para corregir los resultados, se hace el c\'alculo
 a trav\'es de:
-<<sd, eval=FALSE>>=
-sdr=sd(Radio)/sqrt(12/11)
-@
+\begin{Schunk}
+\begin{Sinput}
+> sdr=sd(Radio)/sqrt(12/11)
+\end{Sinput}
+\end{Schunk}
 
 \item
 \textit{Varianza: }Al igual que en el caso anterior es necesario corregir el 
 resultado por lo que se usa:
-<<var, eval=FALSE>>=
-varr=var(Radio)*11/12
-@
+\begin{Schunk}
+\begin{Sinput}
+> varr=var(Radio)*11/12
+\end{Sinput}
+\end{Schunk}
 \end{enumerate}
 
 \bigskip
-El cuarto an\'alisis de los datos se basa en las \textbf{medidas de ordenaci\'on,} antes de los c\'alculos es necesario ordenar
+El cuarto an\'alisis de los datos se basa en las \textbf{medidas de ordenaci\'on:}, antes de los c\'alculos es necesario ordenar
 los datos en funci\'on de la variable usada, en este caso el radio.
-<<orden, eval=FALSE>>=
-so=s[order(s$Radio),]
-@
+\begin{Schunk}
+\begin{Sinput}
+> so=s[order(s$Radio),]
+\end{Sinput}
+\end{Schunk}
 
 \bigskip
 Una vez ordenados los datos se puede proceder a calcular:
@@ -92,18 +113,22 @@ Una vez ordenados los datos se puede proceder a calcular:
 \begin{enumerate}
 \item
 \textit{Mediana:}
-<<mediana, eval=FALSE>>=
-mediant=median(s$Radio)
-@
+\begin{Schunk}
+\begin{Sinput}
+> mediant=median(s$Radio)
+\end{Sinput}
+\end{Schunk}
 
 \item
 \textit{Cuartiles:}
-<<var, eval=FALSE>>=
-cuar1=quantile(s$Radio,0.25)
-cuar2=quantile(s$Radio,0.5)
-cuar3=quantile(s$Radio,0.75)
-cuar54=quantile(s$Radio,0.54)
-@
+\begin{Schunk}
+\begin{Sinput}
+> cuar1=quantile(s$Radio,0.25)
+> cuar2=quantile(s$Radio,0.5)
+> cuar3=quantile(s$Radio,0.75)
+> cuar54=quantile(s$Radio,0.54)
+\end{Sinput}
+\end{Schunk}
 \end{enumerate}
 
 \end{document}
