@@ -1,0 +1,48 @@
+\documentclass [a4paper] {article}
+
+\title{R-PL1}
+\author{Gabriel L\'opez, Sergio Sanz, \'Alvaro Zamorano}
+
+\usepackage{Sweave}
+\begin{document}
+
+\maketitle
+
+En esta parte de la pr\'actica trabajaremos con el fichero
+\texttt{satelites.txt}.\\
+
+\bigskip
+En primer lugar hay que leer este fichero, para ello usamos
+la funci\'on:
+\begin{Schunk}
+\begin{Sinput}
+> satelites<-read.table("satelites.txt")
+\end{Sinput}
+\end{Schunk}
+
+\bigskip
+Para trabajar con la variable radio, y hacer este trabajo m\'as
+c\'omodo, la cargamos en una variable:
+\begin{Schunk}
+\begin{Sinput}
+> Radio<-satelites$Radio
+\end{Sinput}
+\end{Schunk}
+
+\bigskip
+En el primer an\'alisis de los datos se cuantifica la \textbf{frecuencia}
+de aparici\'on de los mismos. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% save<-capture.output(frabsradio)
+
+\graphicspath{ {C:/Users/tromp/Documents/1.Curso_2019-20/1.Cuatrimetestre/2.Ciencia_Datos/LAB/CienciaDatos/Practica1/} }
+
+\begin{enumerate}
+\item
+\textit{Frecuencia absoluta: }
+\begin{Schunk}
+\begin{Sinput}
+> frabsradio<-table(Radio)
+> save<-toString(frabsradio)  
+> source("toPNG.R")
+> toPNG(save,"frabsradio.png")
