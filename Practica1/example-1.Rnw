@@ -14,6 +14,15 @@
 
 \maketitle
 
+A lo largo de la pr\'actica usaremos una funci\'on creada por nosostros para almacenar los resultados obtenidos en un .txt y posteriormente
+mostrarlos de forma correcta, por ello es necesario ejecutar:
+<<eval=TRUE>>=
+source("toTXT.R")
+toTxt
+@
+
+\graphicspath{ {C:/Users/tromp/Documents/1.Curso_2019-20/1.Cuatrimetestre/2.Ciencia_Datos/LAB/CienciaDatos/Practica1/} }
+
 En esta parte de la pr\'actica trabajaremos con el fichero
 \texttt{satelites.txt}.\\
 
@@ -35,46 +44,41 @@ Radio<-satelites$Radio
 En el primer an\'alisis de los datos se cuantifica la \textbf{frecuencia}
 de aparici\'on de los mismos. 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-\graphicspath{ {C:/Users/tromp/Documents/1.Curso_2019-20/1.Cuatrimetestre/2.Ciencia_Datos/LAB/CienciaDatos/Practica1/} }
-
 \begin{enumerate}
 \item
 \textit{Frecuencia absoluta: }
 <<eval=TRUE>>=
 frabsradio<-table(Radio)
-write.table(frabsradio, "C:/Users/tromp/Documents/1.Curso_2019-20/1.Cuatrimetestre/2.Ciencia_Datos/LAB/CienciaDatos/Practica1/p.txt", sep="\t", row.names=F) 
-
+toTxt(frabsradio,"frabsradio.txt",F)
 @
-
-\VerbatimInput{p.txt}
-
-%\includegraphics[width=\textwidth]{frabsradio}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\VerbatimInput{frabsradio.txt}
 
 \item
 \textit{Frecuencia absoluta acumulada: }
 <<eval=TRUE>>=
 frabsacumradio<-cumsum(table(Radio))
-frabsacumradio
+toTxt(frabsacumradio,"frabsacumradio.txt",T)
 @
+\VerbatimInput{frabsacumradio.txt}
 
 \item
 \textit{Frecuencia relativa: }En este caso es necesario crear una funci\'on
 para poder calcular este valor. La funci\'on es:
 <<eval=TRUE>>=
 frecrel<-function(Radio){table(Radio)/length(Radio)}
-frecrel(Radio)
+frer<-frecrel(Radio)
+toTxt(frer,"frer.txt",F)
 @
+\VerbatimInput{frer.txt}
 
 \item
 \textit{Frecuencia relativa acumulada: }Haremos uso de la funci\'on definida anteriormente:
 <<eval=TRUE>>=
 frecrelacum<-function(Radio){cumsum(table(Radio)/length(Radio))}
-frecrelacum(Radio)
+frar<-frecrelacum(Radio)
+toTxt(frar,"frar.txt",T)
 @
+\VerbatimInput{frar.txt}
 \end{enumerate}
 
 \bigskip
@@ -179,30 +183,37 @@ de aparici\'on de los mismos.
 \textit{Frecuencia absoluta: }
 <<eval=TRUE>>=
 frabsmpg<-table(mpg)
-frabsmpg
+toTxt(frabsmpg,"frabsmpg.txt",F)
 @
+\VerbatimInput{frabsmpg.txt}
 
 \item
 \textit{Frecuencia absoluta acumulada: }
 <<eval=TRUE>>=
 frabsacummpg<-cumsum(table(mpg))
-frabsacummpg
+fam<-frabsacummpg
+toTxt(fam,"fam.txt",T)
 @
+\VerbatimInput{fam.txt}
 
 \item
 \textit{Frecuencia relativa: }En este caso es necesario crear una funci\'on
 para poder calcular este valor. La funci\'on es:
 <<eval=TRUE>>=
 frecrel<-function(mpg){table(mpg)/length(mpg)}
-frecrel(mpg)
+frm<-frecrel(mpg)
+toTxt(frm,"frm.txt",F)
 @
+\VerbatimInput{frm.txt}
 
 \item
 \textit{Frecuencia relativa acumulada: }Haremos uso de la funci\'on definida anteriormente:
 <<eval=TRUE>>=
 frecrelacum<-function(mpg){cumsum(table(mpg)/length(mpg))}
-frecrelacum(mpg)
+fram<-frecrelacum(mpg)
+toTxt(fram,"fram.txt",T)
 @
+\VerbatimInput{fram.txt}
 \end{enumerate}
 
 \bigskip
@@ -258,6 +269,8 @@ cuar54m
 @
 \end{enumerate}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\newpage
 En la segunda parte de la pr\'actica vamos a trabajar con una base de datos descargada de
 \textit{Kaggle} cuyos datos pertenecen a los jugadores de FIFA 19.
 
@@ -388,7 +401,7 @@ Observando el intervalo tan amplio necesario para englobar el 75\% de los datos 
 no es una buena medida representante del conjunto de datos estudiado.
 
 \bigskip
-El c\'alculo de la \textbf{varianza} es sencillo, \'unicamente es la desviaci\'on al cuadrado:
+Por \'ultimo, el c\'alculo de la \textbf{varianza} es sencillo, \'unicamente es la desviaci\'on al cuadrado:
 <<eval=TRUE>>=
 v<-s^2
 v
