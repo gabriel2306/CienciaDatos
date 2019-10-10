@@ -1,5 +1,12 @@
 \documentclass [a4paper] {article}
 
+\usepackage[dvipsnames]{xcolor}
+
+\usepackage{fancyvrb}
+
+\RecustomVerbatimCommand{\VerbatimInput}{VerbatimInput}
+{fontsize=\footnotesize,frame=lines,framesep=2em,rulecolor=\color{Gray},commandchars=\|\(\),commentchar=*}
+
 \title{R-PL1}
 \author{Gabriel L\'opez, Sergio Sanz, \'Alvaro Zamorano}
 
@@ -28,7 +35,7 @@ Radio<-satelites$Radio
 En el primer an\'alisis de los datos se cuantifica la \textbf{frecuencia}
 de aparici\'on de los mismos. 
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% save<-capture.output(frabsradio)
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \graphicspath{ {C:/Users/tromp/Documents/1.Curso_2019-20/1.Cuatrimetestre/2.Ciencia_Datos/LAB/CienciaDatos/Practica1/} }
 
@@ -37,14 +44,11 @@ de aparici\'on de los mismos.
 \textit{Frecuencia absoluta: }
 <<eval=TRUE>>=
 frabsradio<-table(Radio)
-save<-toString(frabsradio)  
-source("toPNG.R")
-toPNG(save,"frabsradio.png")
+source("toTXT.R")
+toTxt(frabsradio,"frabsradio.txt")
 @
 
-\includegraphics[width=\textwidth]{frabsradio}
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\VerbatimInput{p.txt}
 
 \item
 \textit{Frecuencia absoluta acumulada: }
