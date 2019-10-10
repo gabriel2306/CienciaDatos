@@ -1,8 +1,10 @@
-histograma <- function(var,name,ruta) {
-    png(ruta)
- 
-    h<-hist(var, col='orange', breaks=40, xlab=name, 
-            ylab="Frecuencia absoluta", main ="Histograma") 
+desviacion <- function(var,media) {
+    num<-0
+    for (data in var){
+        num<-num+((data-media)^2)
+    }
 
-    dev.off()
+    s<-sqrt(num/length(var))
+
+    return(s)
 }

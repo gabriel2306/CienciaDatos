@@ -21,7 +21,7 @@ source("toTXT.R")
 toTxt
 @
 
-\graphicspath{ {C:/Users/tromp/Documents/1.Curso_2019-20/1.Cuatrimetestre/2.Ciencia_Datos/LAB/CienciaDatos/Practica1/} }
+\graphicspath{ {./tmp/} }
 
 En esta parte de la pr\'actica trabajaremos con el fichero
 \texttt{satelites.txt}.\\
@@ -51,7 +51,7 @@ de aparici\'on de los mismos.
 frabsradio<-table(Radio)
 toTxt(frabsradio,"frabsradio.txt",F)
 @
-\VerbatimInput{frabsradio.txt}
+\VerbatimInput{./tmp/frabsradio.txt}
 
 \item
 \textit{Frecuencia absoluta acumulada: }
@@ -59,7 +59,7 @@ toTxt(frabsradio,"frabsradio.txt",F)
 frabsacumradio<-cumsum(table(Radio))
 toTxt(frabsacumradio,"frabsacumradio.txt",T)
 @
-\VerbatimInput{frabsacumradio.txt}
+\VerbatimInput{./tmp/frabsacumradio.txt}
 
 \item
 \textit{Frecuencia relativa: }En este caso es necesario crear una funci\'on
@@ -69,7 +69,7 @@ frecrel<-function(Radio){table(Radio)/length(Radio)}
 frer<-frecrel(Radio)
 toTxt(frer,"frer.txt",F)
 @
-\VerbatimInput{frer.txt}
+\VerbatimInput{./tmp/frer.txt}
 
 \item
 \textit{Frecuencia relativa acumulada: }Haremos uso de la funci\'on definida anteriormente:
@@ -78,7 +78,7 @@ frecrelacum<-function(Radio){cumsum(table(Radio)/length(Radio))}
 frar<-frecrelacum(Radio)
 toTxt(frar,"frar.txt",T)
 @
-\VerbatimInput{frar.txt}
+\VerbatimInput{./tmp/frar.txt}
 \end{enumerate}
 
 \bigskip
@@ -185,7 +185,7 @@ de aparici\'on de los mismos.
 frabsmpg<-table(mpg)
 toTxt(frabsmpg,"frabsmpg.txt",F)
 @
-\VerbatimInput{frabsmpg.txt}
+\VerbatimInput{./tmp/frabsmpg.txt}
 
 \item
 \textit{Frecuencia absoluta acumulada: }
@@ -194,7 +194,7 @@ frabsacummpg<-cumsum(table(mpg))
 fam<-frabsacummpg
 toTxt(fam,"fam.txt",T)
 @
-\VerbatimInput{fam.txt}
+\VerbatimInput{./tmp/fam.txt}
 
 \item
 \textit{Frecuencia relativa: }En este caso es necesario crear una funci\'on
@@ -204,7 +204,7 @@ frecrel<-function(mpg){table(mpg)/length(mpg)}
 frm<-frecrel(mpg)
 toTxt(frm,"frm.txt",F)
 @
-\VerbatimInput{frm.txt}
+\VerbatimInput{./tmp/frm.txt}
 
 \item
 \textit{Frecuencia relativa acumulada: }Haremos uso de la funci\'on definida anteriormente:
@@ -213,7 +213,7 @@ frecrelacum<-function(mpg){cumsum(table(mpg)/length(mpg))}
 fram<-frecrelacum(mpg)
 toTxt(fram,"fram.txt",T)
 @
-\VerbatimInput{fram.txt}
+\VerbatimInput{./tmp/fram.txt}
 \end{enumerate}
 
 \bigskip
@@ -313,7 +313,7 @@ histograma
 
 Procedemos a su realizaci\'on:
 <<eval=TRUE>>=
-h<-histograma(edad,"Edad","./hist.png")
+h<-histograma(edad,"Edad","hist.png")
 @
 \includegraphics[width=\textwidth]{hist}
 
@@ -366,7 +366,7 @@ bigotes
 @
 
 <<eval=TRUE>>=
-b<-bigotes(edad,"./bigotes.png")
+b<-bigotes(edad,"bigotes.png")
 @
 \includegraphics[width=\textwidth]{bigotes}
 

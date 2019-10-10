@@ -1,3 +1,3 @@
 toTxt <- function(save,name,r) {
-    write.table(save, paste("./",name,sep=""), sep="\t", row.names=r) 
+    write.table(save, paste("./tmp/",name,sep=""), sep="\t", row.names=r) 
 }
