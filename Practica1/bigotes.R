@@ -1,7 +1,7 @@
 bigotes <- function(var,ruta) {
     png(ruta)
  
-    boxplot(var) 
+    boxplot(var, col='green', horizontal=T) 
 
     dev.off()
 }

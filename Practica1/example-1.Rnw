@@ -288,29 +288,48 @@ edad<-fifa$Age
 @
 
 \bigskip
-Con el objetivo de observar las frecuencias de la variable crearemos un histograma con ellas.
+Con el objetivo de observar las \textbf{frecuencias absolutas} de la variable crearemos un histograma con ellas. Hemos delegado
+la creaci\'on del histograma en una funci\'on externa la cual almacena este en un archivo \textit{png} para posteriormente poder incluirlo
+correctamente al documento.
+
+La funci\'on es la siguiente:
 <<eval=TRUE>>=
 source("histograma.R")
+histograma
+@
+
+Procedemos a su realizaci\'on:
+<<eval=TRUE>>=
 h<-histograma(edad,"Edad","./hist.png")
 @
 \includegraphics[width=\textwidth]{hist}
 
 
+\bigskip
+Procedemos a la separaci\'on de la variable en \textbf{clases de equivalencia} para calcular de ellas los distintos tipos de
+frecuencia estudidados. Esto se hace gracias al uso de la librer\'ia \textbf{fdth} y para poder utilizarla, como se ha dicho 
+anteriormente es necesario realizar lo siguiente:
 <<eval=TRUE>>=
-source("bigotes.R")
-b<-bigotes(edad,"./bigotes.png")
+install.packages("fdth")
+library("fdth")
 @
-\includegraphics[width=\textwidth]{bigotes}
 
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Procedemos al c\'alculo en s\'i:
 <<eval=TRUE>>=
-summary(edad)
+dist <- fdt(edad,breaks="Sturges")
+dist
 @
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\begin{itemize}
+\item Frecuencia absoluta -> f
+\item Frecuencia relativa -> rf
+\item Frecuencia relativa porcentual -> rf(\%)
+\item Frecuencia abs acumulada -> cf
+\item Frecuencia rel acumulada porcentual -> cf(\%)
+\end{itemize}
 
 \bigskip
-Para calcular la media de edad hemos construido una funci\'on en R la cual es:
+Para calcular la \textbf{media} de edad hemos construido una funci\'on en R la cual es:
 <<eval=TRUE>>=
 source("media.R")
 media
@@ -321,6 +340,58 @@ Procedemos al c\'alculo de la media haciendo uso de la misma:
 <<eval=TRUE>>=
 mf<-media(fifa$Age)
 mf
+@
+
+\bigskip
+En cuanto a los \textbf{cuantiles}, para su visualizaci\'on hemos optado por el uso
+de un diagrama de bigotes, donde adem\'as aparecen representados los l\'imites inferior
+y superior de la variable de estudio. Para su realizaci\'on se ha hecho lo mismo que con el 
+histograma de la siguiente manera:
+<<eval=TRUE>>=
+source("bigotes.R")
+bigotes
+@
+
+<<eval=TRUE>>=
+b<-bigotes(edad,"./bigotes.png")
+@
+\includegraphics[width=\textwidth]{bigotes}
+
+Para calcular la \textbf{desviaci\'on t\'ipica} hemos construido una funci\'on de la siguiente
+forma:
+<<eval=TRUE>>=
+source("desviacion.R")
+desviacion
+@   
+
+El c\'alculo de la misma es:
+<<eval=TRUE>>=
+s<-desviacion(edad,mf)
+s
+@
+
+\bigskip
+De acuerdo al teorema de \textit{Tchebychev} (realizado en una funci\'on aparte) el intervalo en el que se encuentran el 75\%
+de los datos, es decir para k=2, es:
+<<eval=TRUE>>=
+source("tche.R")
+t<-tche(s,mf,2)
+toString(t)
+@
+
+Dicha funci\'on es:
+<<eval=TRUE>>=
+tche
+@
+
+Observando el intervalo tan amplio necesario para englobar el 75\% de los datos se puede concluir con que la media
+no es una buena medida representante del conjunto de datos estudiado.
+
+\bigskip
+El c\'alculo de la \textbf{varianza} es sencillo, \'unicamente es la desviaci\'on al cuadrado:
+<<eval=TRUE>>=
+v<-s^2
+v
 @
 
 \end{document}
