@@ -1,0 +1,2 @@
+Sweave("nombreArchivo.Rnw")
+tools::texi2pdf("nombreArchivo.tex")
