@@ -572,6 +572,43 @@ function(var,ruta) {
 \end{Schunk}
 \includegraphics[width=\textwidth]{bigotes}
 
+Para calcular el percentil 54 se ha construido una funci\'on con la cu\'al se pueden
+calcular cuartiles, deciles y percentiles.
+\begin{Schunk}
+\begin{Sinput}
+> source("percentil.R")
+> cuantil
+\end{Sinput}
+\begin{Soutput}
+function(data, cuant) {
+
+    data<-sort(data)
+    
+    np<-length(data)*cuant
+    
+    if(np%%1==0){
+        xp<-(data[np]+data[np+1])/2
+    } else {
+        xp<-data[(np-np%%1)+1]
+    }
+
+    return(xp)
+}
+\end{Soutput}
+\end{Schunk}
+
+\textbf{Percentil 54:}
+\begin{Schunk}
+\begin{Sinput}
+> p54<-cuantil(edad,0.54)
+> p54
+\end{Sinput}
+\begin{Soutput}
+[1] 25
+\end{Soutput}
+\end{Schunk}
+
+\bigskip
 Para calcular la \textbf{desviaci\'on t\'ipica} hemos construido una funci\'on de la siguiente
 forma:
 \begin{Schunk}

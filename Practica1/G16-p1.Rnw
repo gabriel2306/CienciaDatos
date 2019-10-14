@@ -370,6 +370,20 @@ b<-bigotes(edad,"bigotes.png")
 @
 \includegraphics[width=\textwidth]{bigotes}
 
+Para calcular el percentil 54 se ha construido una funci\'on con la cu\'al se pueden
+calcular cuartiles, deciles y percentiles.
+<<eval=TRUE>>=
+source("percentil.R")
+cuantil
+@ 
+
+\textbf{Percentil 54:}
+<<eval=TRUE>>=
+p54<-cuantil(edad,0.54)
+p54
+@ 
+
+\bigskip
 Para calcular la \textbf{desviaci\'on t\'ipica} hemos construido una funci\'on de la siguiente
 forma:
 <<eval=TRUE>>=
