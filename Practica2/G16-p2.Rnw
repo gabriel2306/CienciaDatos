@@ -1,0 +1,25 @@
+\documentclass [a4paper] {article}
+
+\title{R-PL2}
+\author{Gabriel L\'opez, Sergio Sanz, \'Alvaro Zamorano}
+
+\begin{document}
+
+\maketitle
+
+\section{Ejercicio realizado en clase.}
+Para poder usar el algoritmo \textbf{Apriori} y sus reglas de asociaci\'on vamos a utilizar el paquete
+\texttt{arules}. Este paquete hay que descargarlo desde la p\'agina de CRAN y para instalarlo hay que
+ejecutar el siguiente c\'odigo:
+
+<<eval=TRUE>>=
+install.packages("./arules_1.6-4.zip",repos=NULL)
+@
+
+\bigskip
+De esta forma, el paquete \'unicamente est\'a instalado. Para poder usarlo es necesario cargarlo:
+<<eval=TRUE>>=
+library(arules)
+@
+
+\end{document}

@@ -1,0 +1,33 @@
+\documentclass [a4paper] {article}
+
+\title{R-PL2}
+\author{Gabriel L\'opez, Sergio Sanz, \'Alvaro Zamorano}
+
+\usepackage{Sweave}
+\begin{document}
+
+\maketitle
+
+\section{Ejercicio realizado en clase.}
+Para poder usar el algoritmo \textbf{Apriori} y sus reglas de asociaci\'on vamos a utilizar el paquete
+\texttt{arules}. Este paquete hay que descargarlo desde la p\'agina de CRAN y para instalarlo hay que
+ejecutar el siguiente c\'odigo:
+
+\begin{Schunk}
+\begin{Sinput}
+> install.packages("./arules_1.6-4.zip",repos=NULL)
+\end{Sinput}
+\begin{Soutput}
+package ‘arules’ successfully unpacked and MD5 sums checked
+\end{Soutput}
+\end{Schunk}
+
+\bigskip
+De esta forma, el paquete \'unicamente est\'a instalado. Para poder usarlo es necesario cargarlo:
+\begin{Schunk}
+\begin{Sinput}
+> library(arules)
+\end{Sinput}
+\end{Schunk}
+
+\end{document}
