@@ -23,8 +23,8 @@ toTxt
 
 \graphicspath{ {./tmp/} }
 
-En esta parte de la pr\'actica trabajaremos con el fichero
-\texttt{satelites.txt}.\\
+\section{Ejercicios realizados en clase.}
+\subsection{Trabajo sobre \texttt{satelites.txt}.}
 
 \bigskip
 En primer lugar hay que leer este fichero, para ello usamos
@@ -143,8 +143,7 @@ cuar54
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \bigskip
-A continuaci\'on pasaremos a trabajar con un fichero generado por SPSS, 
-\texttt{cardata.sav}.\\
+\subsection{Trabajo con \texttt{cardata.sav}.}
 
 \bigskip
 En primer lugar hay que leer este fichero pero no disponemos de la librer\'ia
@@ -271,6 +270,7 @@ cuar54m
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \newpage
+\section{An\'alisis de FIFA 19.}
 En la segunda parte de la pr\'actica vamos a trabajar con una base de datos descargada de
 \textit{Kaggle} cuyos datos pertenecen a los jugadores de FIFA 19.
 
