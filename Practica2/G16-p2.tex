@@ -1,7 +1,14 @@
 \documentclass [a4paper] {article}
 
+%% \usepackage[right=3cm, left=3cm]{geometry}
+
+\usepackage[spanish]{babel} 
+\usepackage[utf8]{inputenc} 
+\usepackage{multirow} 
+\usepackage{float} 
+
 \title{R-PL2}
-\author{Gabriel L\'opez, Sergio Sanz, \'Alvaro Zamorano}
+\author{Gabriel López, Sergio Sanz, Álvaro Zamorano}
 
 \usepackage{Sweave}
 \begin{document}
@@ -9,9 +16,9 @@
 \maketitle
 
 \section{Ejercicio realizado en clase.}
-Para poder usar el algoritmo \textbf{Apriori} y sus reglas de asociaci\'on vamos a utilizar el paquete
-\texttt{arules}. Este paquete hay que descargarlo desde la p\'agina de CRAN y para instalarlo hay que
-ejecutar el siguiente c\'odigo:
+Para poder usar el algoritmo \textbf{Apriori} y sus reglas de asociación vamos a utilizar el paquete
+\texttt{arules}. Este paquete hay que descargarlo desde la página de CRAN y para instalarlo hay que
+ejecutar el siguiente código:
 
 \begin{Schunk}
 \begin{Sinput}
@@ -20,11 +27,267 @@ ejecutar el siguiente c\'odigo:
 \end{Schunk}
 
 \bigskip
-De esta forma, el paquete \'unicamente est\'a instalado. Para poder usarlo es necesario cargarlo:
+De esta forma, el paquete únicamente está instalado. Para poder usarlo es necesario cargarlo:
 \begin{Schunk}
 \begin{Sinput}
 > library(arules)
 \end{Sinput}
+\end{Schunk}
+
+Los datos a usar en este primer ejercicio se componen de 6 cestas de la compra, en concreto
+estas son: \{Pan, Agua, Leche, Naranjas\},\{{Pan, Agua, Café, Leche\}, \{Pan, Agua, Leche\}, 
+\{Pan, Café, Leche\}, \{Pan, Agua\}, \{Leche\}.
+
+\bigskip
+Para introducir estos datos en el algoritmo a usar es necesario crear una matriz con el siguiente
+aspecto.
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+Suceso & Pan & Agua & Café & Leche & Naranjas \\
+\hline \hline
+s1 & 1 & 1 & 0 & 1 & 1 \\ \hline
+s2 & 1 & 1 & 1 & 1 & 0 \\ \hline
+s3 & 1 & 1 & 0 & 1 & 0 \\ \hline
+s4 & 1 & 0 & 1 & 1 & 0 \\ \hline
+s5 & 1 & 1 & 0 & 0 & 0 \\ \hline
+s6 & 0 & 0 & 0 & 1 & 0 \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\bigskip
+Esta matriz se introduce en R mediante:
+\begin{Schunk}
+\begin{Sinput}
+> muestra<-Matrix(c(1,1,0,1,1,1,1,1,1,0,1,1,0,1,0,1,0,1,1,0,1,1,0,0,0,0,0,0,1,0),
++ 6,5,byrow=T,dimnames=list(c("suceso1","suceso2","suceso3","suceso4","suceso5",
++ "suceso6"),c("Pan","Agua","Cafe","Leche","Naranjas")),sparse=T)
+\end{Sinput}
+\end{Schunk}
+
+\bigskip
+Se necesita convertir la matriz a una matriz dispersa a través de la función \textbf{as} la cuál convierte un objeto a una determinada
+clase, en este caso la clase es \textit{nsparseMatrix}. Esta clase lo que hace es cambiar los valores mayores de 0 por un valor binario, 
+con el fin de gastar la menor cantidad de memoria posible ya que solo se almacenan aquellas posiciones no vacias, es decir, las que cuyo
+valor es distinto de 0.
+\begin{Schunk}
+\begin{Sinput}
+> muestrangCMatrix<-as(muestra,"nsparseMatrix")
+\end{Sinput}
+\end{Schunk}
+
+\bigskip
+El siguiente paso a realizar es calcular la \textbf{traspuesta} de la última matriz generada.
+\begin{Schunk}
+\begin{Sinput}
+> transpuestangCMatrix<-t(muestrangCMatrix)
+\end{Sinput}
+\end{Schunk}
+
+\bigskip
+Antes de aplicar el algoritmo, calculamos y mostramos todas las \textbf{transacciones}, es decir, todas las asociaciones
+que hay en nuestros datos.
+\begin{Schunk}
+\begin{Sinput}
+> transacciones<-as(transpuestangCMatrix,"transactions")
+> summary(transacciones)
+\end{Sinput}
+\begin{Soutput}
+transactions as itemMatrix in sparse format with
+ 6 rows (elements/itemsets/transactions) and
+ 5 columns (items) and a density of 0.5666667 
+
+most frequent items:
+     Pan    Leche     Agua     Cafe Naranjas  (Other) 
+       5        5        4        2        1        0 
+
+element (itemset/transaction) length distribution:
+sizes
+1 2 3 4 
+1 1 2 2 
+
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+  1.000   2.250   3.000   2.833   3.750   4.000 
+
+includes extended item information - examples:
+  labels
+1    Pan
+2   Agua
+3   Cafe
+
+includes extended transaction information - examples:
+  itemsetID
+1   suceso1
+2   suceso2
+3   suceso3
+\end{Soutput}
+\end{Schunk}
+
+\bigskip
+Por último, aplicamos el algoritmo \textbf{Apriori} para las asociaciones cuyo soporte sea igual o superior al 50\% y cuya confianza
+sea igual o mayor que el 80\%.
+\begin{Schunk}
+\begin{Sinput}
+> asociaciones<-apriori(transacciones,parameter=list(support=0.5,confidence=0.8))
+\end{Sinput}
+\end{Schunk}
+\begin{Schunk}
+\begin{Sinput}
+> inspect(asociaciones)
+\end{Sinput}
+\begin{Soutput}
+    lhs             rhs     support   confidence lift count
+[1] {}           => {Leche} 0.8333333 0.8333333  1.00 5    
+[2] {}           => {Pan}   0.8333333 0.8333333  1.00 5    
+[3] {Agua}       => {Pan}   0.6666667 1.0000000  1.20 4    
+[4] {Pan}        => {Agua}  0.6666667 0.8000000  1.20 4    
+[5] {Leche}      => {Pan}   0.6666667 0.8000000  0.96 4    
+[6] {Pan}        => {Leche} 0.6666667 0.8000000  0.96 4    
+[7] {Agua,Leche} => {Pan}   0.5000000 1.0000000  1.20 3    
+\end{Soutput}
+\end{Schunk}
+
+\bigskip
+\section{Parte 2.}
+\subsection{Datos de ventas de coches.}
+Para el leer el fichero \texttt{.txt} hemos creado una función la cuál nos devuelve una lista con las filas
+de la matriz.
+\begin{Schunk}
+\begin{Sinput}
+> source("leerMatriz.R")
+> leerM
+\end{Sinput}
+\begin{Soutput}
+function(ruta) {
+
+    data<-read.table(ruta,header=TRUE)
+    mat<-as.matrix(data)
+    sz<-dim(mat)
+    l<-c()
+
+    for (i in 1:sz[1]) {
+        for (j in 1:sz[2]){
+            l<-c(l,mat[i,j])
+        }
+    }
+
+    return(l)
+}
+\end{Soutput}
+\end{Schunk}
+
+Procedemos a la lectura de dicho fichero.
+\begin{Schunk}
+\begin{Sinput}
+> m<-leerM("2_1.txt")
+\end{Sinput}
+\end{Schunk}
+
+\bigskip
+La matriz leida tiene el siguiente aspecto.
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+Suceso & Xenon & Alarma & Techo & Navegador & Bluetooth & ControlV \\
+\hline \hline
+s1 & 1 & 0 & 0 & 1 & 1 & 1 \\ \hline
+s2 & 1 & 0 & 1 & 0 & 1 & 1 \\ \hline
+s3 & 1 & 0 & 0 & 1 & 0 & 1 \\ \hline
+s4 & 1 & 0 & 1 & 1 & 1 & 0 \\ \hline
+s5 & 1 & 0 & 0 & 0 & 1 & 1 \\ \hline
+s6 & 0 & 0 & 0 & 1 & 0 & 0 \\ \hline
+s7 & 1 & 0 & 0 & 0 & 1 & 1 \\ \hline
+s8 & 0 & 1 & 1 & 0 & 0 & 0 \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\bigskip
+Esta matriz se introduce en R mediante:
+\begin{Schunk}
+\begin{Sinput}
+> mCoches<-Matrix(m,8,6,byrow=T,dimnames=list(c("suceso1","suceso2","suceso3",
++ "suceso4","suceso5","suceso6", "suceso7", "suceso8"),
++ c("Xenon", "Alarma", "Techo", "Navegador", "Bluetooth", "ControlV")),sparse=T)
+\end{Sinput}
+\end{Schunk}
+
+\bigskip
+Se necesita convertir la matriz a una matriz dispersa a través de la función \textbf{as}.
+\begin{Schunk}
+\begin{Sinput}
+> mCochesngC<-as(mCoches,"nsparseMatrix")
+\end{Sinput}
+\end{Schunk}
+
+\bigskip
+El siguiente paso a realizar es calcular la \textbf{traspuesta} de la última matriz generada.
+\begin{Schunk}
+\begin{Sinput}
+> transpuestangC<-t(mCochesngC)
+\end{Sinput}
+\end{Schunk}
+
+\bigskip
+Antes de aplicar el algoritmo, calculamos y mostramos todas las \textbf{transacciones}, es decir, todas las asociaciones
+que hay en nuestros datos.
+\begin{Schunk}
+\begin{Sinput}
+> transac<-as(transpuestangC,"transactions")
+> summary(transac)
+\end{Sinput}
+\begin{Soutput}
+transactions as itemMatrix in sparse format with
+ 8 rows (elements/itemsets/transactions) and
+ 6 columns (items) and a density of 0.5 
+
+most frequent items:
+    Xenon Bluetooth  ControlV Navegador     Techo   (Other) 
+        6         5         5         4         3         1 
+
+element (itemset/transaction) length distribution:
+sizes
+1 2 3 4 
+1 1 3 3 
+
+   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
+   1.00    2.75    3.00    3.00    4.00    4.00 
+
+includes extended item information - examples:
+  labels
+1  Xenon
+2 Alarma
+3  Techo
+
+includes extended transaction information - examples:
+  itemsetID
+1   suceso1
+2   suceso2
+3   suceso3
+\end{Soutput}
+\end{Schunk}
+
+\bigskip
+Por último, aplicamos el algoritmo \textbf{Apriori} para las asociaciones cuyo soporte sea igual o superior al 50\% y cuya confianza
+sea igual o mayor que el 80\%.
+\begin{Schunk}
+\begin{Sinput}
+> asoc<-apriori(transac,parameter=list(support=0.4,confidence=0.9))
+\end{Sinput}
+\end{Schunk}
+\begin{Schunk}
+\begin{Sinput}
+> inspect(asoc)
+\end{Sinput}
+\begin{Soutput}
+    lhs                     rhs     support confidence lift     count
+[1] {ControlV}           => {Xenon} 0.625   1          1.333333 5    
+[2] {Bluetooth}          => {Xenon} 0.625   1          1.333333 5    
+[3] {Bluetooth,ControlV} => {Xenon} 0.500   1          1.333333 4    
+\end{Soutput}
 \end{Schunk}
 
 \end{document}

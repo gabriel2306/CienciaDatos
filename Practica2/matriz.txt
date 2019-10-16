@@ -1,0 +1,1 @@
+mCoches<-Matrix(m,8,6,byrow=T,dimnames=list(c("suceso1","suceso2","suceso3","suceso4","suceso5","suceso6", "suceso7", "suceso8"),c("X", "A", "T", "N", "B", "C")),sparse=T)

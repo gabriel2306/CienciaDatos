@@ -1,25 +1,169 @@
 \documentclass [a4paper] {article}
 
+%% \usepackage[right=3cm, left=3cm]{geometry}
+
+\usepackage[spanish]{babel} 
+\usepackage[utf8]{inputenc} 
+\usepackage{multirow} 
+\usepackage{float} 
+
 \title{R-PL2}
-\author{Gabriel L\'opez, Sergio Sanz, \'Alvaro Zamorano}
+\author{Gabriel López, Sergio Sanz, Álvaro Zamorano}
 
 \begin{document}
 
 \maketitle
 
 \section{Ejercicio realizado en clase.}
-Para poder usar el algoritmo \textbf{Apriori} y sus reglas de asociaci\'on vamos a utilizar el paquete
-\texttt{arules}. Este paquete hay que descargarlo desde la p\'agina de CRAN y para instalarlo hay que
-ejecutar el siguiente c\'odigo:
+Para poder usar el algoritmo \textbf{Apriori} y sus reglas de asociación vamos a utilizar el paquete
+\texttt{arules}. Este paquete hay que descargarlo desde la página de CRAN y para instalarlo hay que
+ejecutar el siguiente código:
 
 <<eval=TRUE>>=
 install.packages("./arules_1.6-4.zip",repos=NULL)
 @
 
 \bigskip
-De esta forma, el paquete \'unicamente est\'a instalado. Para poder usarlo es necesario cargarlo:
+De esta forma, el paquete únicamente está instalado. Para poder usarlo es necesario cargarlo:
 <<eval=TRUE>>=
 library(arules)
+@
+
+Los datos a usar en este primer ejercicio se componen de 6 cestas de la compra, en concreto
+estas son: \{Pan, Agua, Leche, Naranjas\},\{{Pan, Agua, Café, Leche\}, \{Pan, Agua, Leche\}, 
+\{Pan, Café, Leche\}, \{Pan, Agua\}, \{Leche\}.
+
+\bigskip
+Para introducir estos datos en el algoritmo a usar es necesario crear una matriz con el siguiente
+aspecto.
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|}
+\hline
+Suceso & Pan & Agua & Café & Leche & Naranjas \\
+\hline \hline
+s1 & 1 & 1 & 0 & 1 & 1 \\ \hline
+s2 & 1 & 1 & 1 & 1 & 0 \\ \hline
+s3 & 1 & 1 & 0 & 1 & 0 \\ \hline
+s4 & 1 & 0 & 1 & 1 & 0 \\ \hline
+s5 & 1 & 1 & 0 & 0 & 0 \\ \hline
+s6 & 0 & 0 & 0 & 1 & 0 \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\bigskip
+Esta matriz se introduce en R mediante:
+<<eval=TRUE>>=
+muestra<-Matrix(c(1,1,0,1,1,1,1,1,1,0,1,1,0,1,0,1,0,1,1,0,1,1,0,0,0,0,0,0,1,0),
+6,5,byrow=T,dimnames=list(c("suceso1","suceso2","suceso3","suceso4","suceso5",
+"suceso6"),c("Pan","Agua","Cafe","Leche","Naranjas")),sparse=T)
+@
+
+\bigskip
+Se necesita convertir la matriz a una matriz dispersa a través de la función \textbf{as} la cuál convierte un objeto a una determinada
+clase, en este caso la clase es \textit{nsparseMatrix}. Esta clase lo que hace es cambiar los valores mayores de 0 por un valor binario, 
+con el fin de gastar la menor cantidad de memoria posible ya que solo se almacenan aquellas posiciones no vacias, es decir, las que cuyo
+valor es distinto de 0.
+<<eval=TRUE>>=
+muestrangCMatrix<-as(muestra,"nsparseMatrix")
+@
+
+\bigskip
+El siguiente paso a realizar es calcular la \textbf{traspuesta} de la última matriz generada.
+<<eval=TRUE>>=
+transpuestangCMatrix<-t(muestrangCMatrix)
+@
+
+\bigskip
+Antes de aplicar el algoritmo, calculamos y mostramos todas las \textbf{transacciones}, es decir, todas las asociaciones
+que hay en nuestros datos.
+<<eval=TRUE>>=
+transacciones<-as(transpuestangCMatrix,"transactions")
+summary(transacciones)
+@
+
+\bigskip
+Por último, aplicamos el algoritmo \textbf{Apriori} para las asociaciones cuyo soporte sea igual o superior al 50\% y cuya confianza
+sea igual o mayor que el 80\%.
+<<eval=TRUE,results=hide>>=
+asociaciones<-apriori(transacciones,parameter=list(support=0.5,confidence=0.8))
+@
+<<eval=TRUE>>=
+inspect(asociaciones)
+@
+
+\bigskip
+\section{Parte 2.}
+\subsection{Datos de ventas de coches.}
+Para el leer el fichero \texttt{.txt} hemos creado una función la cuál nos devuelve una lista con las filas
+de la matriz.
+<<eval=TRUE>>=
+source("leerMatriz.R")
+leerM
+@
+
+Procedemos a la lectura de dicho fichero.
+<<eval=TRUE>>=
+m<-leerM("2_1.txt")
+@
+
+\bigskip
+La matriz leida tiene el siguiente aspecto.
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline
+Suceso & Xenon & Alarma & Techo & Navegador & Bluetooth & ControlV \\
+\hline \hline
+s1 & 1 & 0 & 0 & 1 & 1 & 1 \\ \hline
+s2 & 1 & 0 & 1 & 0 & 1 & 1 \\ \hline
+s3 & 1 & 0 & 0 & 1 & 0 & 1 \\ \hline
+s4 & 1 & 0 & 1 & 1 & 1 & 0 \\ \hline
+s5 & 1 & 0 & 0 & 0 & 1 & 1 \\ \hline
+s6 & 0 & 0 & 0 & 1 & 0 & 0 \\ \hline
+s7 & 1 & 0 & 0 & 0 & 1 & 1 \\ \hline
+s8 & 0 & 1 & 1 & 0 & 0 & 0 \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\bigskip
+Esta matriz se introduce en R mediante:
+<<eval=TRUE>>=
+mCoches<-Matrix(m,8,6,byrow=T,dimnames=list(c("suceso1","suceso2","suceso3",
+"suceso4","suceso5","suceso6", "suceso7", "suceso8"),
+c("Xenon", "Alarma", "Techo", "Navegador", "Bluetooth", "ControlV")),sparse=T)
+@
+
+\bigskip
+Se necesita convertir la matriz a una matriz dispersa a través de la función \textbf{as}.
+<<eval=TRUE>>=
+mCochesngC<-as(mCoches,"nsparseMatrix")
+@
+
+\bigskip
+El siguiente paso a realizar es calcular la \textbf{traspuesta} de la última matriz generada.
+<<eval=TRUE>>=
+transpuestangC<-t(mCochesngC)
+@
+
+\bigskip
+Antes de aplicar el algoritmo, calculamos y mostramos todas las \textbf{transacciones}, es decir, todas las asociaciones
+que hay en nuestros datos.
+<<eval=TRUE>>=
+transac<-as(transpuestangC,"transactions")
+summary(transac)
+@
+
+\bigskip
+Por último, aplicamos el algoritmo \textbf{Apriori} para las asociaciones cuyo soporte sea igual o superior al 50\% y cuya confianza
+sea igual o mayor que el 80\%.
+<<eval=TRUE,results=hide>>=
+asoc<-apriori(transac,parameter=list(support=0.4,confidence=0.9))
+@
+<<eval=TRUE>>=
+inspect(asoc)
 @
 
 \end{document}
