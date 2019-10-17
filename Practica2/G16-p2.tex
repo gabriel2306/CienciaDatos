@@ -15,6 +15,8 @@
 
 \maketitle
 
+\graphicspath{ {./tmp/} }
+
 \section{Ejercicio realizado en clase.}
 Para poder usar el algoritmo \textbf{Apriori} y sus reglas de asociación vamos a utilizar el paquete
 \texttt{arules}. Este paquete hay que descargarlo desde la página de CRAN y para instalarlo hay que
@@ -24,6 +26,9 @@ ejecutar el siguiente código:
 \begin{Sinput}
 > install.packages("./arules_1.6-4.zip",repos=NULL)
 \end{Sinput}
+\begin{Soutput}
+package ‘arules’ successfully unpacked and MD5 sums checked
+\end{Soutput}
 \end{Schunk}
 
 \bigskip
@@ -289,5 +294,91 @@ sea igual o mayor que el 80\%.
 [3] {Bluetooth,ControlV} => {Xenon} 0.500   1          1.333333 4    
 \end{Soutput}
 \end{Schunk}
+
+\bigskip
+\subsection{Desarrollo del grupo.}
+
+En primer lugar procedemos a leer los datos que hay en el fichero \texttt{.csv} almacenándolos directamente
+en un objeto de tipo \textit{transactions} ya que es la estructura de almacenamiento empleada por \textit{arules.}
+Para poder leer estos datos es necesario tener cargada la librería mediante \texttt{library(arules)}, como se ha
+indicado anteriormente.
+
+Las transacciones se leen gracias al uso de la función \textit{read.transactions}.
+\begin{Schunk}
+\begin{Sinput}
+> shopT<-read.transactions("shop.csv", format = "basket", 
++                   header = FALSE, sep = ",", 
++                   cols = NULL, rm.duplicates = FALSE, 
++                   skip = 0)
+\end{Sinput}
+\end{Schunk}
+
+\bigskip
+Un ejemplo de estas transacciones es:
+\begin{Schunk}
+\begin{Sinput}
+> inspect(shopT[1])
+\end{Sinput}
+\begin{Soutput}
+    items              
+[1] {all- purpose,     
+     aluminum foil,    
+     beef,             
+     butter,           
+     dinner rolls,     
+     flour,            
+     ice cream,        
+     laundry detergent,
+     lunch meat,       
+     mixes,            
+     pork,             
+     sandwich bags,    
+     shampoo,          
+     soap,             
+     soda,             
+     vegetables,       
+     yogurt}           
+\end{Soutput}
+\end{Schunk}
+
+Los datos se reparten de la siguiente manera:
+\begin{Schunk}
+\begin{Sinput}
+> quantile(size(shopT), probs = seq(0,1,0.1))
+\end{Sinput}
+\begin{Soutput}
+  0%  10%  20%  30%  40%  50%  60%  70%  80%  90% 100% 
+   4    7    9   11   13   15   17   18   20   21   27 
+\end{Soutput}
+\end{Schunk}
+
+Mostramos en un gráfico el \textbf{soporte} de los 10 productos más comprados, es decir, en cuantos
+sucesos aparece cada uno de los productos respecto al total de sucesos.
+\begin{Schunk}
+\begin{Sinput}
+> source("sopImg.R")
+> d<-sopImg(shopT,"sopImg.png")
+\end{Sinput}
+\end{Schunk}
+\includegraphics[width=\textwidth]{sopImg}
+
+La función usada anteriormente tiene el siguiente aspecto:
+\begin{Schunk}
+\begin{Sinput}
+> sopImg
+\end{Sinput}
+\begin{Soutput}
+function(data, ruta) {
+
+    png(paste("./tmp/",ruta,sep=""))
+
+    itemFrequencyPlot(data, topN=10, type="relative", 
+        main="Item Frequency")
+
+    dev.off()
+}
+\end{Soutput}
+\end{Schunk}
+
 
 \end{document}

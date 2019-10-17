@@ -1,0 +1,40 @@
+yogurt
+pork
+sandwich bags
+lunch meat
+all- purpose
+flour
+soda
+butter
+vegetables
+beef
+aluminum foil
+all- purpose
+dinner rolls
+shampoo
+all- purpose
+mixes
+soap
+laundry detergent
+ice cream
+dinner rolls
+
+read.transactions("shop.csv", format = "basket", 
+                  header = FALSE, sep = ",", 
+                  cols = NULL, rm.duplicates = FALSE, 
+                  skip = 0)
+
+data.frame(tamanyos) %>%
+  ggplot(aes(x = tamanyos)) +
+  geom_histogram() +
+  labs(title = "Distribución del tamaño de las transacciones",
+       x = "Tamaño") +
+  theme_bw()
+
+source("distr.R")
+install.packages("ggplot2")
+library(ggplot2)
+install.packages("dplyr")
+library(dplyr)
+d<-dist(shopT,"dist.png")
+\includegraphics[width=\textwidth]{dist}

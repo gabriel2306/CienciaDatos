@@ -14,6 +14,8 @@
 
 \maketitle
 
+\graphicspath{ {./tmp/} }
+
 \section{Ejercicio realizado en clase.}
 Para poder usar el algoritmo \textbf{Apriori} y sus reglas de asociación vamos a utilizar el paquete
 \texttt{arules}. Este paquete hay que descargarlo desde la página de CRAN y para instalarlo hay que
@@ -165,5 +167,46 @@ asoc<-apriori(transac,parameter=list(support=0.4,confidence=0.9))
 <<eval=TRUE>>=
 inspect(asoc)
 @
+
+\bigskip
+\subsection{Desarrollo del grupo.}
+
+En primer lugar procedemos a leer los datos que hay en el fichero \texttt{.csv} almacenándolos directamente
+en un objeto de tipo \textit{transactions} ya que es la estructura de almacenamiento empleada por \textit{arules.}
+Para poder leer estos datos es necesario tener cargada la librería mediante \texttt{library(arules)}, como se ha
+indicado anteriormente.
+
+Las transacciones se leen gracias al uso de la función \textit{read.transactions}.
+<<eval=TRUE>>=
+shopT<-read.transactions("shop.csv", format = "basket", 
+                  header = FALSE, sep = ",", 
+                  cols = NULL, rm.duplicates = FALSE, 
+                  skip = 0)
+@
+
+\bigskip
+Un ejemplo de estas transacciones es:
+<<eval=TRUE>>=
+inspect(shopT[1])
+@
+
+Los datos se reparten de la siguiente manera:
+<<eval=TRUE>>=
+quantile(size(shopT), probs = seq(0,1,0.1))
+@
+
+Mostramos en un gráfico el \textbf{soporte} de los 10 productos más comprados, es decir, en cuantos
+sucesos aparece cada uno de los productos respecto al total de sucesos.
+<<eval=TRUE>>=
+source("sopImg.R")
+d<-sopImg(shopT,"sopImg.png")
+@
+\includegraphics[width=\textwidth]{sopImg}
+
+La función usada anteriormente tiene el siguiente aspecto:
+<<eval=TRUE>>=
+sopImg
+@
+
 
 \end{document}
