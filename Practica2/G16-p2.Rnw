@@ -190,23 +190,36 @@ Un ejemplo de estas transacciones es:
 inspect(shopT[1])
 @
 
-Los datos se reparten de la siguiente manera:
-<<eval=TRUE>>=
-quantile(size(shopT), probs = seq(0,1,0.1))
-@
-
 Mostramos en un gráfico el \textbf{soporte} de los 10 productos más comprados, es decir, en cuantos
 sucesos aparece cada uno de los productos respecto al total de sucesos.
 <<eval=TRUE>>=
 source("sopImg.R")
-d<-sopImg(shopT,"sopImg.png")
+d<-sopImg(shopT,"sopI.png")
 @
-\includegraphics[width=\textwidth]{sopImg}
+\includegraphics[width=\textwidth]{sopI}
 
-La función usada anteriormente tiene el siguiente aspecto:
+Para usar la función anterior es necesario installar e importar mediante \texttt{library} un paquete de R
+para el uso de la paleta de colores que posteriormente empleará el gráfico. Dicha función tiene el siguiente
+aspecto:
 <<eval=TRUE>>=
 sopImg
 @
 
+\bigskip
+Uso de \textbf{eclat:}
+<<eval=TRUE,results=hide>>=
+is<-eclat(shopT,parameter=list(support=0.3))
+@
+
+<<eval=TRUE>>=
+rules<-ruleInduction(is,shopT,confidence=0.7)
+inspect(rules)
+@
+
+<<eval=TRUE>>=
+install.packages("arulesViz")
+library(arulesViz)
+plot(rules,method="graph",control=list(type="items"))
+@
 
 \end{document}

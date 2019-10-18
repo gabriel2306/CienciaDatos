@@ -26,9 +26,6 @@ ejecutar el siguiente código:
 \begin{Sinput}
 > install.packages("./arules_1.6-4.zip",repos=NULL)
 \end{Sinput}
-\begin{Soutput}
-package ‘arules’ successfully unpacked and MD5 sums checked
-\end{Soutput}
 \end{Schunk}
 
 \bigskip
@@ -341,28 +338,19 @@ Un ejemplo de estas transacciones es:
 \end{Soutput}
 \end{Schunk}
 
-Los datos se reparten de la siguiente manera:
-\begin{Schunk}
-\begin{Sinput}
-> quantile(size(shopT), probs = seq(0,1,0.1))
-\end{Sinput}
-\begin{Soutput}
-  0%  10%  20%  30%  40%  50%  60%  70%  80%  90% 100% 
-   4    7    9   11   13   15   17   18   20   21   27 
-\end{Soutput}
-\end{Schunk}
-
 Mostramos en un gráfico el \textbf{soporte} de los 10 productos más comprados, es decir, en cuantos
 sucesos aparece cada uno de los productos respecto al total de sucesos.
 \begin{Schunk}
 \begin{Sinput}
 > source("sopImg.R")
-> d<-sopImg(shopT,"sopImg.png")
+> d<-sopImg(shopT,"sopI.png")
 \end{Sinput}
 \end{Schunk}
-\includegraphics[width=\textwidth]{sopImg}
+\includegraphics[width=\textwidth]{sopI}
 
-La función usada anteriormente tiene el siguiente aspecto:
+Para usar la función anterior es necesario installar e importar mediante \texttt{library} un paquete de R
+para el uso de la paleta de colores que posteriormente empleará el gráfico. Dicha función tiene el siguiente
+aspecto:
 \begin{Schunk}
 \begin{Sinput}
 > sopImg
@@ -370,15 +358,88 @@ La función usada anteriormente tiene el siguiente aspecto:
 \begin{Soutput}
 function(data, ruta) {
 
+    install.packages("RColorBrewer")
+    library(RColorBrewer)
+
     png(paste("./tmp/",ruta,sep=""))
 
-    itemFrequencyPlot(data, topN=10, type="relative", 
-        main="Item Frequency")
+    itemFrequencyPlot(data, topN=10, col=brewer.pal(8,'Set1'),
+        type="relative",main="Soporte")
 
     dev.off()
 }
 \end{Soutput}
 \end{Schunk}
 
+\bigskip
+Uso de \textbf{eclat:}
+\begin{Schunk}
+\begin{Sinput}
+> is<-eclat(shopT,parameter=list(support=0.3))
+\end{Sinput}
+\end{Schunk}
+
+\begin{Schunk}
+\begin{Sinput}
+> rules<-ruleInduction(is,shopT,confidence=0.7)
+> inspect(rules)
+\end{Sinput}
+\begin{Soutput}
+     lhs                               rhs          support   confidence
+[1]  {laundry detergent}            => {vegetables} 0.3042028 0.8099467 
+[2]  {yogurt}                       => {vegetables} 0.3082055 0.8148148 
+[3]  {eggs}                         => {vegetables} 0.3108739 0.8146853 
+[4]  {ice cream}                    => {vegetables} 0.3008672 0.7722603 
+[5]  {lunch meat}                   => {vegetables} 0.3015344 0.7766323 
+[6]  {waffles}                      => {vegetables} 0.3048699 0.7785349 
+[7]  {cheeses}                      => {vegetables} 0.3035357 0.7844828 
+[8]  {aluminum foil}                => {vegetables} 0.3095397 0.8013817 
+[9]  {dishwashing liquid/detergent} => {vegetables} 0.3048699 0.7811966 
+[10] {poultry}                      => {vegetables} 0.3202135 0.7830343 
+     lift     itemset
+[1]  1.114885  1     
+[2]  1.121586  2     
+[3]  1.121408  3     
+[4]  1.063010  4     
+[5]  1.069028  5     
+[6]  1.071647  6     
+[7]  1.079834  7     
+[8]  1.103096  8     
+[9]  1.075311  9     
+[10] 1.077841 10     
+\end{Soutput}
+\end{Schunk}
+
+\begin{Schunk}
+\begin{Sinput}
+> install.packages("arulesViz")
+> library(arulesViz)
+> plot(rules,method="graph",control=list(type="items"))
+\end{Sinput}
+\begin{Soutput}
+Available control parameters (with default values):
+main	 =  Graph for 10 rules
+nodeColors	 =  c("#66CC6680", "#9999CC80")
+nodeCol	 =  c("#EE0000FF", "#EE0303FF", "#EE0606FF", "#EE0909FF", "#EE0C0CFF", "#EE0F0FFF", "#EE1212FF", "#EE1515FF", "#EE1818FF", "#EE1B1BFF", "#EE1E1EFF", "#EE2222FF", "#EE2525FF", "#EE2828FF", "#EE2B2BFF", "#EE2E2EFF", "#EE3131FF", "#EE3434FF", "#EE3737FF", "#EE3A3AFF", "#EE3D3DFF", "#EE4040FF", "#EE4444FF", "#EE4747FF", "#EE4A4AFF", "#EE4D4DFF", "#EE5050FF", "#EE5353FF", "#EE5656FF", "#EE5959FF", "#EE5C5CFF", "#EE5F5FFF", "#EE6262FF", "#EE6565FF", "#EE6969FF", "#EE6C6CFF", "#EE6F6FFF", "#EE7272FF", "#EE7575FF",  "#EE7878FF", "#EE7B7BFF", "#EE7E7EFF", "#EE8181FF", "#EE8484FF", "#EE8888FF", "#EE8B8BFF", "#EE8E8EFF", "#EE9191FF", "#EE9494FF", "#EE9797FF", "#EE9999FF", "#EE9B9BFF", "#EE9D9DFF", "#EE9F9FFF", "#EEA0A0FF", "#EEA2A2FF", "#EEA4A4FF", "#EEA5A5FF", "#EEA7A7FF", "#EEA9A9FF", "#EEABABFF", "#EEACACFF", "#EEAEAEFF", "#EEB0B0FF", "#EEB1B1FF", "#EEB3B3FF", "#EEB5B5FF", "#EEB7B7FF", "#EEB8B8FF", "#EEBABAFF", "#EEBCBCFF", "#EEBDBDFF", "#EEBFBFFF", "#EEC1C1FF", "#EEC3C3FF", "#EEC4C4FF", "#EEC6C6FF", "#EEC8C8FF",  "#EEC9C9FF", "#EECBCBFF", "#EECDCDFF", "#EECFCFFF", "#EED0D0FF", "#EED2D2FF", "#EED4D4FF", "#EED5D5FF", "#EED7D7FF", "#EED9D9FF", "#EEDBDBFF", "#EEDCDCFF", "#EEDEDEFF", "#EEE0E0FF", "#EEE1E1FF", "#EEE3E3FF", "#EEE5E5FF", "#EEE7E7FF", "#EEE8E8FF", "#EEEAEAFF", "#EEECECFF", "#EEEEEEFF")
+edgeCol	 =  c("#474747FF", "#494949FF", "#4B4B4BFF", "#4D4D4DFF", "#4F4F4FFF", "#515151FF", "#535353FF", "#555555FF", "#575757FF", "#595959FF", "#5B5B5BFF", "#5E5E5EFF", "#606060FF", "#626262FF", "#646464FF", "#666666FF", "#686868FF", "#6A6A6AFF", "#6C6C6CFF", "#6E6E6EFF", "#707070FF", "#727272FF", "#747474FF", "#767676FF", "#787878FF", "#7A7A7AFF", "#7C7C7CFF", "#7E7E7EFF", "#808080FF", "#828282FF", "#848484FF", "#868686FF", "#888888FF", "#8A8A8AFF", "#8C8C8CFF", "#8D8D8DFF", "#8F8F8FFF", "#919191FF", "#939393FF",  "#959595FF", "#979797FF", "#999999FF", "#9A9A9AFF", "#9C9C9CFF", "#9E9E9EFF", "#A0A0A0FF", "#A2A2A2FF", "#A3A3A3FF", "#A5A5A5FF", "#A7A7A7FF", "#A9A9A9FF", "#AAAAAAFF", "#ACACACFF", "#AEAEAEFF", "#AFAFAFFF", "#B1B1B1FF", "#B3B3B3FF", "#B4B4B4FF", "#B6B6B6FF", "#B7B7B7FF", "#B9B9B9FF", "#BBBBBBFF", "#BCBCBCFF", "#BEBEBEFF", "#BFBFBFFF", "#C1C1C1FF", "#C2C2C2FF", "#C3C3C4FF", "#C5C5C5FF", "#C6C6C6FF", "#C8C8C8FF", "#C9C9C9FF", "#CACACAFF", "#CCCCCCFF", "#CDCDCDFF", "#CECECEFF", "#CFCFCFFF", "#D1D1D1FF",  "#D2D2D2FF", "#D3D3D3FF", "#D4D4D4FF", "#D5D5D5FF", "#D6D6D6FF", "#D7D7D7FF", "#D8D8D8FF", "#D9D9D9FF", "#DADADAFF", "#DBDBDBFF", "#DCDCDCFF", "#DDDDDDFF", "#DEDEDEFF", "#DEDEDEFF", "#DFDFDFFF", "#E0E0E0FF", "#E0E0E0FF", "#E1E1E1FF", "#E1E1E1FF", "#E2E2E2FF", "#E2E2E2FF", "#E2E2E2FF")
+alpha	 =  0.5
+cex	 =  1
+itemLabels	 =  TRUE
+labelCol	 =  #000000B2
+measureLabels	 =  FALSE
+precision	 =  3
+layout	 =  NULL
+layoutParams	 =  list()
+arrowSize	 =  0.5
+engine	 =  igraph
+plot	 =  TRUE
+plot_options	 =  list()
+max	 =  100
+verbose	 =  FALSE
+\end{Soutput}
+\begin{Sinput}
+> plot(rules)
+\end{Sinput}
+\end{Schunk}
 
 \end{document}
