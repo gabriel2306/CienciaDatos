@@ -216,10 +216,16 @@ rules<-ruleInduction(is,shopT,confidence=0.7)
 inspect(rules)
 @
 
-<<eval=TRUE>>=
-install.packages("arulesViz")
-library(arulesViz)
-plot(rules,method="graph",control=list(type="items"))
+<<eval=TRUE, results=hide>>=
+source("graph.R")
+graph(rules,"graphR.png")
 @
+\includegraphics[width=\textwidth]{graphR}
+
+<<eval=TRUE, results=hide>>=
+source("graph2.R")
+graph2(rules,"graphR2.png")
+@
+\includegraphics[width=\textwidth]{graphR2}
 
 \end{document}
