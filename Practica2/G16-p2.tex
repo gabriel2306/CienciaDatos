@@ -384,6 +384,19 @@ Uso de \textbf{eclat:}
 > rules<-ruleInduction(is,shopT,confidence=0.7)
 > inspect(rules)
 \end{Sinput}
+\begin{Soutput}
+     lhs                               rhs          support   confidence lift     itemset
+[1]  {laundry detergent}            => {vegetables} 0.3042028 0.8099467  1.114885  1     
+[2]  {yogurt}                       => {vegetables} 0.3082055 0.8148148  1.121586  2     
+[3]  {eggs}                         => {vegetables} 0.3108739 0.8146853  1.121408  3     
+[4]  {ice cream}                    => {vegetables} 0.3008672 0.7722603  1.063010  4     
+[5]  {lunch meat}                   => {vegetables} 0.3015344 0.7766323  1.069028  5     
+[6]  {waffles}                      => {vegetables} 0.3048699 0.7785349  1.071647  6     
+[7]  {cheeses}                      => {vegetables} 0.3035357 0.7844828  1.079834  7     
+[8]  {aluminum foil}                => {vegetables} 0.3095397 0.8013817  1.103096  8     
+[9]  {dishwashing liquid/detergent} => {vegetables} 0.3048699 0.7811966  1.075311  9     
+[10] {poultry}                      => {vegetables} 0.3202135 0.7830343  1.077841 10     
+\end{Soutput}
 \end{Schunk}
 
 \begin{Schunk}
