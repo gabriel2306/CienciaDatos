@@ -26,6 +26,9 @@ ejecutar el siguiente código:
 \begin{Sinput}
 > install.packages("./arules_1.6-4.zip",repos=NULL)
 \end{Sinput}
+\begin{Soutput}
+package ‘arules’ successfully unpacked and MD5 sums checked
+\end{Soutput}
 \end{Schunk}
 
 \bigskip
@@ -152,6 +155,16 @@ sea igual o mayor que el 80\%.
 \end{Schunk}
 
 \bigskip
+Se puede observar, a través de las transacciones las siguientes conclusiones:
+\begin{enumerate}
+\item Las personas que compran agua, compran también pan, y viceversa.
+\item Las personas que compran leche, compran pan, y viceversa.
+\item Las que compran agua y leche juntos también compran pan.
+\end{enumerate}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\bigskip
 \section{Parte 2.}
 \subsection{Datos de ventas de coches.}
 Para el leer el fichero \texttt{.txt} hemos creado una función la cuál nos devuelve una lista con las filas
@@ -273,8 +286,8 @@ includes extended transaction information - examples:
 \end{Schunk}
 
 \bigskip
-Por último, aplicamos el algoritmo \textbf{Apriori} para las asociaciones cuyo soporte sea igual o superior al 50\% y cuya confianza
-sea igual o mayor que el 80\%.
+Por último, aplicamos el algoritmo \textbf{Apriori} para las asociaciones cuyo soporte sea igual o superior al 40\% y cuya confianza
+sea igual o mayor que el 90\%.
 \begin{Schunk}
 \begin{Sinput}
 > asoc<-apriori(transac,parameter=list(support=0.4,confidence=0.9))
@@ -292,15 +305,21 @@ sea igual o mayor que el 80\%.
 \end{Soutput}
 \end{Schunk}
 
+Igual que en el caso anterior, a través de las transacciones obtenidas se pueden obtener las siguientes conclusiones: los 
+coches que incorporan tanto control de velocidad y/o bluetooth, tienen luces de Xenon.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \bigskip
 \subsection{Desarrollo del grupo.}
+Para el desarrolo de esta parte hemos buscado unos datos en \textit{Kaggle} correspondientes a carros de la compra aleatorios.
 
 En primer lugar procedemos a leer los datos que hay en el fichero \texttt{.csv} almacenándolos directamente
-en un objeto de tipo \textit{transactions} ya que es la estructura de almacenamiento empleada por \textit{arules.}
+en un objeto de tipo \textbf{transactions} ya que es la estructura de almacenamiento empleada por \textit{arules.}
 Para poder leer estos datos es necesario tener cargada la librería mediante \texttt{library(arules)}, como se ha
 indicado anteriormente.
 
-Las transacciones se leen gracias al uso de la función \textit{read.transactions}.
+Las transacciones se leen gracias al uso de la función \textbf{read.transactions}.
 \begin{Schunk}
 \begin{Sinput}
 > shopT<-read.transactions("shop.csv", format = "basket", 
@@ -311,7 +330,7 @@ Las transacciones se leen gracias al uso de la función \textit{read.transaction
 \end{Schunk}
 
 \bigskip
-Un ejemplo de estas transacciones es:
+Una vez leídas las transacciones, mostramos un ejemplo de ellas:
 \begin{Schunk}
 \begin{Sinput}
 > inspect(shopT[1])
@@ -338,32 +357,40 @@ Un ejemplo de estas transacciones es:
 \end{Soutput}
 \end{Schunk}
 
-Mostramos en un gráfico el \textbf{soporte} de los 10 productos más comprados, es decir, en cuantos
+\bigskip
+Observamos en un gráfico el \textbf{soporte} de los 10 productos más comprados, es decir, en cuantos
 sucesos aparece cada uno de los productos respecto al total de sucesos.
 \begin{Schunk}
 \begin{Sinput}
 > source("sopImg.R")
-> d<-sopImg(shopT,"sopI.png")
+> d<-sopImg(shopT,10,"sopI.png")
 \end{Sinput}
+\begin{Soutput}
+--- Please select a CRAN mirror for use in this session ---
+package ‘RColorBrewer’ successfully unpacked and MD5 sums checked
+
+The downloaded binary packages are in
+	C:\Users\tromp\AppData\Local\Temp\RtmpEf6qp3\downloaded_packages
+\end{Soutput}
 \end{Schunk}
 \includegraphics[width=\textwidth]{sopI}
 
 Para usar la función anterior es necesario installar e importar mediante \texttt{library} un paquete de R
-para el uso de la paleta de colores que posteriormente empleará el gráfico. Dicha función tiene el siguiente
+que nos ofrece el uso de la paleta de colores empleada en el gráfico. Dicha función tiene el siguiente
 aspecto:
 \begin{Schunk}
 \begin{Sinput}
 > sopImg
 \end{Sinput}
 \begin{Soutput}
-function(data, ruta) {
+function(data, n, ruta) {
 
     install.packages("RColorBrewer")
     library(RColorBrewer)
 
     png(paste("./tmp/",ruta,sep=""))
 
-    itemFrequencyPlot(data, topN=10, col=brewer.pal(8,'Set1'),
+    itemFrequencyPlot(data, topN=n, col=brewer.pal(8,'Set1'),
         type="relative",main="Soporte")
 
     dev.off()
@@ -372,13 +399,24 @@ function(data, ruta) {
 \end{Schunk}
 
 \bigskip
-Uso de \textbf{eclat:}
+Estudiando la documentación perteneciente a la librería arules, hemos encontrado una función con la que extraer
+conjuntos de elementos frecuentes de acuerdo a un soporte dado. Está función es \textbf{eclat.}
+Respecto al algoritmo Apriori se puede decir que reduce el tiempo de cómputo a causa de sacrificar memoria; su
+forma de actuar es almacenar para cada item en qué transacciones aparece (de forma vertical), por tanto, 
+se diferencian en la manera de escanear y analizar los datos.
+
+\bigskip
+Procedemos a su ejecución:
 \begin{Schunk}
 \begin{Sinput}
 > is<-eclat(shopT,parameter=list(support=0.3))
 \end{Sinput}
 \end{Schunk}
 
+\bigskip
+La función comentada anteriormente nos proporciona un objeto de la clase \texttt{itemsets}, y gracias a la función
+\textbf{ruleInduction} podemos obtener las asociaciones que contienen nuestros datos. RuleInduction induce todas las reglas 
+que puede generar el conjunto de conjuntos de elementos (itemsets) a partir de un conjunto transacciones.
 \begin{Schunk}
 \begin{Sinput}
 > rules<-ruleInduction(is,shopT,confidence=0.7)
@@ -399,6 +437,26 @@ Uso de \textbf{eclat:}
 \end{Soutput}
 \end{Schunk}
 
+\bigskip
+Una vez obtenidas las asociaciones que contienen nuestros datos, vamos a mostrarlas de forma gráfica para que las conclusiones
+se puedan obtener de una forma más sencilla y visual.
+
+\bigskip
+En primer lugar, para poder usar los gráficos instalaremos el paquete \textit{arulesViz}, como se ha explicado en numerosas
+ocasiones.
+\begin{Schunk}
+\begin{Sinput}
+> install.packages("arulesViz")
+> library(arulesViz)
+\end{Sinput}
+\end{Schunk}
+
+\bigskip
+En el siguiente gráfico se muestran las asociaciones entre los productos de nuestra muestra de datos. El tamaño de los nodos
+refleja el soporte de cada uno de los productos y el color de los mismos, la realación de elevación (lift). Dicho lift representa 
+la relación entre la confianza y la confianza esperada, es decir, un lift mayor que 1.0 implica que la relación entre el antecedente 
+y el consecuente es más significativa de lo que se esperaría si los dos conjuntos fueran independientes, por tanto, cuanto mayor
+sea la relación de elevación, más significativa será la asociación estudiada.
 \begin{Schunk}
 \begin{Sinput}
 > source("graph.R")
@@ -407,12 +465,8 @@ Uso de \textbf{eclat:}
 \end{Schunk}
 \includegraphics[width=\textwidth]{graphR}
 
+\bigskip
+La función usada para generar el gráfico anterior tiene la siguiente forma:
 \begin{Schunk}
 \begin{Sinput}
-> source("graph2.R")
-> graph2(rules,"graphR2.png")
-\end{Sinput}
-\end{Schunk}
-\includegraphics[width=\textwidth]{graphR2}
-
-\end{document}
+> graph()
