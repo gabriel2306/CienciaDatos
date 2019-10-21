@@ -26,9 +26,6 @@ ejecutar el siguiente código:
 \begin{Sinput}
 > install.packages("./arules_1.6-4.zip",repos=NULL)
 \end{Sinput}
-\begin{Soutput}
-package ‘arules’ successfully unpacked and MD5 sums checked
-\end{Soutput}
 \end{Schunk}
 
 \bigskip
@@ -305,6 +302,7 @@ sea igual o mayor que el 90\%.
 \end{Soutput}
 \end{Schunk}
 
+\bigskip
 Igual que en el caso anterior, a través de las transacciones obtenidas se pueden obtener las siguientes conclusiones: los 
 coches que incorporan tanto control de velocidad y/o bluetooth, tienen luces de Xenon.
 
@@ -365,13 +363,6 @@ sucesos aparece cada uno de los productos respecto al total de sucesos.
 > source("sopImg.R")
 > d<-sopImg(shopT,10,"sopI.png")
 \end{Sinput}
-\begin{Soutput}
---- Please select a CRAN mirror for use in this session ---
-package ‘RColorBrewer’ successfully unpacked and MD5 sums checked
-
-The downloaded binary packages are in
-	C:\Users\tromp\AppData\Local\Temp\RtmpEf6qp3\downloaded_packages
-\end{Soutput}
 \end{Schunk}
 \includegraphics[width=\textwidth]{sopI}
 
@@ -469,4 +460,21 @@ sea la relación de elevación, más significativa será la asociación estudiad
 La función usada para generar el gráfico anterior tiene la siguiente forma:
 \begin{Schunk}
 \begin{Sinput}
-> graph()
+> graph
+\end{Sinput}
+\begin{Soutput}
+function(rules, ruta) {
+
+    png(paste("./tmp/",ruta,sep=""))
+
+    plot(rules,method="graph",control=list(type="items"))
+
+    dev.off()
+}
+\end{Soutput}
+\end{Schunk}
+
+\bigskip
+Se puede observar que ..................
+
+\end{document}

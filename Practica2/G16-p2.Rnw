@@ -272,7 +272,7 @@ graph(rules,"graphR.png")
 \bigskip
 La función usada para generar el gráfico anterior tiene la siguiente forma:
 <<eval=TRUE>>=
-graph()
+graph
 @
 
 \bigskip
