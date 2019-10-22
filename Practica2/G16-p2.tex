@@ -335,8 +335,8 @@ Una vez leídas las transacciones, mostramos un ejemplo de ellas:
 \end{Sinput}
 \begin{Soutput}
     items              
-[1] {all- purpose,     
-     aluminum foil,    
+[1] {aluminum foil,    
+     all- purpose,     
      beef,             
      butter,           
      dinner rolls,     
@@ -414,17 +414,28 @@ que puede generar el conjunto de conjuntos de elementos (itemsets) a partir de u
 > inspect(rules)
 \end{Sinput}
 \begin{Soutput}
-     lhs                               rhs          support   confidence lift     itemset
-[1]  {laundry detergent}            => {vegetables} 0.3042028 0.8099467  1.114885  1     
-[2]  {yogurt}                       => {vegetables} 0.3082055 0.8148148  1.121586  2     
-[3]  {eggs}                         => {vegetables} 0.3108739 0.8146853  1.121408  3     
-[4]  {ice cream}                    => {vegetables} 0.3008672 0.7722603  1.063010  4     
-[5]  {lunch meat}                   => {vegetables} 0.3015344 0.7766323  1.069028  5     
-[6]  {waffles}                      => {vegetables} 0.3048699 0.7785349  1.071647  6     
-[7]  {cheeses}                      => {vegetables} 0.3035357 0.7844828  1.079834  7     
-[8]  {aluminum foil}                => {vegetables} 0.3095397 0.8013817  1.103096  8     
-[9]  {dishwashing liquid/detergent} => {vegetables} 0.3048699 0.7811966  1.075311  9     
-[10] {poultry}                      => {vegetables} 0.3202135 0.7830343  1.077841 10     
+     lhs                               rhs          support   confidence
+[1]  {laundry detergent}            => {vegetables} 0.3042028 0.8099467 
+[2]  {yogurt}                       => {vegetables} 0.3082055 0.8148148 
+[3]  {eggs}                         => {vegetables} 0.3108739 0.8146853 
+[4]  {ice cream}                    => {vegetables} 0.3008672 0.7722603 
+[5]  {lunch meat}                   => {vegetables} 0.3015344 0.7766323 
+[6]  {waffles}                      => {vegetables} 0.3048699 0.7785349 
+[7]  {cheeses}                      => {vegetables} 0.3035357 0.7844828 
+[8]  {aluminum foil}                => {vegetables} 0.3095397 0.8013817 
+[9]  {dishwashing liquid/detergent} => {vegetables} 0.3048699 0.7811966 
+[10] {poultry}                      => {vegetables} 0.3202135 0.7830343 
+     lift     itemset
+[1]  1.114885  1     
+[2]  1.121586  2     
+[3]  1.121408  3     
+[4]  1.063010  4     
+[5]  1.069028  5     
+[6]  1.071647  6     
+[7]  1.079834  7     
+[8]  1.103096  8     
+[9]  1.075311  9     
+[10] 1.077841 10     
 \end{Soutput}
 \end{Schunk}
 
@@ -444,7 +455,7 @@ ocasiones.
 
 \bigskip
 En el siguiente gráfico se muestran las asociaciones entre los productos de nuestra muestra de datos. El tamaño de los nodos
-refleja el soporte de cada uno de los productos y el color de los mismos, la realación de elevación (lift). Dicho lift representa 
+refleja el soporte de cada uno de los productos y el color de los mismos, la relación de elevación (lift). Dicho lift representa 
 la relación entre la confianza y la confianza esperada, es decir, un lift mayor que 1.0 implica que la relación entre el antecedente 
 y el consecuente es más significativa de lo que se esperaría si los dos conjuntos fueran independientes, por tanto, cuanto mayor
 sea la relación de elevación, más significativa será la asociación estudiada.
@@ -475,6 +486,12 @@ function(rules, ruta) {
 \end{Schunk}
 
 \bigskip
-Se puede observar que ..................
+Se puede observar lo siguiente: 
+\begin{enumerate}
+\item Pouldry es el producto con mayor soporte, seguido por eggs y aluminum foil.
+\item Laundry detergent es el producto con mayor relación de elevación (lift), seguido por yogurt y eggs.
+\item Todas los productos están asociados entorno a vegetables. Esto se debe en gran medida al soporte de vegetables
+en el total de transacciones.
+\end{enumerate}
 
 \end{document}

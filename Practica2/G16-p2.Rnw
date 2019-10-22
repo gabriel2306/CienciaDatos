@@ -259,7 +259,7 @@ library(arulesViz)
 
 \bigskip
 En el siguiente gráfico se muestran las asociaciones entre los productos de nuestra muestra de datos. El tamaño de los nodos
-refleja el soporte de cada uno de los productos y el color de los mismos, la realación de elevación (lift). Dicho lift representa 
+refleja el soporte de cada uno de los productos y el color de los mismos, la relación de elevación (lift). Dicho lift representa 
 la relación entre la confianza y la confianza esperada, es decir, un lift mayor que 1.0 implica que la relación entre el antecedente 
 y el consecuente es más significativa de lo que se esperaría si los dos conjuntos fueran independientes, por tanto, cuanto mayor
 sea la relación de elevación, más significativa será la asociación estudiada.
@@ -276,6 +276,12 @@ graph
 @
 
 \bigskip
-Se puede observar que ..................
+Se puede observar lo siguiente: 
+\begin{enumerate}
+\item Pouldry es el producto con mayor soporte, seguido por eggs y aluminum foil.
+\item Laundry detergent es el producto con mayor relación de elevación (lift), seguido por yogurt y eggs.
+\item Todas los productos están asociados entorno a vegetables. Esto se debe en gran medida al soporte de vegetables
+en el total de transacciones.
+\end{enumerate}
 
 \end{document}
