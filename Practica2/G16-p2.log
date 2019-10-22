@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.6960 64-bit) (preloaded format=pdflatex 2019.1.28)  22 OCT 2019 15:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.6960 64-bit) (preloaded format=pdflatex 2019.1.28)  22 OCT 2019 15:40
 entering extended mode
 **C:/Users/tromp/Documents/1.Curso_2019-20/1.Cuatrimetestre/2.Ciencia_Datos/LAB
 /CienciaDatos/Practica2/G16-p2.tex
@@ -272,26 +272,26 @@ LaTeX Info: Redefining \% on input line 6.
 )
 \openout1 = `G16-p2.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 14.
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 14.
-LaTeX Font Info:    Try loading font information for TS1+cmr on input line 14.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 12.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 12.
+LaTeX Font Info:    Try loading font information for TS1+cmr on input line 12.
 ("C:\Program Files\MiKTeX 2.9\tex/latex/base\ts1cmr.fd"
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
-LaTeX Font Info:    ... okay on input line 14.
-LaTeX Info: Redefining \. on input line 14.
-LaTeX Info: Redefining \% on input line 14.
+LaTeX Font Info:    ... okay on input line 12.
+LaTeX Info: Redefining \. on input line 12.
+LaTeX Info: Redefining \% on input line 12.
 ("C:\Program Files\MiKTeX 2.9\tex/context/base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count96
@@ -343,19 +343,19 @@ G,.JBIG2,.JB2,.eps]
 (grfext)             \AppendGraphicsExtensions on input line 456.
 )
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <12> on input line 16.
+(Font)              <12> on input line 14.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <8> on input line 16.
+(Font)              <8> on input line 14.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <6> on input line 16.
-LaTeX Font Info:    Try loading font information for T1+aett on input line 22.
+(Font)              <6> on input line 14.
+LaTeX Font Info:    Try loading font information for T1+aett on input line 20.
 ("C:\Program Files\MiKTeX 2.9\tex/latex/ae\t1aett.fd"
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
 )
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 48.
+(Font)              <7> on input line 46.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 48.
+(Font)              <5> on input line 46.
 [1
 
 {C:/Users/tromp/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2] [3] [4]
@@ -363,38 +363,38 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 <./tmp/sopI.png, id=26, 481.8pt x 481.8pt>
 File: ./tmp/sopI.png Graphic file (type png)
 <use ./tmp/sopI.png>
-Package pdftex.def Info: ./tmp/sopI.png  used on input line 367.
+Package pdftex.def Info: ./tmp/sopI.png  used on input line 365.
 (pdftex.def)             Requested size: 345.0pt x 345.00635pt.
 [6]
-LaTeX Font Info:    Try loading font information for TS1+aett on input line 384
+LaTeX Font Info:    Try loading font information for TS1+aett on input line 382
 .
 (C:/PROGRA~1/R/R-36~1.1/share/texmf/tex/latex\ts1aett.fd
 File: ts1aett.fd 
 )
-LaTeX Font Info:    Try loading font information for TS1+cmtt on input line 384
+LaTeX Font Info:    Try loading font information for TS1+cmtt on input line 382
 .
 ("C:\Program Files\MiKTeX 2.9\tex/latex/base\ts1cmtt.fd"
 File: ts1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `TS1/aett/m/n' in size <10> not available
-(Font)              Font shape `TS1/cmtt/m/n' tried instead on input line 384.
+(Font)              Font shape `TS1/cmtt/m/n' tried instead on input line 382.
 [7 <./tmp/sopI.png>] [8]
 <./tmp/graphR.png, id=39, 481.8pt x 481.8pt>
 File: ./tmp/graphR.png Graphic file (type png)
 <use ./tmp/graphR.png>
-Package pdftex.def Info: ./tmp/graphR.png  used on input line 468.
+Package pdftex.def Info: ./tmp/graphR.png  used on input line 466.
 (pdftex.def)             Requested size: 345.0pt x 345.00635pt.
 [9 <./tmp/graphR.png>] [10] [11]
 <./tmp/graphRA.png, id=51, 481.8pt x 481.8pt>
 File: ./tmp/graphRA.png Graphic file (type png)
 <use ./tmp/graphRA.png>
-Package pdftex.def Info: ./tmp/graphRA.png  used on input line 657.
+Package pdftex.def Info: ./tmp/graphRA.png  used on input line 658.
 (pdftex.def)             Requested size: 345.0pt x 345.00635pt.
 [12]
 <./tmp/graphRP.png, id=55, 481.8pt x 481.8pt>
 File: ./tmp/graphRP.png Graphic file (type png)
 <use ./tmp/graphRP.png>
-Package pdftex.def Info: ./tmp/graphRP.png  used on input line 696.
+Package pdftex.def Info: ./tmp/graphRP.png  used on input line 697.
 (pdftex.def)             Requested size: 345.0pt x 345.00635pt.
 [13 <./tmp/graphRA.png (PNG copy)>] [14 <./tmp/graphRP.png>] (G16-p2.aux
 LaTeX Info: Redefining \. on input line 6.
@@ -402,7 +402,7 @@ LaTeX Info: Redefining \% on input line 6.
 ) )
 (\end occurred inside a group at level 1)
 
-### simple group (level 1) entered at line 40 ({)
+### simple group (level 1) entered at line 38 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
  3836 strings out of 492946
@@ -423,7 +423,7 @@ X 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fo
 nts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
 1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public
 /amsfonts/cm/cmtt8.pfb>
-Output written on G16-p2.pdf (14 pages, 213792 bytes).
+Output written on G16-p2.pdf (14 pages, 215538 bytes).
 PDF statistics:
  100 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

@@ -1,7 +1,5 @@
 \documentclass [a4paper] {article}
 
-%% \usepackage[right=3cm, left=3cm]{geometry}
-
 \usepackage[spanish]{babel} 
 \usepackage[utf8]{inputenc} 
 \usepackage{multirow} 
@@ -284,10 +282,13 @@ Se puede observar lo siguiente:
 en el total de transacciones.
 \end{enumerate}
 
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \bigskip
-A la vista de los resultados obtenidos con estos datos donde hay que usar un bajo soporte para obtener un cierto 
-número de asociaciones, procedemos a hacer el análisis de un conjunto de datos contenido en arules. El dataset a usar es
-\textit{Adult}
+A la vista de los resultados obtenidos con estos datos donde hay que usar un bajo soporte para obtener un
+número de asociaciones considerable, procedemos a hacer el análisis de un conjunto de datos contenido en arules. Considerando que el
+soporte establece la probabilidad de aparición de los elementos de un conjunto, un soporte de 30\% resulta muy bajo.
+El dataset a usar es \textit{Adult}
 
 \bigskip
 En primer lugar debemos cargar estos datos.
