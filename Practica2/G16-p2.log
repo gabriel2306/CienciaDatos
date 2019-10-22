@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.6960 64-bit) (preloaded format=pdflatex 2019.1.28)  22 OCT 2019 13:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.6960 64-bit) (preloaded format=pdflatex 2019.1.28)  22 OCT 2019 15:26
 entering extended mode
 **C:/Users/tromp/Documents/1.Curso_2019-20/1.Cuatrimetestre/2.Ciencia_Datos/LAB
 /CienciaDatos/Practica2/G16-p2.tex
@@ -378,25 +378,25 @@ File: ts1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `TS1/aett/m/n' in size <10> not available
 (Font)              Font shape `TS1/cmtt/m/n' tried instead on input line 384.
-[7 <./tmp/sopI.png>]
-<./tmp/graphR.png, id=36, 481.8pt x 481.8pt>
+[7 <./tmp/sopI.png>] [8]
+<./tmp/graphR.png, id=39, 481.8pt x 481.8pt>
 File: ./tmp/graphR.png Graphic file (type png)
 <use ./tmp/graphR.png>
-Package pdftex.def Info: ./tmp/graphR.png  used on input line 457.
+Package pdftex.def Info: ./tmp/graphR.png  used on input line 468.
 (pdftex.def)             Requested size: 345.0pt x 345.00635pt.
-[8] [9 <./tmp/graphR.png>] [10]
+[9 <./tmp/graphR.png>] [10]
 <./tmp/graphRA.png, id=47, 481.8pt x 481.8pt>
 File: ./tmp/graphRA.png Graphic file (type png)
 <use ./tmp/graphRA.png>
-Package pdftex.def Info: ./tmp/graphRA.png  used on input line 560.
+Package pdftex.def Info: ./tmp/graphRA.png  used on input line 580.
 (pdftex.def)             Requested size: 345.0pt x 345.00635pt.
-[11 <./tmp/graphRA.png>]
+[11]
 <./tmp/graphRP.png, id=52, 481.8pt x 481.8pt>
 File: ./tmp/graphRP.png Graphic file (type png)
 <use ./tmp/graphRP.png>
-Package pdftex.def Info: ./tmp/graphRP.png  used on input line 587.
+Package pdftex.def Info: ./tmp/graphRP.png  used on input line 612.
 (pdftex.def)             Requested size: 345.0pt x 345.00635pt.
-[12 <./tmp/graphRP.png>] (G16-p2.aux
+[12 <./tmp/graphRA.png>] [13 <./tmp/graphRP.png>] (G16-p2.aux
 LaTeX Info: Redefining \. on input line 6.
 LaTeX Info: Redefining \% on input line 6.
 ) )
@@ -405,11 +405,11 @@ LaTeX Info: Redefining \% on input line 6.
 ### simple group (level 1) entered at line 40 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 3819 strings out of 492946
- 53683 string characters out of 3135527
+ 3836 strings out of 492946
+ 53828 string characters out of 3135527
  125223 words of memory out of 3000000
- 7607 multiletter control sequences out of 15000+200000
- 29500 words of font info for 64 fonts, out of 3000000 for 9000
+ 7613 multiletter control sequences out of 15000+200000
+ 35893 words of font info for 78 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,8n,31p,374b,359s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\tromp\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknap
@@ -421,10 +421,11 @@ ram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files
 /MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsltt10.pfb><C:/Program Files/MiKTe
 X 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fo
 nts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
-1/public/amsfonts/cm/cmtt10.pfb>
-Output written on G16-p2.pdf (12 pages, 174990 bytes).
+1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public
+/amsfonts/cm/cmtt8.pfb>
+Output written on G16-p2.pdf (13 pages, 185906 bytes).
 PDF statistics:
- 90 PDF objects out of 1000 (max. 8388607)
+ 98 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

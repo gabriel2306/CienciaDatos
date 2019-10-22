@@ -315,7 +315,6 @@ Estos datos tienen las siguientes columnas:
 \item Income
 \end{itemize}
 
-
 \bigskip
 Procedemos a realizar el análisis mediante el uso de eclat.
 <<eval=TRUE,results=hide>>=
@@ -323,10 +322,12 @@ isA<-eclat(Adult,parameter=list(support=0.7))
 rulesA<-ruleInduction(isA,Adult,confidence=0.9)
 @
 
+\scriptsize
 <<eval=TRUE>>=
 inspect(rulesA)
 @
 
+\normalsize
 \bigskip
 Al igual que anteriormente, mostramos de forma gráfica las asociaciones obtenidas.
 <<eval=TRUE, results=hide>>=
@@ -339,14 +340,15 @@ apr<-apriori(Adult,parameter=list(support=0.5,confidence=0.9),
     appearance=list(none=c("capital-gain=None","capital-loss=None")))
 @
 
+\footnotesize
 <<eval=TRUE>>=
 inspect(apr)
 @
 
+\normalsize
 <<eval=TRUE, results=hide>>=
 graph(apr,"graphRP.png")
 @
 \includegraphics[width=\textwidth]{graphRP}
-
 
 \end{document}
