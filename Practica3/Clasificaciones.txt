@@ -1,0 +1,10 @@
+	Teoria	Lab	Prac	Calif	
+s1	A	A	B	Ap
+s2	A	B	D	Ss
+s3	D	D	C	Ss
+s4	D	D	A	Ss
+s5	B	C	B	Ss
+s6	C	B	B	Ap
+s7	B	B	A	Ap
+s8	C	D	C	Ss
+s9	B	A	C	Ss
