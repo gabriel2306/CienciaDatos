@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.6960 64-bit) (preloaded format=pdflatex 2019.1.28)  22 OCT 2019 15:26
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.6960 64-bit) (preloaded format=pdflatex 2019.1.28)  22 OCT 2019 15:36
 entering extended mode
 **C:/Users/tromp/Documents/1.Curso_2019-20/1.Cuatrimetestre/2.Ciencia_Datos/LAB
 /CienciaDatos/Practica2/G16-p2.tex
@@ -384,19 +384,19 @@ File: ./tmp/graphR.png Graphic file (type png)
 <use ./tmp/graphR.png>
 Package pdftex.def Info: ./tmp/graphR.png  used on input line 468.
 (pdftex.def)             Requested size: 345.0pt x 345.00635pt.
-[9 <./tmp/graphR.png>] [10]
-<./tmp/graphRA.png, id=47, 481.8pt x 481.8pt>
+[9 <./tmp/graphR.png>] [10] [11]
+<./tmp/graphRA.png, id=51, 481.8pt x 481.8pt>
 File: ./tmp/graphRA.png Graphic file (type png)
 <use ./tmp/graphRA.png>
-Package pdftex.def Info: ./tmp/graphRA.png  used on input line 580.
+Package pdftex.def Info: ./tmp/graphRA.png  used on input line 657.
 (pdftex.def)             Requested size: 345.0pt x 345.00635pt.
-[11]
-<./tmp/graphRP.png, id=52, 481.8pt x 481.8pt>
+[12]
+<./tmp/graphRP.png, id=55, 481.8pt x 481.8pt>
 File: ./tmp/graphRP.png Graphic file (type png)
 <use ./tmp/graphRP.png>
-Package pdftex.def Info: ./tmp/graphRP.png  used on input line 612.
+Package pdftex.def Info: ./tmp/graphRP.png  used on input line 696.
 (pdftex.def)             Requested size: 345.0pt x 345.00635pt.
-[12 <./tmp/graphRA.png>] [13 <./tmp/graphRP.png>] (G16-p2.aux
+[13 <./tmp/graphRA.png (PNG copy)>] [14 <./tmp/graphRP.png>] (G16-p2.aux
 LaTeX Info: Redefining \. on input line 6.
 LaTeX Info: Redefining \% on input line 6.
 ) )
@@ -407,7 +407,7 @@ LaTeX Info: Redefining \% on input line 6.
 Here is how much of TeX's memory you used:
  3836 strings out of 492946
  53828 string characters out of 3135527
- 125223 words of memory out of 3000000
+ 126223 words of memory out of 3000000
  7613 multiletter control sequences out of 15000+200000
  35893 words of font info for 78 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -423,9 +423,9 @@ X 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fo
 nts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
 1/public/amsfonts/cm/cmtt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public
 /amsfonts/cm/cmtt8.pfb>
-Output written on G16-p2.pdf (13 pages, 185906 bytes).
+Output written on G16-p2.pdf (14 pages, 213792 bytes).
 PDF statistics:
- 98 PDF objects out of 1000 (max. 8388607)
+ 100 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  21 words of extra memory for PDF output out of 10000 (max. 10000000)
 

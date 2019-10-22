@@ -318,7 +318,7 @@ Estos datos tienen las siguientes columnas:
 \bigskip
 Procedemos a realizar el análisis mediante el uso de eclat.
 <<eval=TRUE,results=hide>>=
-isA<-eclat(Adult,parameter=list(support=0.7))
+isA<-eclat(Adult,parameter=list(support=0.5))
 rulesA<-ruleInduction(isA,Adult,confidence=0.9)
 @
 
@@ -335,11 +335,18 @@ graph(rulesA,"graphRA.png")
 @
 \includegraphics[width=\textwidth]{graphRA}
 
+\bigskip
+Para no tener en cuenta en las asociaciones los sucesos con capital-gain y capital-loss a None, 
+mediante el uso de la función Apriori hemos eliminado dichos sucesos haciendo un filtro a través
+del parámetro \texttt{appearance.}
 <<eval=TRUE, results=hide>>=
 apr<-apriori(Adult,parameter=list(support=0.5,confidence=0.9),
     appearance=list(none=c("capital-gain=None","capital-loss=None")))
 @
 
+\bigskip
+Procedemos a mostrar las asociaciones obtenidas, tanto según lo representa la función \textit{inspect}, como 
+de manera gráfica, haciendo uso de la función definida anteriormente.
 \footnotesize
 <<eval=TRUE>>=
 inspect(apr)
@@ -350,5 +357,12 @@ inspect(apr)
 graph(apr,"graphRP.png")
 @
 \includegraphics[width=\textwidth]{graphRP}
+
+\bigskip
+A partir de lo obtenido se puede concluir que:
+\begin{enumerate}
+\item Todas las personas de raza blanca y/o sexo masculino son de EEUU, y viceversa.
+\item Las personas que trabajan en el sector privado y son de raza blanca, son de EEUU.
+\end{enumerate}
 
 \end{document}

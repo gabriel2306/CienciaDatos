@@ -531,7 +531,7 @@ Estos datos tienen las siguientes columnas:
 Procedemos a realizar el análisis mediante el uso de eclat.
 \begin{Schunk}
 \begin{Sinput}
-> isA<-eclat(Adult,parameter=list(support=0.7))
+> isA<-eclat(Adult,parameter=list(support=0.5))
 > rulesA<-ruleInduction(isA,Adult,confidence=0.9)
 \end{Sinput}
 \end{Schunk}
@@ -543,29 +543,106 @@ Procedemos a realizar el análisis mediante el uso de eclat.
 \end{Sinput}
 \begin{Soutput}
      lhs                               rhs                              support confidence      lift itemset
-[1]  {race=White,                                                                                           
-      native-country=United-States} => {capital-loss=None}            0.7490480  0.9504325 0.9970152       1
-[2]  {race=White,                                                                                           
-      capital-loss=None}            => {native-country=United-States} 0.7490480  0.9205626 1.0257830       1
-[3]  {race=White,                                                                                           
-      native-country=United-States} => {capital-gain=None}            0.7194628  0.9128933 0.9951019       2
-[4]  {race=White,                                                                                           
-      capital-gain=None}            => {native-country=United-States} 0.7194628  0.9202807 1.0254689       2
-[5]  {race=White,                                                                                           
-      capital-loss=None}            => {capital-gain=None}            0.7404283  0.9099693 0.9919147       3
+[1]  {capital-loss=None,                                                                                    
+      hours-per-week=Full-time}     => {capital-gain=None}            0.5191638  0.9259787 1.0093657       1
+[2]  {capital-gain=None,                                                                                    
+      hours-per-week=Full-time}     => {capital-loss=None}            0.5191638  0.9550659 1.0018756       1
+[3]  {hours-per-week=Full-time}     => {capital-loss=None}            0.5606650  0.9582531 1.0052191       2
+[4]  {hours-per-week=Full-time}     => {capital-gain=None}            0.5435895  0.9290688 1.0127342       3
+[5]  {sex=Male,                                                                                             
+      capital-loss=None,                                                                                    
+      native-country=United-States} => {race=White}                   0.5113632  0.9032585 1.0563898       5
 [6]  {race=White,                                                                                           
-      capital-gain=None}            => {capital-loss=None}            0.7404283  0.9470983 0.9935175       3
-[7]  {race=White}                   => {capital-loss=None}            0.8136849  0.9516307 0.9982720       4
-[8]  {race=White}                   => {capital-gain=None}            0.7817862  0.9143240 0.9966616       5
-[9]  {race=White}                   => {native-country=United-States} 0.7881127  0.9217231 1.0270761       6
-[10] {capital-loss=None,                                                                                    
-      native-country=United-States} => {capital-gain=None}            0.7793702  0.9117168 0.9938195       7
-[11] {capital-gain=None,                                                                                    
-      native-country=United-States} => {capital-loss=None}            0.7793702  0.9481891 0.9946618       7
-[12] {native-country=United-States} => {capital-loss=None}            0.8548380  0.9525461 0.9992323       8
-[13] {native-country=United-States} => {capital-gain=None}            0.8219565  0.9159062 0.9983862       9
-[14] {capital-loss=None}            => {capital-gain=None}            0.8706646  0.9133376 0.9955863      10
-[15] {capital-gain=None}            => {capital-loss=None}            0.8706646  0.9490705 0.9955863      10
+      sex=Male,                                                                                             
+      native-country=United-States} => {capital-loss=None}            0.5113632  0.9442722 0.9905529       5
+[7]  {race=White,                                                                                           
+      sex=Male,                                                                                             
+      capital-loss=None}            => {native-country=United-States} 0.5113632  0.9190124 1.0240556       5
+[8]  {race=White,                                                                                           
+      sex=Male}                     => {capital-loss=None}            0.5564268  0.9457804 0.9921350       6
+[9]  {race=White,                                                                                           
+      sex=Male}                     => {capital-gain=None}            0.5313050  0.9030799 0.9844048       7
+[10] {sex=Male,                                                                                             
+      native-country=United-States} => {race=White}                   0.5415421  0.9051090 1.0585540       8
+[11] {race=White,                                                                                           
+      sex=Male}                     => {native-country=United-States} 0.5415421  0.9204803 1.0256912       8
+[12] {sex=Male,                                                                                             
+      capital-gain=None,                                                                                    
+      native-country=United-States} => {capital-loss=None}            0.5084149  0.9404636 0.9865576       9
+[13] {sex=Male,                                                                                             
+      native-country=United-States} => {capital-loss=None}            0.5661316  0.9462068 0.9925823      10
+[14] {sex=Male,                                                                                             
+      native-country=United-States} => {capital-gain=None}            0.5406003  0.9035349 0.9849008      11
+[15] {sex=Male,                                                                                             
+      capital-gain=None}            => {capital-loss=None}            0.5696941  0.9415288 0.9876750      12
+[16] {sex=Male}                     => {capital-loss=None}            0.6331027  0.9470750 0.9934931      13
+[17] {sex=Male}                     => {capital-gain=None}            0.6050735  0.9051455 0.9866565      14
+[18] {workclass=Private,                                                                                    
+      race=White,                                                                                           
+      native-country=United-States} => {capital-loss=None}            0.5181401  0.9535418 1.0002768      17
+[19] {workclass=Private,                                                                                    
+      race=White,                                                                                           
+      capital-loss=None}            => {native-country=United-States} 0.5181401  0.9130498 1.0174114      17
+[20] {workclass=Private,                                                                                    
+      race=White,                                                                                           
+      capital-loss=None}            => {capital-gain=None}            0.5204742  0.9171628 0.9997559      18
+[21] {workclass=Private,                                                                                    
+      race=White,                                                                                           
+      capital-gain=None}            => {capital-loss=None}            0.5204742  0.9511000 0.9977153      18
+[22] {workclass=Private,                                                                                    
+      race=White}                   => {capital-loss=None}            0.5674829  0.9549683 1.0017732      19
+[23] {workclass=Private,                                                                                    
+      race=White}                   => {capital-gain=None}            0.5472339  0.9208931 1.0038221      20
+[24] {workclass=Private,                                                                                    
+      race=White}                   => {native-country=United-States} 0.5433848  0.9144157 1.0189334      21
+[25] {workclass=Private,                                                                                    
+      capital-loss=None,                                                                                    
+      native-country=United-States} => {capital-gain=None}            0.5414807  0.9182030 1.0008898      22
+[26] {workclass=Private,                                                                                    
+      capital-gain=None,                                                                                    
+      native-country=United-States} => {capital-loss=None}            0.5414807  0.9517075 0.9983526      22
+[27] {workclass=Private,                                                                                    
+      native-country=United-States} => {capital-loss=None}            0.5897179  0.9554818 1.0023119      23
+[28] {workclass=Private,                                                                                    
+      native-country=United-States} => {capital-gain=None}            0.5689570  0.9218444 1.0048592      24
+[29] {workclass=Private,                                                                                    
+      capital-loss=None}            => {capital-gain=None}            0.6111748  0.9204465 1.0033354      25
+[30] {workclass=Private,                                                                                    
+      capital-gain=None}            => {capital-loss=None}            0.6111748  0.9529145 0.9996188      25
+[31] {workclass=Private}            => {capital-loss=None}            0.6639982  0.9564974 1.0033773      26
+[32] {workclass=Private}            => {capital-gain=None}            0.6413742  0.9239073 1.0071078      27
+[33] {race=White,                                                                                           
+      capital-loss=None,                                                                                    
+      native-country=United-States} => {capital-gain=None}            0.6803980  0.9083504 0.9901500      30
+[34] {race=White,                                                                                           
+      capital-gain=None,                                                                                    
+      native-country=United-States} => {capital-loss=None}            0.6803980  0.9457029 0.9920537      30
+[35] {race=White,                                                                                           
+      capital-gain=None,                                                                                    
+      capital-loss=None}            => {native-country=United-States} 0.6803980  0.9189249 1.0239581      30
+[36] {race=White,                                                                                           
+      native-country=United-States} => {capital-loss=None}            0.7490480  0.9504325 0.9970152      31
+[37] {race=White,                                                                                           
+      capital-loss=None}            => {native-country=United-States} 0.7490480  0.9205626 1.0257830      31
+[38] {race=White,                                                                                           
+      native-country=United-States} => {capital-gain=None}            0.7194628  0.9128933 0.9951019      32
+[39] {race=White,                                                                                           
+      capital-gain=None}            => {native-country=United-States} 0.7194628  0.9202807 1.0254689      32
+[40] {race=White,                                                                                           
+      capital-loss=None}            => {capital-gain=None}            0.7404283  0.9099693 0.9919147      33
+[41] {race=White,                                                                                           
+      capital-gain=None}            => {capital-loss=None}            0.7404283  0.9470983 0.9935175      33
+[42] {race=White}                   => {capital-loss=None}            0.8136849  0.9516307 0.9982720      34
+[43] {race=White}                   => {capital-gain=None}            0.7817862  0.9143240 0.9966616      35
+[44] {race=White}                   => {native-country=United-States} 0.7881127  0.9217231 1.0270761      36
+[45] {capital-loss=None,                                                                                    
+      native-country=United-States} => {capital-gain=None}            0.7793702  0.9117168 0.9938195      37
+[46] {capital-gain=None,                                                                                    
+      native-country=United-States} => {capital-loss=None}            0.7793702  0.9481891 0.9946618      37
+[47] {native-country=United-States} => {capital-loss=None}            0.8548380  0.9525461 0.9992323      38
+[48] {native-country=United-States} => {capital-gain=None}            0.8219565  0.9159062 0.9983862      39
+[49] {capital-loss=None}            => {capital-gain=None}            0.8706646  0.9133376 0.9955863      40
+[50] {capital-gain=None}            => {capital-loss=None}            0.8706646  0.9490705 0.9955863      40
 \end{Soutput}
 \end{Schunk}
 
@@ -579,6 +656,10 @@ Al igual que anteriormente, mostramos de forma gráfica las asociaciones obtenid
 \end{Schunk}
 \includegraphics[width=\textwidth]{graphRA}
 
+\bigskip
+Para no tener en cuenta en las asociaciones los sucesos con capital-gain y capital-loss a None, 
+mediante el uso de la función Apriori hemos eliminado dichos sucesos haciendo un filtro a través
+del parámetro \texttt{appearance.}
 \begin{Schunk}
 \begin{Sinput}
 > apr<-apriori(Adult,parameter=list(support=0.5,confidence=0.9),
@@ -586,6 +667,9 @@ Al igual que anteriormente, mostramos de forma gráfica las asociaciones obtenid
 \end{Sinput}
 \end{Schunk}
 
+\bigskip
+Procedemos a mostrar las asociaciones obtenidas, tanto según lo representa la función \textit{inspect}, como 
+de manera gráfica, haciendo uso de la función definida anteriormente.
 \footnotesize
 \begin{Schunk}
 \begin{Sinput}
@@ -610,5 +694,12 @@ Al igual que anteriormente, mostramos de forma gráfica las asociaciones obtenid
 \end{Sinput}
 \end{Schunk}
 \includegraphics[width=\textwidth]{graphRP}
+
+\bigskip
+A partir de lo obtenido se puede concluir que:
+\begin{enumerate}
+\item Todas las personas de raza blanca y/o sexo masculino son de EEUU, y viceversa.
+\item Las personas que trabajan en el sector privado y son de raza blanca, son de EEUU.
+\end{enumerate}
 
 \end{document}
