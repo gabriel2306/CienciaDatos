@@ -335,8 +335,8 @@ Una vez leídas las transacciones, mostramos un ejemplo de ellas:
 \end{Sinput}
 \begin{Soutput}
     items              
-[1] {aluminum foil,    
-     all- purpose,     
+[1] {all- purpose,     
+     aluminum foil,    
      beef,             
      butter,           
      dinner rolls,     
@@ -414,28 +414,17 @@ que puede generar el conjunto de conjuntos de elementos (itemsets) a partir de u
 > inspect(rules)
 \end{Sinput}
 \begin{Soutput}
-     lhs                               rhs          support   confidence
-[1]  {laundry detergent}            => {vegetables} 0.3042028 0.8099467 
-[2]  {yogurt}                       => {vegetables} 0.3082055 0.8148148 
-[3]  {eggs}                         => {vegetables} 0.3108739 0.8146853 
-[4]  {ice cream}                    => {vegetables} 0.3008672 0.7722603 
-[5]  {lunch meat}                   => {vegetables} 0.3015344 0.7766323 
-[6]  {waffles}                      => {vegetables} 0.3048699 0.7785349 
-[7]  {cheeses}                      => {vegetables} 0.3035357 0.7844828 
-[8]  {aluminum foil}                => {vegetables} 0.3095397 0.8013817 
-[9]  {dishwashing liquid/detergent} => {vegetables} 0.3048699 0.7811966 
-[10] {poultry}                      => {vegetables} 0.3202135 0.7830343 
-     lift     itemset
-[1]  1.114885  1     
-[2]  1.121586  2     
-[3]  1.121408  3     
-[4]  1.063010  4     
-[5]  1.069028  5     
-[6]  1.071647  6     
-[7]  1.079834  7     
-[8]  1.103096  8     
-[9]  1.075311  9     
-[10] 1.077841 10     
+     lhs                               rhs          support   confidence lift     itemset
+[1]  {laundry detergent}            => {vegetables} 0.3042028 0.8099467  1.114885  1     
+[2]  {yogurt}                       => {vegetables} 0.3082055 0.8148148  1.121586  2     
+[3]  {eggs}                         => {vegetables} 0.3108739 0.8146853  1.121408  3     
+[4]  {ice cream}                    => {vegetables} 0.3008672 0.7722603  1.063010  4     
+[5]  {lunch meat}                   => {vegetables} 0.3015344 0.7766323  1.069028  5     
+[6]  {waffles}                      => {vegetables} 0.3048699 0.7785349  1.071647  6     
+[7]  {cheeses}                      => {vegetables} 0.3035357 0.7844828  1.079834  7     
+[8]  {aluminum foil}                => {vegetables} 0.3095397 0.8013817  1.103096  8     
+[9]  {dishwashing liquid/detergent} => {vegetables} 0.3048699 0.7811966  1.075311  9     
+[10] {poultry}                      => {vegetables} 0.3202135 0.7830343  1.077841 10     
 \end{Soutput}
 \end{Schunk}
 
@@ -493,5 +482,82 @@ Se puede observar lo siguiente:
 \item Todas los productos están asociados entorno a vegetables. Esto se debe en gran medida al soporte de vegetables
 en el total de transacciones.
 \end{enumerate}
+
+\bigskip
+A la vista de los resultados obtenidos con estos datos donde hay que usar un bajo soporte para obtener un cierto 
+número de asociaciones, procedemos a hacer el análisis de un conjunto de datos contenido en arules. El dataset a usar es
+\textit{Adult}
+
+\bigskip
+En primer lugar debemos cargar estos datos.
+\begin{Schunk}
+\begin{Sinput}
+> data("Adult")
+\end{Sinput}
+\end{Schunk}
+
+\bigskip
+Estos datos tienen las siguientes columnas:
+\begin{itemize}
+\item Age
+\item Workclass
+\item Education
+\item Education-num
+\item Marital-status
+\item Occupation
+\item Relationship
+\item Race
+\item Sex
+\item Capital-gain
+\item Capital-loss
+\item Fnlwgt
+\item Hours-per-week
+\item Native country
+\item Income
+\end{itemize}
+
+
+\bigskip
+Procedemos a realizar el análisis mediante el uso de eclat.
+\begin{Schunk}
+\begin{Sinput}
+> isA<-eclat(Adult,parameter=list(support=0.7))
+> rulesA<-ruleInduction(isA,Adult,confidence=0.9)
+\end{Sinput}
+\end{Schunk}
+
+\begin{Schunk}
+\begin{Sinput}
+> inspect(rulesA)
+\end{Sinput}
+\begin{Soutput}
+     lhs                                                 rhs                            support   confidence lift      itemset
+[1]  {race=White,native-country=United-States}        => {capital-loss=None}            0.7490480 0.9504325  0.9970152  1     
+[2]  {race=White,capital-loss=None}                   => {native-country=United-States} 0.7490480 0.9205626  1.0257830  1     
+[3]  {race=White,native-country=United-States}        => {capital-gain=None}            0.7194628 0.9128933  0.9951019  2     
+[4]  {race=White,capital-gain=None}                   => {native-country=United-States} 0.7194628 0.9202807  1.0254689  2     
+[5]  {race=White,capital-loss=None}                   => {capital-gain=None}            0.7404283 0.9099693  0.9919147  3     
+[6]  {race=White,capital-gain=None}                   => {capital-loss=None}            0.7404283 0.9470983  0.9935175  3     
+[7]  {race=White}                                     => {capital-loss=None}            0.8136849 0.9516307  0.9982720  4     
+[8]  {race=White}                                     => {capital-gain=None}            0.7817862 0.9143240  0.9966616  5     
+[9]  {race=White}                                     => {native-country=United-States} 0.7881127 0.9217231  1.0270761  6     
+[10] {capital-loss=None,native-country=United-States} => {capital-gain=None}            0.7793702 0.9117168  0.9938195  7     
+[11] {capital-gain=None,native-country=United-States} => {capital-loss=None}            0.7793702 0.9481891  0.9946618  7     
+[12] {native-country=United-States}                   => {capital-loss=None}            0.8548380 0.9525461  0.9992323  8     
+[13] {native-country=United-States}                   => {capital-gain=None}            0.8219565 0.9159062  0.9983862  9     
+[14] {capital-loss=None}                              => {capital-gain=None}            0.8706646 0.9133376  0.9955863 10     
+[15] {capital-gain=None}                              => {capital-loss=None}            0.8706646 0.9490705  0.9955863 10     
+\end{Soutput}
+\end{Schunk}
+
+\bigskip
+Al igual que anteriormente, mostraremos de forma gráfica las asociaciones obtenidas.
+\begin{Schunk}
+\begin{Sinput}
+> graph(rulesA,"graphRA.png")
+\end{Sinput}
+\end{Schunk}
+\includegraphics[width=\textwidth]{graphRA}
+
 
 \end{document}

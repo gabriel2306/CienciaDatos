@@ -1,7 +1,10 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.10.15)  22 OCT 2019 12:39
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.6960 64-bit) (preloaded format=pdflatex 2019.1.28)  22 OCT 2019 13:09
 entering extended mode
-**C:/GIT/CienciaDatos/Practica2/G16-p2.tex
-(C:/GIT/CienciaDatos/Practica2/G16-p2.tex
+**C:/Users/tromp/Documents/1.Curso_2019-20/1.Cuatrimetestre/2.Ciencia_Datos/LAB
+/CienciaDatos/Practica2/G16-p2.tex
+
+(C:/Users/tromp/Documents/1.Curso_2019-20/1.Cuatrimetestre/2.Ciencia_Datos/LAB/
+CienciaDatos/Practica2/G16-p2.tex
 LaTeX2e <2018-12-01>
 ("C:\Program Files\MiKTeX 2.9\tex/latex/base\article.cls"
 Document Class: article 2018/09/03 v1.4i Standard LaTeX document class
@@ -20,9 +23,9 @@ File: size10.clo 2018/09/03 v1.4i Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 ) ("C:\Program Files\MiKTeX 2.9\tex/generic/babel\babel.sty"
-Package: babel 2019/07/19 3.33 The Babel package
+Package: babel 2018/11/13 3.27 The Babel package
 ("C:\Program Files\MiKTeX 2.9\tex/generic/babel\switch.def"
-File: switch.def 2019/07/19 3.33 Babel switching mechanism
+File: switch.def 2018/11/13 3.27 Babel switching mechanism
 )
 *************************************
 * Local config file bblopts.cfg used
@@ -33,7 +36,7 @@ File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
 ) ("C:\Program Files\MiKTeX 2.9\tex/latex/babel-spanish\spanish.ldf"
 Language: spanish.ldf 2016/03/03 v5.0p Spanish support from the babel system
 ("C:\Program Files\MiKTeX 2.9\tex/generic/babel\babel.def"
-File: babel.def 2019/07/19 3.33 Babel common definitions
+File: babel.def 2018/11/13 3.27 Babel common definitions
 \babel@savecnt=\count88
 \U@D=\dimen103
 ("C:\Program Files\MiKTeX 2.9\tex/generic/babel\txtbabel.def")
@@ -50,7 +53,7 @@ Package: inputenc 2018/08/11 v1.3c Input encoding file
 \inpenc@prehook=\toks15
 \inpenc@posthook=\toks16
 ) ("C:\Program Files\MiKTeX 2.9\tex/latex/multirow\multirow.sty"
-Package: multirow 2019/05/31 v2.5 Span multiple rows of a table
+Package: multirow 2019/01/01 v2.4 Span multiple rows of a table
 \multirow@colwidth=\skip43
 \multirow@cntb=\count91
 \multirow@dima=\skip44
@@ -289,7 +292,7 @@ File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 LaTeX Font Info:    ... okay on input line 14.
 LaTeX Info: Redefining \. on input line 14.
 LaTeX Info: Redefining \% on input line 14.
-("C:\Program Files\MiKTeX 2.9\tex/context/base/mkii\supp-pdf.mkii"
+("C:\Program Files\MiKTeX 2.9\tex/context/base\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count96
 \scratchdimen=\dimen107
@@ -322,7 +325,7 @@ Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
 Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
 Package ifluatex Info: LuaTeX not detected.
 )))) ("C:\Program Files\MiKTeX 2.9\tex/generic/oberdiek\pdftexcmds.sty"
-Package: pdftexcmds 2019/07/25 v0.30 Utility functions of pdfTeX for LuaTeX (HO
+Package: pdftexcmds 2018/09/10 v0.29 Utility functions of pdfTeX for LuaTeX (HO
 )
 ("C:\Program Files\MiKTeX 2.9\tex/generic/oberdiek\ifpdf.sty"
 Package: ifpdf 2018/09/07 v3.3 Provides the ifpdf switch
@@ -355,8 +358,8 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 48.
 [1
 
-{C:/Users/Álvaro Zamorano/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] 
-[2] [3] [4] [5]
+{C:/Users/tromp/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2] [3] [4]
+[5]
 <./tmp/sopI.png, id=26, 481.8pt x 481.8pt>
 File: ./tmp/sopI.png Graphic file (type png)
 <use ./tmp/sopI.png>
@@ -375,13 +378,19 @@ File: ts1cmtt.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `TS1/aett/m/n' in size <10> not available
 (Font)              Font shape `TS1/cmtt/m/n' tried instead on input line 384.
-[7 <./tmp/sopI.png>] [8]
-<./tmp/graphR.png, id=39, 481.8pt x 481.8pt>
+[7 <./tmp/sopI.png>]
+<./tmp/graphR.png, id=36, 481.8pt x 481.8pt>
 File: ./tmp/graphR.png Graphic file (type png)
 <use ./tmp/graphR.png>
-Package pdftex.def Info: ./tmp/graphR.png  used on input line 468.
+Package pdftex.def Info: ./tmp/graphR.png  used on input line 457.
 (pdftex.def)             Requested size: 345.0pt x 345.00635pt.
-[9 <./tmp/graphR.png>] [10] (G16-p2.aux
+[8] [9 <./tmp/graphR.png>] [10]
+<./tmp/graphRA.png, id=47, 481.8pt x 481.8pt>
+File: ./tmp/graphRA.png Graphic file (type png)
+<use ./tmp/graphRA.png>
+Package pdftex.def Info: ./tmp/graphRA.png  used on input line 560.
+(pdftex.def)             Requested size: 345.0pt x 345.00635pt.
+[11 <./tmp/graphRA.png>] (G16-p2.aux
 LaTeX Info: Redefining \. on input line 6.
 LaTeX Info: Redefining \% on input line 6.
 ) )
@@ -390,26 +399,26 @@ LaTeX Info: Redefining \% on input line 6.
 ### simple group (level 1) entered at line 40 ({)
 ### bottom level 
 Here is how much of TeX's memory you used:
- 3835 strings out of 492895
- 53543 string characters out of 3133443
- 127351 words of memory out of 3000000
- 7644 multiletter control sequences out of 15000+200000
+ 3814 strings out of 492946
+ 53585 string characters out of 3135527
+ 125223 words of memory out of 3000000
+ 7603 multiletter control sequences out of 15000+200000
  29500 words of font info for 64 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,8n,31p,303b,361s stack positions out of 5000i,500n,10000p,200000b,50000s
- <C:\Users\Álvaro Zamorano\AppData\Local\MiKTeX\2.9\fonts/pk/l
-jfour/jknappen/ec/dpi600\tctt1000.pk><C:/Program Files/MiKTeX 2.9/fonts/type1/p
-ublic/amsfonts/cm/cmbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/am
-sfonts/cm/cmbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/c
-m/cmr10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.p
-fb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Pr
-ogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsltt10.pfb><C:/Program 
-Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/Mi
-KTeX 2.9/fonts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9
-/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on G16-p2.pdf (10 pages, 156962 bytes).
+ 41i,8n,31p,374b,359s stack positions out of 5000i,500n,10000p,200000b,50000s
+ <C:\Users\tromp\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknap
+pen/ec/dpi600\tctt1000.pk><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfo
+nts/cm/cmbx10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
+mbx12.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb
+><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Prog
+ram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files
+/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsltt10.pfb><C:/Program Files/MiKTe
+X 2.9/fonts/type1/public/amsfonts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fo
+nts/type1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type
+1/public/amsfonts/cm/cmtt10.pfb>
+Output written on G16-p2.pdf (11 pages, 168838 bytes).
 PDF statistics:
- 80 PDF objects out of 1000 (max. 8388607)
+ 85 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 11 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 16 words of extra memory for PDF output out of 10000 (max. 10000000)
 

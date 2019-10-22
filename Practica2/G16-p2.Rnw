@@ -284,4 +284,55 @@ Se puede observar lo siguiente:
 en el total de transacciones.
 \end{enumerate}
 
+\bigskip
+A la vista de los resultados obtenidos con estos datos donde hay que usar un bajo soporte para obtener un cierto 
+número de asociaciones, procedemos a hacer el análisis de un conjunto de datos contenido en arules. El dataset a usar es
+\textit{Adult}
+
+\bigskip
+En primer lugar debemos cargar estos datos.
+<<eval=TRUE>>=
+data("Adult")
+@
+
+\bigskip
+Estos datos tienen las siguientes columnas:
+\begin{itemize}
+\item Age
+\item Workclass
+\item Education
+\item Education-num
+\item Marital-status
+\item Occupation
+\item Relationship
+\item Race
+\item Sex
+\item Capital-gain
+\item Capital-loss
+\item Fnlwgt
+\item Hours-per-week
+\item Native country
+\item Income
+\end{itemize}
+
+
+\bigskip
+Procedemos a realizar el análisis mediante el uso de eclat.
+<<eval=TRUE,results=hide>>=
+isA<-eclat(Adult,parameter=list(support=0.7))
+rulesA<-ruleInduction(isA,Adult,confidence=0.9)
+@
+
+<<eval=TRUE>>=
+inspect(rulesA)
+@
+
+\bigskip
+Al igual que anteriormente, mostraremos de forma gráfica las asociaciones obtenidas.
+<<eval=TRUE, results=hide>>=
+graph(rulesA,"graphRA.png")
+@
+\includegraphics[width=\textwidth]{graphRA}
+
+
 \end{document}
