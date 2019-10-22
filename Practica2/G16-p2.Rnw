@@ -328,11 +328,25 @@ inspect(rulesA)
 @
 
 \bigskip
-Al igual que anteriormente, mostraremos de forma gráfica las asociaciones obtenidas.
+Al igual que anteriormente, mostramos de forma gráfica las asociaciones obtenidas.
 <<eval=TRUE, results=hide>>=
 graph(rulesA,"graphRA.png")
 @
 \includegraphics[width=\textwidth]{graphRA}
+
+<<eval=TRUE, results=hide>>=
+apr<-apriori(Adult,parameter=list(support=0.5,confidence=0.9),
+    appearance=list(none=c("capital-gain=None","capital-loss=None")))
+@
+
+<<eval=TRUE>>=
+inspect(apr)
+@
+
+<<eval=TRUE, results=hide>>=
+graph(apr,"graphRP.png")
+@
+\includegraphics[width=\textwidth]{graphRP}
 
 
 \end{document}
