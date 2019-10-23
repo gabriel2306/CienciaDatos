@@ -104,7 +104,7 @@ library(rpart.plot)
 
 Dicha función es:
 <<eval=TRUE>>=
-source("plotTree.R")
+source("Funciones/plotTree.R")
 plotTree
 @
 
@@ -165,7 +165,7 @@ library(psych)
 \bigskip
 Estas librerías se usan en funciones externas usadas para representar los gráficos requeridos.
 <<eval=TRUE, results=hide>>=
-source("plotDisp.R")
+source("Funciones/plotDisp.R")
 plotDisp(planetas,regresionP,"Radio","Diametro","regPlanetas.png")
 @
 \includegraphics[width=\textwidth]{regPlanetas}

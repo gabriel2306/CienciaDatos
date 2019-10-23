@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.6960 64-bit) (preloaded format=pdflatex 2019.1.28)  22 OCT 2019 23:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.6960 64-bit) (preloaded format=pdflatex 2019.1.28)  23 OCT 2019 18:13
 entering extended mode
 **C:/Users/tromp/Documents/1.Curso_2019-20/1.Cuatrimetestre/2.Ciencia_Datos/LAB
 /CienciaDatos/Practica3/G16-p3.tex
@@ -353,31 +353,31 @@ LaTeX Font Info:    Try loading font information for T1+aett on input line 20.
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
 )
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 55.
+(Font)              <7> on input line 63.
 LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 55.
+(Font)              <5> on input line 63.
 [1
 
 {C:/Users/tromp/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
 <./tmp/classTree.png, id=16, 481.8pt x 481.8pt>
 File: ./tmp/classTree.png Graphic file (type png)
 <use ./tmp/classTree.png>
-Package pdftex.def Info: ./tmp/classTree.png  used on input line 167.
+Package pdftex.def Info: ./tmp/classTree.png  used on input line 180.
 (pdftex.def)             Requested size: 345.0pt x 345.00635pt.
-[3 <./tmp/classTree.png>]
-<./tmp/regPlanetas.png, id=21, 481.8pt x 481.8pt>
+[3] [4 <./tmp/classTree.png>]
+<./tmp/regPlanetas.png, id=24, 481.8pt x 481.8pt>
 File: ./tmp/regPlanetas.png Graphic file (type png)
 <use ./tmp/regPlanetas.png>
-Package pdftex.def Info: ./tmp/regPlanetas.png  used on input line 238.
+Package pdftex.def Info: ./tmp/regPlanetas.png  used on input line 251.
 (pdftex.def)             Requested size: 345.0pt x 345.00635pt.
-[4] [5 <./tmp/regPlanetas.png>] (G16-p3.aux
+[5] [6 <./tmp/regPlanetas.png>] (G16-p3.aux
 LaTeX Info: Redefining \. on input line 6.
 LaTeX Info: Redefining \% on input line 6.
 ) ) 
 Here is how much of TeX's memory you used:
  3784 strings out of 492946
  52839 string characters out of 3135527
- 123223 words of memory out of 3000000
+ 124223 words of memory out of 3000000
  7581 multiletter control sequences out of 15000+200000
  29203 words of font info for 63 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
@@ -390,9 +390,9 @@ nts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
 /public/amsfonts/cm/cmsltt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
 c/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfon
 ts/cm/cmtt10.pfb>
-Output written on G16-p3.pdf (5 pages, 127640 bytes).
+Output written on G16-p3.pdf (6 pages, 129433 bytes).
 PDF statistics:
- 54 PDF objects out of 1000 (max. 8388607)
+ 57 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
