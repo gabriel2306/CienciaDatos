@@ -1,0 +1,11 @@
+    TC  NR  NP  TV
+v1  B   4   5   Coche
+v2  A   2   2   Moto
+v3  N   2   1   Bicicleta
+v4  B   6   4   Camion
+v5  B   4   6   Coche
+v6  B   4   4   Coche
+v7  N   2   2   Bicicleta
+v8  B   2   1   Moto
+v9  B   6   2   Camion
+v10 N   2   1   Bicicleta
