@@ -9,6 +9,7 @@
 \author{Gabriel López, Sergio Sanz, Álvaro Zamorano}
 
 \begin{document}
+\SweaveOpts{concordance=TRUE}
 
 \maketitle
 
@@ -32,11 +33,12 @@ library(rpart)
 library(tree)
 @
 
-\bigskip
 \begin{itemize}
 \item Con rpart obtendremos las particiones recursivas para la clasificación y los árboles de decisión.
 \item Con tree, los árboles de clasificación y regresión.
 \end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 1.1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Función de clasificación.}
 Los datos a usar en este primer ejercicio se componen de 9 calificaciones de estudiantes compuestas por
@@ -88,7 +90,8 @@ clasificacion
 @
 
 \bigskip
-Por último, se aplica la función \textbf{tree} a la clasificación obtenida.
+Por último, se aplica la función \textbf{tree} a nuestros datos, cuyo resultado debe ser igual al obtenido con la
+función rpart.
 <<eval=TRUE>>=
 clasificaciontree<-tree(Calif~.,data=muestra,mincut=1,minsize=2)
 clasificaciontree
@@ -114,6 +117,8 @@ Procedemos a su ejecución.
 plotTree(clasificacion, "classTree.png")
 @
 \includegraphics[width=\textwidth]{classTree}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 1.2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Análisis de regresión lineal.}
 En este caso trabajaremos con datos de planetas, en concreto su Radio y su Diámetro. Los planetas de los que se tienen
@@ -169,5 +174,63 @@ source("Funciones/plotDisp.R")
 plotDisp(planetas,regresionP,"Radio","Diametro","regPlanetas.png")
 @
 \includegraphics[width=\textwidth]{regPlanetas}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 2.1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Segunda parte}
+\subsection{Función de clasificación.}
+En este ejercicio usaremos datos correspondientes a ventas de coches, en concreto son 10 muestras compuestas por: TipoCarnet, 
+NúmeroRuedas, NúmeroPasajeros y TipoVehículo.
+
+\bigskip
+Para introducir estos datos en el algoritmo a usar es necesario tener un fichero \texttt{.txt} con el
+siguiente aspecto.
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+Vehículo & TipoCarnet & NúmeroRuedas & NúmeroPasajeros & TipoVehículo\\
+\hline \hline
+v1 & B & 4 & 5 & Coche \\ \hline
+v2 & A & 2 & 2 & Moto \\ \hline
+v3 & N & 2 & 1 & Bicicleta \\ \hline
+v4 & B & 6 & 4 & Camión \\ \hline
+v5 & B & 4 & 6 & Coche \\ \hline
+v6 & B & 4 & 4 & Coche \\ \hline
+v7 & N & 2 & 2 & Bicicleta \\ \hline
+v8 & B & 2 & 1 & Moto \\ \hline
+v9 & B & 6 & 2 & Camión \\ \hline
+v10 & N & 2 & 1 & Bicicleta \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+\bigskip
+Procedemos a leer dicho fichero al igual que anteriormente.
+<<eval=TRUE>>=
+vehiculos<-read.table("./Datos/Vehiculos.txt")
+@
+
+\bigskip
+Para asegurarnos de que todo irá bien a la hora de realizar la clasificación, convertimos los datos
+leídos en un \textbf{dataframe.}
+<<eval=TRUE>>=
+muestraV<-data.frame(vehiculos)
+@
+
+\bigskip
+Nuestros datos ya se encuentran preparados para aplicarles la función \textbf{rpart.} La clasificación a obtener será el tipo de
+vehículo al que pertenece cada uno de ellos.
+<<eval=TRUE>>=
+clasV<-rpart(TV~.,data=muestraV,method="class",minsplit=1)
+clasV
+@
+
+\bigskip
+Procedemos a mostrar el árbol de clasificación.
+<<eval=TRUE,results=hide>>=
+plotTree(clasV, "classTreeV.png")
+@
+\includegraphics[width=\textwidth]{classTreeV}
 
 \end{document}
