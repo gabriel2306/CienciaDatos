@@ -117,6 +117,8 @@ clasificaciontree<-tree(Calif~.,data=muestra,mincut=1,minsize=2)
 clasificaciontree
 @
 
+%%% GRAFICAR TREE %%%
+
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 1.2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 \subsection{Análisis de regresión lineal.}
@@ -232,6 +234,8 @@ Por último, se aplica la función \textbf{tree} a nuestros datos.
 classTV<-tree(TV~.,data=muestraV,mincut=1,minsize=2)
 classTV
 @
+
+%%% GRAFICAR TREE %%%   
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 2.2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Análisis de regresión lineal.}
