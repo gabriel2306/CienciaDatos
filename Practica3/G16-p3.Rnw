@@ -79,7 +79,7 @@ leídos en un \textbf{dataframe.}
 muestra<-data.frame(calificaciones)
 @
 
-%%%%%% PARAMETROS DE RPART Y TREE %%%%%%
+%%%%%% PARAMETROS DE RPART Y TREE, DIFERENCIAS, USO DE GINI %%%%%%
 
 \bigskip
 Nuestros datos ya se encuentran preparados para aplicarles la función \textbf{rpart.} Es importante destacar
@@ -90,15 +90,7 @@ clasificacion
 @
 
 \bigskip
-Por último, se aplica la función \textbf{tree} a nuestros datos, cuyo resultado debe ser igual al obtenido con la
-función rpart.
-<<eval=TRUE>>=
-clasificaciontree<-tree(Calif~.,data=muestra,mincut=1,minsize=2)
-clasificaciontree
-@
-
-\bigskip
-Para mostrar el árbol de clasificación hacemos uso de una función que hemos definido, pero para poder usarla,
+Para mostrar el árbol de clasificación hacemos uso de una función que hemos definido, pero para poder usarla 
 en primer lugar es necesario instalar el paquete \textbf{rpart.plot.}
 <<eval=TRUE>>=
 install.packages("./Paquetes/rpart.plot_3.0.8.zip")
@@ -117,6 +109,13 @@ Procedemos a su ejecución.
 plotTree(clasificacion, "classTree.png")
 @
 \includegraphics[width=\textwidth]{classTree}
+
+\bigskip
+Por último, se aplica la función \textbf{tree} a nuestros datos.
+<<eval=TRUE>>=
+clasificaciontree<-tree(Calif~.,data=muestra,mincut=1,minsize=2)
+clasificaciontree
+@
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 1.2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -206,15 +205,9 @@ v10 & N & 2 & 1 & Bicicleta \\ \hline
 \end{table}
 
 \bigskip
-Procedemos a leer dicho fichero al igual que anteriormente.
+Procedemos a leer dicho fichero como anteriormente y pasarlo a dataframe.
 <<eval=TRUE>>=
 vehiculos<-read.table("./Datos/Vehiculos.txt")
-@
-
-\bigskip
-Para asegurarnos de que todo irá bien a la hora de realizar la clasificación, convertimos los datos
-leídos en un \textbf{dataframe.}
-<<eval=TRUE>>=
 muestraV<-data.frame(vehiculos)
 @
 
@@ -232,5 +225,38 @@ Procedemos a mostrar el árbol de clasificación.
 plotTree(clasV, "classTreeV.png")
 @
 \includegraphics[width=\textwidth]{classTreeV}
+
+\bigskip
+Por último, se aplica la función \textbf{tree} a nuestros datos.
+<<eval=TRUE>>=
+classTV<-tree(TV~.,data=muestraV,mincut=1,minsize=2)
+classTV
+@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 2.2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Análisis de regresión lineal.}
+En este caso tenemos que hacer un análisis de regresión lineal para 4 muestras distintas compuestas
+por pares de datos.
+
+\bigskip
+Como en ocasiones anteriores, procedemos a leer dichas muestras y pasarlas a dataframe.
+<<eval=TRUE>>=
+pares<-read.table("./Datos/Pares.txt")
+muestraP<-data.frame(pares)
+@
+
+\bigskip
+El análisis de regresión se hace mediante el uso de la función \textbf{lm.}
+<<eval=TRUE>>=
+
+@
+
+\bigskip
+De acuerdo a la ecuación de una recta \texttt{y=a+b*x}, el primero de los coeficientes es el término independiente (a), y el segundo
+de ellos la b.
+
+\bigskip
+Gráficos.
+@
 
 \end{document}
