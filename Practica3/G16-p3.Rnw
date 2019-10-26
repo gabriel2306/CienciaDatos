@@ -246,13 +246,16 @@ por pares de datos.
 Como en ocasiones anteriores, procedemos a leer dichas muestras y pasarlas a dataframe.
 <<eval=TRUE>>=
 pares<-read.table("./Datos/Pares.txt")
-muestraP<-data.frame(pares)
+muestraPS<-data.frame(pares)
 @
 
 \bigskip
-El análisis de regresión se hace mediante el uso de la función \textbf{lm.}
+El análisis de regresión se hace mediante el uso de la función \textbf{lm.} En este caso será neceario hacer cuatro análisis diferentes.
 <<eval=TRUE>>=
-
+(r1<-lm(V2~V1,data=muestraPS))
+(r2<-lm(V4~V3,data=muestraPS))
+(r3<-lm(V6~V5,data=muestraPS))
+(r4<-lm(V8~V7,data=muestraPS))
 @
 
 \bigskip
@@ -260,7 +263,17 @@ De acuerdo a la ecuación de una recta \texttt{y=a+b*x}, el primero de los coefi
 de ellos la b.
 
 \bigskip
-Gráficos.
+Mostraremos estos análisis en una misma figura mediante el uso de:
+<<eval=TRUE>>=
+source("Funciones/plotDisp2.R")
+plotDisp2
 @
+
+\bigskip
+Procedemos a su ejecución.
+<<eval=TRUE, results=hide>>=
+plotDisp2(pares, r1, r2, r3, r4, "rPares.png")
+@
+\includegraphics[width=\textwidth]{rPares}
 
 \end{document}

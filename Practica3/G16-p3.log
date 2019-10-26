@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.6960 64-bit) (preloaded format=pdflatex 2019.1.28)  25 OCT 2019 12:51
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.6960 64-bit) (preloaded format=pdflatex 2019.1.28)  26 OCT 2019 13:44
 entering extended mode
 **./G16-p3.tex
 (G16-p3.tex
@@ -419,29 +419,35 @@ Package pdftex.def Info: ./tmp/classTree.png  used on input line 162.
 <./tmp/regPlanetas.png, id=26, 481.8pt x 481.8pt>
 File: ./tmp/regPlanetas.png Graphic file (type png)
 <use ./tmp/regPlanetas.png>
-Package pdftex.def Info: ./tmp/regPlanetas.png  used on input line 254.
+Package pdftex.def Info: ./tmp/regPlanetas.png  used on input line 256.
 (pdftex.def)             Requested size: 345.0pt x 345.00635pt.
 
-Overfull \hbox (3.65692pt too wide) in paragraph at lines 268--283
+Overfull \hbox (3.65692pt too wide) in paragraph at lines 270--285
  [] 
  []
 
-[5 <./tmp/regPlanetas.png>] [6]
-<./tmp/classTreeV.png, id=34, 481.8pt x 481.8pt>
+[5 <./tmp/regPlanetas.png>]
+<./tmp/classTreeV.png, id=31, 481.8pt x 481.8pt>
 File: ./tmp/classTreeV.png Graphic file (type png)
 <use ./tmp/classTreeV.png>
-Package pdftex.def Info: ./tmp/classTreeV.png  used on input line 355.
+Package pdftex.def Info: ./tmp/classTreeV.png  used on input line 328.
 (pdftex.def)             Requested size: 345.0pt x 345.00635pt.
- [7 <./tmp/classTreeV.png (PNG copy)>]
-(G16-p3.aux
+ [6] [7 <./tmp/classTreeV.png (PNG copy)>] [8]
+<./tmp/rPares.png, id=42, 481.8pt x 481.8pt>
+File: ./tmp/rPares.png Graphic file (type png)
+<use ./tmp/rPares.png>
+Package pdftex.def Info: ./tmp/rPares.png  used on input line 452.
+(pdftex.def)             Requested size: 345.0pt x 345.00635pt.
+
+[9 <./tmp/rPares.png>] (G16-p3.aux
 LaTeX Info: Redefining \. on input line 6.
 LaTeX Info: Redefining \% on input line 6.
 ) ) 
 Here is how much of TeX's memory you used:
- 3816 strings out of 492946
- 53952 string characters out of 3135527
- 124223 words of memory out of 3000000
- 7603 multiletter control sequences out of 15000+200000
+ 3821 strings out of 492946
+ 54146 string characters out of 3135527
+ 123223 words of memory out of 3000000
+ 7607 multiletter control sequences out of 15000+200000
  29500 words of font info for 64 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,8n,31p,275b,359s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -454,9 +460,9 @@ TeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/f
 onts/type1/public/amsfonts/cm/cmsltt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/t
 ype1/public/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/pub
 lic/amsfonts/cm/cmtt10.pfb>
-Output written on G16-p3.pdf (7 pages, 152360 bytes).
+Output written on G16-p3.pdf (9 pages, 161341 bytes).
 PDF statistics:
- 69 PDF objects out of 1000 (max. 8388607)
+ 77 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 20 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 25 words of extra memory for PDF output out of 10000 (max. 10000000)
 

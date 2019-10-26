@@ -96,7 +96,7 @@ leídos en un \textbf{dataframe.}
 \end{Sinput}
 \end{Schunk}
 
-%%%%%% PARAMETROS DE RPART Y TREE, DIFERENCIAS %%%%%%
+%%%%%% PARAMETROS DE RPART Y TREE, DIFERENCIAS, USO DE GINI %%%%%%
 
 \bigskip
 Nuestros datos ya se encuentran preparados para aplicarles la función \textbf{rpart.} Es importante destacar
@@ -179,6 +179,8 @@ node), split, n, deviance, yval, (yprob)
   3) Lab: C,D 4  0.00 Ss ( 0.0000 1.0000 ) *
 \end{Soutput}
 \end{Schunk}
+
+%%% GRAFICAR TREE %%%
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 1.2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -284,18 +286,10 @@ v10 & N & 2 & 1 & Bicicleta \\ \hline
 \end{table}
 
 \bigskip
-Procedemos a leer dicho fichero al igual que anteriormente.
+Procedemos a leer dicho fichero como anteriormente y pasarlo a dataframe.
 \begin{Schunk}
 \begin{Sinput}
 > vehiculos<-read.table("./Datos/Vehiculos.txt")
-\end{Sinput}
-\end{Schunk}
-
-\bigskip
-Para asegurarnos de que todo irá bien a la hora de realizar la clasificación, convertimos los datos
-leídos en un \textbf{dataframe.}
-\begin{Schunk}
-\begin{Sinput}
 > muestraV<-data.frame(vehiculos)
 \end{Sinput}
 \end{Schunk}
@@ -325,10 +319,19 @@ node), split, n, loss, yval, (yprob)
 \end{Schunk}
 
 \bigskip
+Procedemos a mostrar el árbol de clasificación.
+\begin{Schunk}
+\begin{Sinput}
+> plotTree(clasV, "classTreeV.png")
+\end{Sinput}
+\end{Schunk}
+\includegraphics[width=\textwidth]{classTreeV}
+
+\bigskip
 Por último, se aplica la función \textbf{tree} a nuestros datos.
 \begin{Schunk}
 \begin{Sinput}
-> classTV<-tree(TV~.,data=muestraV,method="gini",mincut=1,minsize=2)
+> classTV<-tree(TV~.,data=muestraV,mincut=1,minsize=2)
 > classTV
 \end{Sinput}
 \begin{Soutput}
@@ -345,13 +348,107 @@ node), split, n, deviance, yval, (yprob)
 \end{Soutput}
 \end{Schunk}
 
+%%% GRAFICAR TREE %%%   
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 2.2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Análisis de regresión lineal.}
+En este caso tenemos que hacer un análisis de regresión lineal para 4 muestras distintas compuestas
+por pares de datos.
+
 \bigskip
-Procedemos a mostrar el árbol de clasificación.
+Como en ocasiones anteriores, procedemos a leer dichas muestras y pasarlas a dataframe.
 \begin{Schunk}
 \begin{Sinput}
-> plotTree(clasV, "classTreeV.png")
+> pares<-read.table("./Datos/Pares.txt")
+> muestraPS<-data.frame(pares)
 \end{Sinput}
 \end{Schunk}
-\includegraphics[width=\textwidth]{classTreeV}
+
+\bigskip
+El análisis de regresión se hace mediante el uso de la función \textbf{lm.} En este caso será neceario hacer cuatro análisis diferentes.
+\begin{Schunk}
+\begin{Sinput}
+> (r1<-lm(V2~V1,data=muestraPS))
+\end{Sinput}
+\begin{Soutput}
+Call:
+lm(formula = V2 ~ V1, data = muestraPS)
+
+Coefficients:
+(Intercept)           V1  
+     3.0001       0.5001  
+\end{Soutput}
+\begin{Sinput}
+> (r2<-lm(V4~V3,data=muestraPS))
+\end{Sinput}
+\begin{Soutput}
+Call:
+lm(formula = V4 ~ V3, data = muestraPS)
+
+Coefficients:
+(Intercept)           V3  
+      3.001        0.500  
+\end{Soutput}
+\begin{Sinput}
+> (r3<-lm(V6~V5,data=muestraPS))
+\end{Sinput}
+\begin{Soutput}
+Call:
+lm(formula = V6 ~ V5, data = muestraPS)
+
+Coefficients:
+(Intercept)           V5  
+     3.0025       0.4997  
+\end{Soutput}
+\begin{Sinput}
+> (r4<-lm(V8~V7,data=muestraPS))
+\end{Sinput}
+\begin{Soutput}
+Call:
+lm(formula = V8 ~ V7, data = muestraPS)
+
+Coefficients:
+(Intercept)           V7  
+     3.0017       0.4999  
+\end{Soutput}
+\end{Schunk}
+
+\bigskip
+De acuerdo a la ecuación de una recta \texttt{y=a+b*x}, el primero de los coeficientes es el término independiente (a), y el segundo
+de ellos la b.
+
+\bigskip
+Mostraremos estos análisis en una misma figura mediante el uso de:
+\begin{Schunk}
+\begin{Sinput}
+> source("Funciones/plotDisp2.R")
+> plotDisp2
+\end{Sinput}
+\begin{Soutput}
+function (data, r1, r2, r3, r4, ruta) 
+{
+    png(paste("./tmp/", ruta, sep = ""))
+    par(mfrow = c(2, 2))
+    plot(data[, 1], data[, 2], main = "Muestra 1")
+    abline(r1, col = "red")
+    plot(data[, 3], data[, 4], main = "Muestra 2")
+    abline(r2, col = "blue")
+    plot(data[, 5], data[, 6], main = "Muestra 3")
+    abline(r3, col = "green")
+    plot(data[, 7], data[, 8], main = "Muestra 4")
+    abline(r4, col = "yellow")
+    dev.off()
+}
+\end{Soutput}
+\end{Schunk}
+
+\bigskip
+Procedemos a su ejecución.
+\begin{Schunk}
+\begin{Sinput}
+> plotDisp2(pares, r1, r2, r3, r4, "rPares.png")
+\end{Sinput}
+\end{Schunk}
+\includegraphics[width=\textwidth]{rPares}
 
 \end{document}
