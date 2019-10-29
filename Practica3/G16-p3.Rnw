@@ -165,6 +165,7 @@ Para mostrar el gráfico de dispersión y la recta de ajuste es necesario hacer 
 <<eval=TRUE>>=
 library(foreign)
 library(ggplot2)
+install.packages("./Paquetes/psych_1.8.12")
 library(psych)
 @
 
