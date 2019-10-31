@@ -4,7 +4,7 @@ anovaR <- function(x,y) {
 
     recta<-calcularRecta(x,y,mediaX,mediaY)
 
-    r2<-ssR(x,mediaY,recta)/ssY(y,mediaY)
+    r2<-(ssR(x,mediaY,recta))/(ssY(y,mediaY))
 
     return(r2)
 }
@@ -12,7 +12,7 @@ anovaR <- function(x,y) {
 ssR <- function (x,mY,r) {
     sum<-0
     for (data in x){
-        sum<-sum+((r[1]+r[2]*data)-mY)^2
+        sum<-sum+((r$a+r$b*data)-mY)^2
     }
 
     return(sum)
@@ -21,19 +21,23 @@ ssR <- function (x,mY,r) {
 ssY <- function (y, mY) {
     sum<-0
     for (data in y){
-        sum<-sum+(y-mY)^2
+        sum<-sum+(data-mY)^2
     }
-
+    
+    return(sum)
 }
 
 calcularRecta <- function (x,y,mX,mY) {
-    b<-cov(x,y)/(desviacion(x,mX))^2
+    b<-covarianza(x,y,mX,mY)/(desviacion(x))^2
     a<-mY-b*mX
 
-    return(list(a,b))
+    l<-list("a"=a, "b"=b)
+
+    return(l)
 }
 
-desviacion <- function (var,media) {
+desviacion <- function (var) {
+    media<-mean(var)
     num<-0
     for (data in var){
         num<-num+((data-media)^2)
@@ -44,13 +48,20 @@ desviacion <- function (var,media) {
     return(s)
 }
 
-covarianza <- function(mX,My,y,x){
+covarianza <- function(x,y,mX,mY){
+    sz<-length(x)
     sum<-0
-    for(data1 in x,data2 in y){
-        sum<-sum+(data1*data2)
+    for(i in 1:sz){
+        sum<-sum+(x[i]*y[i])
     }
 
-    cov <- (sum/length(y)) - mX*mY
+    cov <- (sum/sz) - mX*mY
 
     return(cov)
+}
+
+correlacion <- function(cov,x,y){
+    cr<-cov/((desviacion(x))*desviacion(y))
+
+    return(cr)
 }

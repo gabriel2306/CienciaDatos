@@ -165,14 +165,6 @@ De acuerdo a la ecuación de una recta \texttt{y=a+b*x}, el primero de los coefi
 de ellos la b.
 
 \bigskip
-<<eval=TRUE>>=
-source("./Funciones/anovaR.R")
-(calcularRecta(planetas$R,planetas$D,mean(planetas$R),mean(planetas$D)))
-(desviacion(planetas$R,mean(planetas$R)))
-(cov(planetas$R,planetas$D))
-@
-
-\bigskip
 Para mostrar el gráfico de dispersión y la recta de ajuste es necesario hacer uso de varias librerías.
 <<eval=TRUE>>=
 library(foreign)
@@ -420,10 +412,24 @@ h<-weather$hum
 @
 
 \bigskip
-De estos valores obtenemos tanto la \textbf{Covarianza} como la \textbf{Correlación.}
+Se han realizado funciones para calcular los datos necesarios a la hora de obtener la recta de regresión. Hemos observado que
+el valor de la Covarianza no es correcto y por ello hemos hecho una función con dicho fin. Las funciones son las siguientes:
 <<eval=TRUE>>=
-(cov(h,t))
-(cor(h,t))
+source("./Funciones/anovaR.R")
+anovaR
+ssR
+ssY
+calcularRecta
+desviacion
+covarianza
+correlacion
+@
+
+\bigskip
+Cálculo de la \textbf{covarianza} y la \textbf{correlación.}
+<<eval=TRUE>>=
+(cov<-covarianza(h,t,mean(h),mean(t)))
+(correlacion(cov,h,t))
 @
 
 \bigskip
@@ -433,19 +439,36 @@ intervalo [-1,1]. Un valor de la correlación igual a -1 (recta con pendiente ne
 un buen ajuste de los datos a la recta de regresión.
 
 \bigskip
-Realización del análisis de regresión.
+Cálculo de los coeficientes de la recta de acuerdo a \texttt{y=a+b*x.}
 <<eval=TRUE>>=
-(regresionW<-lm(t~h,data=weather))
+(recta<-calcularRecta(h,t,mean(h),mean(t)))
 @
-\bigskip
-De acuerdo a la ecuación de una recta \texttt{y=a+b*x}, el primero de los coeficientes es el término independiente (a), y el segundo
-de ellos la b.
 
 \bigskip
 Mostrar gráficamente la recta de regresión.
 <<eval=TRUE,results=hide>>=
-plotDisp(weather,7,12,regresionW,"Humedad","Temperatura","regWeather.png")
+plotDisp(weather,7,12,lm(t~h,data=weather),"Humedad","Temperatura","regWeather.png")
 @
 \includegraphics[width=\textwidth]{regWeather}
+
+\bigskip
+El segundo paso consiste en realizar el análisis \textbf{ANOVA.} Obtendremos a partir de la \textit{Dispersión SSR} y la
+\textit{Dispersión SSY} la \textbf{Correlación cuadrada.}
+<<eval=TRUE>>=
+(anovaR(h,t))
+@
+
+\bigskip
+El valor de la correlación cuadrada se encuentra en el intervalo [0,1], indicando 1 un ajuste perfecto entre las variables. Como se 
+puede observar, dicho ajuste es casi perfecto.
+
+\bigskip
+Por último, calculamos el \textbf{Error estándar.}
+<<eval=TRUE>>=
+source("./Funciones/errorE.R")
+(errorE(h,t,recta))
+@
+
+Un valor, de dicho error, próximo a 0 indica un buen ajuste de la recta.
 
 \end{document}
