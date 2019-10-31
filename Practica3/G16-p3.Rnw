@@ -288,8 +288,10 @@ plotDisp2(pares, r1, r2, r3, r4, "rPares.png")
 
 \bigskip
 Para la parte de \textbf{clasificación} usaremos datos de \textit{Setas}, las cuales clasificaremos en función de si son venenosas (p) o 
-comestibles (e). Procedemos a leer dicho fichero como en prácticas anteriores haciendo uso de la librería readr.
+comestibles (e), es decir, los tipos de setas que encontramos en el archivo. Procedemos a leer dicho fichero como en prácticas anteriores
+haciendo uso de la librería readr.
 <<eval=TRUE>>=
+install.packages("readr")
 library("readr")
 setas<-read.csv("./Datos/mushrooms.csv")
 @
@@ -300,24 +302,24 @@ Los atributos que encontramos en este documento son:
 \item classes: edible=e, poisonous=p
 \item cap-shape: bell=b,conical=c,convex=x,flat=f, knobbed=k,sunken=s
 \item cap-surface: fibrous=f,grooves=g,scaly=y,smooth=s
-\item cap-color: brown=n,buff=b,cinnamon=c,gray=g,green=r,pink=p,purple=u,red=e,white=w,yellow=y
+\item cap-color: brown=n,buff=b,cinnamon=c,gray=g,green=r,pink=p,purple=u,red=e,\\white=w,yellow=y
 \item bruises: bruises=t,no=f
 \item odor: almond=a,anise=l,creosote=c,fishy=y,foul=f,musty=m,none=n,pungent=p,spicy=s
 \item gill-attachment: attached=a,descending=d,free=f,notched=n
 \item gill-spacing: close=c,crowded=w,distant=d
 \item gill-size: broad=b,narrow=n
-\item gill-color: black=k,brown=n,buff=b,chocolate=h,gray=g, green=r,orange=o,pink=p,purple=u,red=e,white=w,yellow=y
+\item gill-color: black=k,brown=n,buff=b,chocolate=h,gray=g, green=r,orange=o,pink=p,\\purple=u,red=e,white=w,yellow=y
 \item stalk-shape: enlarging=e,tapering=t
 \item stalk-root: bulbous=b,club=c,cup=u,equal=e,rhizomorphs=z,rooted=r,missing=?
 \item stalk-surface-above-ring: fibrous=f,scaly=y,silky=k,smooth=s
 \item stalk-surface-below-ring: fibrous=f,scaly=y,silky=k,smooth=s
-\item stalk-color-above-ring: brown=n,buff=b,cinnamon=c,gray=g,orange=o,pink=p,red=e,white=w,yellow=y
-\item stalk-color-below-ring: brown=n,buff=b,cinnamon=c,gray=g,orange=o,pink=p,red=e,white=w,yellow=y
+\item stalk-color-above-ring: brown=n,buff=b,cinnamon=c,gray=g,orange=o,pink=p,red=e,\\white=w,yellow=y
+\item stalk-color-below-ring: brown=n,buff=b,cinnamon=c,gray=g,orange=o,pink=p,red=e,\\white=w,yellow=y
 \item veil-type: partial=p,universal=u
 \item veil-color: brown=n,orange=o,white=w,yellow=y
 \item ring-number: none=n,one=o,two=t
 \item ring-type: cobwebby=c,evanescent=e,flaring=f,large=l,none=n,pendant=p,sheathing=s,zone=z
-\item spore-print-color: black=k,brown=n,buff=b,chocolate=h,green=r,orange=o,purple=u,white=w,yellow=y
+\item spore-print-color: black=k,brown=n,buff=b,chocolate=h,green=r,orange=o,purple=u,\\white=w,yellow=y
 \item population: abundant=a,clustered=c,numerous=n,scattered=s,several=v,solitary=y
 \item habitat: grasses=g,leaves=l,meadows=m,paths=p,urban=u,waste=w,woods=d
 \end{itemize}
@@ -339,7 +341,7 @@ plotTree(clasM, "classTreeM.png")
 Función de clasificación obtenida:
 \begin{itemize}
 \item Si el olor no es anisado ni almendrado, se trata de una seta venenosa.
-\item En caso contrario, si su color no es verde, estamos ante una seta comestible, en caso contrario es venenosa.
+\item En caso contrario, si su color no es verde, estamos ante una seta comestible, para el resto es venenosa.
 \end{itemize}
 
 \end{document}
