@@ -43,3 +43,14 @@ desviacion <- function (var,media) {
 
     return(s)
 }
+
+covarianza <- function(mX,My,y,x){
+    sum<-0
+    for(data1 in x,data2 in y){
+        sum<-sum+(data1*data2)
+    }
+
+    cov <- (sum/length(y)) - mX*mY
+
+    return(cov)
+}
