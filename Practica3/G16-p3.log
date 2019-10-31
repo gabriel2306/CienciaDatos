@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.6960 64-bit) (preloaded format=pdflatex 2019.1.28)  31 OCT 2019 18:36
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.6960 64-bit) (preloaded format=pdflatex 2019.1.28)  31 OCT 2019 18:47
 entering extended mode
 **C:/Users/tromp/Documents/1.Curso_2019-20/1.Cuatrimetestre/2.Ciencia_Datos/LAB
 /CienciaDatos/Practica3/G16-p3.tex
@@ -489,7 +489,7 @@ LaTeX Info: Redefining \% on input line 6.
 ) ) 
 Here is how much of TeX's memory you used:
  3828 strings out of 492946
- 54835 string characters out of 3135527
+ 54836 string characters out of 3135527
  123223 words of memory out of 3000000
  7613 multiletter control sequences out of 15000+200000
  29203 words of font info for 63 fonts, out of 3000000 for 9000
@@ -503,7 +503,7 @@ nts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
 /public/amsfonts/cm/cmsltt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
 c/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfon
 ts/cm/cmtt10.pfb>
-Output written on G16-p3.pdf (20 pages, 209353 bytes).
+Output written on G16-p3.pdf (20 pages, 209620 bytes).
 PDF statistics:
  119 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

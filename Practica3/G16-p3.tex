@@ -789,33 +789,38 @@ El valor de la correlación cuadrada se encuentra en el intervalo [0,1], indican
 puede observar, dicho ajuste es casi perfecto.
 
 \bigskip
-Por último, calculamos el \textbf{Error estándar.}
+Por último, calculamos el \textbf{Error estándar} con la función:
 \begin{Schunk}
 \begin{Sinput}
 > source("./Funciones/errorE.R")
+> errorE
+\end{Sinput}
+\begin{Soutput}
+function(x,y,r) {
+    sz<-length(x)
+    sum<-0
+    for (i in 1:sz){
+        sum<-sum+((r$a+r$b*x[i])-y[i])^2
+    }
+
+    sR<-sqrt(sum/sz)
+
+    return(sR)
+}
+\end{Soutput}
+\end{Schunk}
+
+\bigskip
+Procedemos a su cálculo.
+\begin{Schunk}
+\begin{Sinput}
 > (errorE(h,t,recta))
 \end{Sinput}
 \begin{Soutput}
 [1] 0.9694076
 \end{Soutput}
-\begin{Sinput}
-> (recta<-calcularRecta(planetas$R,planetas$D,mean(planetas$R),mean(planetas$D)))
-\end{Sinput}
-\begin{Soutput}
-$a
-[1] 4.362396
-
-$b
-[1] 0.1393669
-\end{Soutput}
-\begin{Sinput}
-> (errorE(planetas$R,planetas$D,recta))
-\end{Sinput}
-\begin{Soutput}
-[1] 0.5982136
-\end{Soutput}
 \end{Schunk}
 
-Dicho error tiene valores entre [0,1], indicando un 0 un buen ajuste de la recta.
+Un valor, de dicho error, próximo a 0 indica un buen ajuste de la recta.
 
 \end{document}

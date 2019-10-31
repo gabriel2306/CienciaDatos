@@ -463,9 +463,15 @@ El valor de la correlación cuadrada se encuentra en el intervalo [0,1], indican
 puede observar, dicho ajuste es casi perfecto.
 
 \bigskip
-Por último, calculamos el \textbf{Error estándar.}
+Por último, calculamos el \textbf{Error estándar} con la función:
 <<eval=TRUE>>=
 source("./Funciones/errorE.R")
+errorE
+@
+
+\bigskip
+Procedemos a su cálculo.
+<<eval=TRUE>>=
 (errorE(h,t,recta))
 @
 
