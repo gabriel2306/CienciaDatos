@@ -344,4 +344,52 @@ Función de clasificación obtenida:
 \item En caso contrario, si su color no es verde, estamos ante una seta comestible, para el resto es venenosa.
 \end{itemize}
 
+\bigskip
+Para usar la función \texttt{predict} con el fin de generar predicciones a partir de un modelo entrenado, necesitamos
+un set de entrenamiento y otro de prueba que compruebe la eficacia de las predicciones. Para obtener estos sets utilizamos
+la función \texttt{sample\_frac} la cual pertenece al paquete \textbf{dplyr}, además por el parámetro \textit{newdata} es
+necesario el uso del paquete \textbf{e1071.} Posteriormente, con la función \texttt{confusionMatrix} obtenemos la matriz de
+confusión del conjunto de pruebas, dicha función se encuentra en el paquete \textbf{caret}.
+
+\bigskip
+Instalación de paquetes.
+<<eval=TRUE,results=hide>>=
+install.packages("dplyr")
+library("dplyr")
+install.packages("e1071")
+library("e1071")
+install.packages("caret")
+library("caret")
+@
+
+\bigskip
+Separación de los datos para el set de entrenamiento y pruebas.
+<<eval=TRUE>>=
+setasTrain<-sample_frac(setas,.7)
+setasP<-setdiff(setas,setasTrain)
+@
+
+\bigskip
+Mostramos la función de clasificación perteneciente al 70\% del conjunto de datos.
+<<eval=TRUE,results=hide>>=
+clas70<-rpart(class~.,data=setasTrain,method="class")
+plotTree(clas70, "classTree70.png")
+@
+\includegraphics[width=\textwidth]{classTree70}
+
+\bigskip
+Ejecución de la predicción y la posterior matriz de confusión.
+<<eval=TRUE>>=
+prediccion<-predict(clas70, newdata=setasP, type="class")
+cm<-confusionMatrix(prediccion, setasP[["class"]])
+@
+
+\bigskip
+Una vez calculada la matriz de confusión procedemos a mostrarla gráficamente.
+<<eval=TRUE,results=hide>>=
+source("./Funciones/drawCM.R")
+drawCM(cm,"cmSetas.png")
+@
+\includegraphics[width=\textwidth]{cmSetas}
+
 \end{document}

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.6960 64-bit) (preloaded format=pdflatex 2019.1.28)  31 OCT 2019 11:58
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.6960 64-bit) (preloaded format=pdflatex 2019.1.28)  31 OCT 2019 12:42
 entering extended mode
 **C:/Users/tromp/Documents/1.Curso_2019-20/1.Cuatrimetestre/2.Ciencia_Datos/LAB
 /CienciaDatos/Practica3/G16-p3.tex
@@ -400,61 +400,61 @@ File: ./tmp/rPares.png Graphic file (type png)
 Package pdftex.def Info: ./tmp/rPares.png  used on input line 463.
 (pdftex.def)             Requested size: 345.0pt x 345.00635pt.
 [11 <./tmp/rPares.png>]
-Overfull \hbox (37.87512pt too wide) in paragraph at lines 491--492
+Overfull \hbox (37.87512pt too wide) in paragraph at lines 486--487
 []\T1/aer/m/n/10 cap-color: brown=n,buff=b,cinnamon=c,gray=g,green=r,pink=p,pur
 ple=u,red=e, 
  []
 
 
-Overfull \hbox (69.42459pt too wide) in paragraph at lines 493--494
+Overfull \hbox (69.42459pt too wide) in paragraph at lines 488--489
 []\T1/aer/m/n/10 odor: al-mond=a,anise=l,creosote=c,fishy=y,foul=f,musty=m,none
 =n,pungent=p,spicy=s 
  []
 
 
-Overfull \hbox (48.12508pt too wide) in paragraph at lines 497--498
+Overfull \hbox (48.12508pt too wide) in paragraph at lines 492--493
 []\T1/aer/m/n/10 gill-color: black=k,brown=n,buff=b,chocolate=h,gray=g, green=r
 ,orange=o,pink=p, 
  []
 
 
-Overfull \hbox (36.6544pt too wide) in paragraph at lines 499--500
+Overfull \hbox (36.6544pt too wide) in paragraph at lines 494--495
 []\T1/aer/m/n/10 stalk-root: bul-bous=b,club=c,cup=u,equal=e,rhizomorphs=z,root
 ed=r,missing=? 
  []
 
 
-Overfull \hbox (55.41524pt too wide) in paragraph at lines 502--503
+Overfull \hbox (55.41524pt too wide) in paragraph at lines 497--498
 []\T1/aer/m/n/10 stalk-color-above-ring: brown=n,buff=b,cinnamon=c,gray=g,orang
 e=o,pink=p,red=e, 
  []
 
 
-Overfull \hbox (55.40512pt too wide) in paragraph at lines 503--504
+Overfull \hbox (55.40512pt too wide) in paragraph at lines 498--499
 []\T1/aer/m/n/10 stalk-color-below-ring: brown=n,buff=b,cinnamon=c,gray=g,orang
 e=o,pink=p,red=e, 
  []
 
 
-Overfull \hbox (94.82434pt too wide) in paragraph at lines 507--508
+Overfull \hbox (94.82434pt too wide) in paragraph at lines 502--503
 []\T1/aer/m/n/10 ring-type: cob-webby=c,evanescent=e,flaring=f,large=l,none=n,p
 endant=p,sheathing=s,zone=z 
  []
 
 
-Overfull \hbox (54.6048pt too wide) in paragraph at lines 508--509
+Overfull \hbox (54.6048pt too wide) in paragraph at lines 503--504
 []\T1/aer/m/n/10 spore-print-color: black=k,brown=n,buff=b,chocolate=h,green=r,
 orange=o,purple=u, 
  []
 
 
-Overfull \hbox (45.61452pt too wide) in paragraph at lines 509--510
+Overfull \hbox (45.61452pt too wide) in paragraph at lines 504--505
 []\T1/aer/m/n/10 population: abun-dant=a,clustered=c,numerous=n,scattered=s,sev
 eral=v,solitary=y 
  []
 
 
-Overfull \hbox (22.96584pt too wide) in paragraph at lines 510--511
+Overfull \hbox (22.96584pt too wide) in paragraph at lines 505--506
 []\T1/aer/m/n/10 habitat: gras-ses=g,leaves=l,meadows=m,paths=p,urban=u,waste=w
 ,woods=d 
  []
@@ -463,17 +463,29 @@ Overfull \hbox (22.96584pt too wide) in paragraph at lines 510--511
 <./tmp/classTreeM.png, id=59, 481.8pt x 481.8pt>
 File: ./tmp/classTreeM.png Graphic file (type png)
 <use ./tmp/classTreeM.png>
-Package pdftex.def Info: ./tmp/classTreeM.png  used on input line 540.
+Package pdftex.def Info: ./tmp/classTreeM.png  used on input line 535.
 (pdftex.def)             Requested size: 345.0pt x 345.00635pt.
-[13 <./tmp/classTreeM.png>] [14] (G16-p3.aux
+[13 <./tmp/classTreeM.png>]
+<./tmp/classTree70.png, id=65, 481.8pt x 481.8pt>
+File: ./tmp/classTree70.png Graphic file (type png)
+<use ./tmp/classTree70.png>
+Package pdftex.def Info: ./tmp/classTree70.png  used on input line 581.
+(pdftex.def)             Requested size: 345.0pt x 345.00635pt.
+[14]
+<./tmp/cmSetas.png, id=69, 481.8pt x 481.8pt>
+File: ./tmp/cmSetas.png Graphic file (type png)
+<use ./tmp/cmSetas.png>
+Package pdftex.def Info: ./tmp/cmSetas.png  used on input line 600.
+(pdftex.def)             Requested size: 345.0pt x 345.00635pt.
+[15 <./tmp/classTree70.png>] [16 <./tmp/cmSetas.png>] (G16-p3.aux
 LaTeX Info: Redefining \. on input line 6.
 LaTeX Info: Redefining \% on input line 6.
 ) ) 
 Here is how much of TeX's memory you used:
- 3813 strings out of 492946
- 54145 string characters out of 3135527
+ 3823 strings out of 492946
+ 54482 string characters out of 3135527
  123223 words of memory out of 3000000
- 7601 multiletter control sequences out of 15000+200000
+ 7609 multiletter control sequences out of 15000+200000
  29203 words of font info for 63 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,8n,31p,374b,359s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -485,9 +497,9 @@ nts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
 /public/amsfonts/cm/cmsltt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
 c/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfon
 ts/cm/cmtt10.pfb>
-Output written on G16-p3.pdf (14 pages, 179117 bytes).
+Output written on G16-p3.pdf (16 pages, 193853 bytes).
 PDF statistics:
- 94 PDF objects out of 1000 (max. 8388607)
+ 104 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 40 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 50 words of extra memory for PDF output out of 10000 (max. 10000000)
 

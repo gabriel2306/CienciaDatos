@@ -472,11 +472,6 @@ haciendo uso de la librería readr.
 \begin{Schunk}
 \begin{Sinput}
 > install.packages("readr")
-\end{Sinput}
-\begin{Soutput}
---- Please select a CRAN mirror for use in this session ---
-\end{Soutput}
-\begin{Sinput}
 > library("readr")
 > setas<-read.csv("./Datos/mushrooms.csv")
 \end{Sinput}
@@ -545,5 +540,63 @@ Función de clasificación obtenida:
 \item Si el olor no es anisado ni almendrado, se trata de una seta venenosa.
 \item En caso contrario, si su color no es verde, estamos ante una seta comestible, para el resto es venenosa.
 \end{itemize}
+
+\bigskip
+Para usar la función \texttt{predict} con el fin de generar predicciones a partir de un modelo entrenado, necesitamos
+un set de entrenamiento y otro de prueba que compruebe la eficacia de las predicciones. Para obtener estos sets utilizamos
+la función \texttt{sample\_frac} la cual pertenece al paquete \textbf{dplyr}, además por el parámetro \textit{newdata} es
+necesario el uso del paquete \textbf{e1071.} Posteriormente, con la función \texttt{confusionMatrix} obtenemos la matriz de
+confusión del conjunto de pruebas, dicha función se encuentra en el paquete \textbf{caret}.
+
+\bigskip
+Instalación de paquetes.
+\begin{Schunk}
+\begin{Sinput}
+> install.packages("dplyr")
+> library("dplyr")
+> install.packages("e1071")
+> library("e1071")
+> install.packages("caret")
+> library("caret")
+\end{Sinput}
+\end{Schunk}
+
+\bigskip
+Separación de los datos para el set de entrenamiento y pruebas.
+\begin{Schunk}
+\begin{Sinput}
+> setasTrain<-sample_frac(setas,.7)
+> setasP<-setdiff(setas,setasTrain)
+\end{Sinput}
+\end{Schunk}
+
+\bigskip
+Mostramos la función de clasificación perteneciente al 70\% del conjunto de datos.
+\begin{Schunk}
+\begin{Sinput}
+> clas70<-rpart(class~.,data=setasTrain,method="class")
+> plotTree(clas70, "classTree70.png")
+\end{Sinput}
+\end{Schunk}
+\includegraphics[width=\textwidth]{classTree70}
+
+\bigskip
+Ejecución de la predicción y la posterior matriz de confusión.
+\begin{Schunk}
+\begin{Sinput}
+> prediccion<-predict(clas70, newdata=setasP, type="class")
+> cm<-confusionMatrix(prediccion, setasP[["class"]])
+\end{Sinput}
+\end{Schunk}
+
+\bigskip
+Una vez calculada la matriz de confusión procedemos a mostrarla gráficamente.
+\begin{Schunk}
+\begin{Sinput}
+> source("./Funciones/drawCM.R")
+> drawCM(cm,"cmSetas.png")
+\end{Sinput}
+\end{Schunk}
+\includegraphics[width=\textwidth]{cmSetas}
 
 \end{document}
