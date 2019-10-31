@@ -230,6 +230,33 @@ De acuerdo a la ecuación de una recta \texttt{y=a+b*x}, el primero de los coefi
 de ellos la b.
 
 \bigskip
+\begin{Schunk}
+\begin{Sinput}
+> source("./Funciones/anovaR.R")
+> (calcularRecta(planetas$R,planetas$D,mean(planetas$R),mean(planetas$D)))
+\end{Sinput}
+\begin{Soutput}
+[[1]]
+[1] 4.149862
+
+[[2]]
+[1] 0.1858225
+\end{Soutput}
+\begin{Sinput}
+> (desviacion(planetas$R,mean(planetas$R)))
+\end{Sinput}
+\begin{Soutput}
+[1] 1.715189
+\end{Soutput}
+\begin{Sinput}
+> (cov(planetas$R,planetas$D))
+\end{Sinput}
+\begin{Soutput}
+[1] 0.5466667
+\end{Soutput}
+\end{Schunk}
+
+\bigskip
 Para mostrar el gráfico de dispersión y la recta de ajuste es necesario hacer uso de varias librerías.
 \begin{Schunk}
 \begin{Sinput}
