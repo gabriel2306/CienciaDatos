@@ -79,11 +79,10 @@ leídos en un \textbf{dataframe.}
 muestra<-data.frame(calificaciones)
 @
 
-%%%%%% PARAMETROS DE RPART Y TREE, DIFERENCIAS, USO DE GINI %%%%%%
-
 \bigskip
 Nuestros datos ya se encuentran preparados para aplicarles la función \textbf{rpart.} Es importante destacar
-el uso de minsplit ya que disponemos de una muestra con un número muy reducido de datos.
+el uso de minsplit ya que disponemos de una muestra con un número muy reducido de datos. Por otra parte, la función
+rpart usa como medida de impureza por defecto Gini.
 <<eval=TRUE>>=
 clasificacion<-rpart(Calif~.,data=muestra,method="class",minsplit=1)
 clasificacion
@@ -111,13 +110,18 @@ plotTree(clasificacion, "classTree.png")
 \includegraphics[width=\textwidth]{classTree}
 
 \bigskip
-Por último, se aplica la función \textbf{tree} a nuestros datos.
+Por último, se aplica la función \textbf{tree} a nuestros datos, para que esta use la medida de impureza \texttt{Gini} lo indicamos
+en el parámetro split.
 <<eval=TRUE>>=
-clasificaciontree<-tree(Calif~.,data=muestra,mincut=1,minsize=2)
+clasificaciontree<-tree(Calif~.,data=muestra,mincut=1,minsize=2,split="gini")
 clasificaciontree
 @
 
-%%% GRAFICAR TREE %%%
+<<eval=TRUE,results=hide>>=
+source("./Funciones/plotT.R")
+plotT(clasificaciontree, "classT.png")
+@
+\includegraphics[width=\textwidth]{classT}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 1.2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -231,11 +235,14 @@ plotTree(clasV, "classTreeV.png")
 \bigskip
 Por último, se aplica la función \textbf{tree} a nuestros datos.
 <<eval=TRUE>>=
-classTV<-tree(TV~.,data=muestraV,mincut=1,minsize=2)
+classTV<-tree(TV~.,data=muestraV,mincut=1,minsize=2,split="gini")
 classTV
 @
 
-%%% GRAFICAR TREE %%%   
+<<eval=TRUE,results=hide>>=
+plotT(classTV, "classTV.png")
+@
+\includegraphics[width=\textwidth]{classTV}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 2.2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Análisis de regresión lineal.}
@@ -275,5 +282,64 @@ Procedemos a su ejecución.
 plotDisp2(pares, r1, r2, r3, r4, "rPares.png")
 @
 \includegraphics[width=\textwidth]{rPares}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 2.3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Desarrollo por parte del alumno.}
+
+\bigskip
+Para la parte de \textbf{clasificación} usaremos datos de \textit{Setas}, las cuales clasificaremos en función de si son venenosas (p) o 
+comestibles (e). Procedemos a leer dicho fichero como en prácticas anteriores haciendo uso de la librería readr.
+<<eval=TRUE>>=
+library("readr")
+setas<-read.csv("./Datos/mushrooms.csv")
+@
+
+\bigskip
+Los atributos que encontramos en este documento son:
+\begin{itemize}
+\item classes: edible=e, poisonous=p
+\item cap-shape: bell=b,conical=c,convex=x,flat=f, knobbed=k,sunken=s
+\item cap-surface: fibrous=f,grooves=g,scaly=y,smooth=s
+\item cap-color: brown=n,buff=b,cinnamon=c,gray=g,green=r,pink=p,purple=u,red=e,white=w,yellow=y
+\item bruises: bruises=t,no=f
+\item odor: almond=a,anise=l,creosote=c,fishy=y,foul=f,musty=m,none=n,pungent=p,spicy=s
+\item gill-attachment: attached=a,descending=d,free=f,notched=n
+\item gill-spacing: close=c,crowded=w,distant=d
+\item gill-size: broad=b,narrow=n
+\item gill-color: black=k,brown=n,buff=b,chocolate=h,gray=g, green=r,orange=o,pink=p,purple=u,red=e,white=w,yellow=y
+\item stalk-shape: enlarging=e,tapering=t
+\item stalk-root: bulbous=b,club=c,cup=u,equal=e,rhizomorphs=z,rooted=r,missing=?
+\item stalk-surface-above-ring: fibrous=f,scaly=y,silky=k,smooth=s
+\item stalk-surface-below-ring: fibrous=f,scaly=y,silky=k,smooth=s
+\item stalk-color-above-ring: brown=n,buff=b,cinnamon=c,gray=g,orange=o,pink=p,red=e,white=w,yellow=y
+\item stalk-color-below-ring: brown=n,buff=b,cinnamon=c,gray=g,orange=o,pink=p,red=e,white=w,yellow=y
+\item veil-type: partial=p,universal=u
+\item veil-color: brown=n,orange=o,white=w,yellow=y
+\item ring-number: none=n,one=o,two=t
+\item ring-type: cobwebby=c,evanescent=e,flaring=f,large=l,none=n,pendant=p,sheathing=s,zone=z
+\item spore-print-color: black=k,brown=n,buff=b,chocolate=h,green=r,orange=o,purple=u,white=w,yellow=y
+\item population: abundant=a,clustered=c,numerous=n,scattered=s,several=v,solitary=y
+\item habitat: grasses=g,leaves=l,meadows=m,paths=p,urban=u,waste=w,woods=d
+\end{itemize}
+
+\bigskip
+<<eval=TRUE>>=
+clasM<-rpart(class~.,data=setas,method="class")
+clasM
+@
+
+\bigskip
+Procedemos a mostrar el árbol de clasificación.
+<<eval=TRUE,results=hide>>=
+plotTree(clasM, "classTreeM.png")
+@
+\includegraphics[width=\textwidth]{classTreeM}
+
+\bigskip
+Función de clasificación obtenida:
+\begin{itemize}
+\item Si el olor no es anisado ni almendrado, se trata de una seta venenosa.
+\item En caso contrario, si su color no es verde, estamos ante una seta comestible, en caso contrario es venenosa.
+\end{itemize}
 
 \end{document}
