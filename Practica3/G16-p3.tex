@@ -240,11 +240,12 @@ Para mostrar el gráfico de dispersión y la recta de ajuste es necesario hacer 
 \end{Schunk}
 
 \bigskip
-Estas librerías se usan en funciones externas usadas para representar los gráficos requeridos.
+Estas librerías se usan en funciones externas usadas para representar los gráficos requeridos. En dicha función es necesario
+indicar las columnas de los datos con los que se realizará la regresión.
 \begin{Schunk}
 \begin{Sinput}
 > source("Funciones/plotDisp.R")
-> plotDisp(planetas,regresionP,"Radio","Diametro","regPlanetas.png")
+> plotDisp(planetas,1,2,regresionP,"Radio","Diametro","regPlanetas.png")
 \end{Sinput}
 \end{Schunk}
 \includegraphics[width=\textwidth]{regPlanetas}
@@ -480,7 +481,7 @@ haciendo uso de la librería readr.
 \bigskip
 Los atributos que encontramos en este documento son:
 \begin{itemize}
-\item classes: edible=e, poisonous=p
+\item class: edible=e, poisonous=p
 \item cap-shape: bell=b,conical=c,convex=x,flat=f, knobbed=k,sunken=s
 \item cap-surface: fibrous=f,grooves=g,scaly=y,smooth=s
 \item cap-color: brown=n,buff=b,cinnamon=c,gray=g,green=r,pink=p,purple=u,red=e,\\white=w,yellow=y
@@ -598,5 +599,78 @@ Una vez calculada la matriz de confusión procedemos a mostrarla gráficamente.
 \end{Sinput}
 \end{Schunk}
 \includegraphics[width=\textwidth]{cmSetas}
+
+\bigskip
+En la parte del \textbf{análisis de regresión lineal} usaremos datos pertenecientes al clima, de los cuales usaremos la 
+temperatura y humedad.
+
+\bigskip
+En primer lugar debemos leer estos datos contenidos en un .csv y convertirlos en dataframe.
+\begin{Schunk}
+\begin{Sinput}
+> w<-read.csv("./Datos/weather.csv")
+> weather<-data.frame(w)
+\end{Sinput}
+\end{Schunk}
+
+\bigskip
+Guardamos en dos variables los datos de temperatura y humedad para facilitar su utilización.
+\begin{Schunk}
+\begin{Sinput}
+> t<-weather$tempm
+> h<-weather$hum
+\end{Sinput}
+\end{Schunk}
+
+\bigskip
+De estos valores obtenemos tanto la \textbf{Covarianza} como la \textbf{Correlación.}
+\begin{Schunk}
+\begin{Sinput}
+> (cov(h,t))
+\end{Sinput}
+\begin{Soutput}
+[1] -71.96809
+\end{Soutput}
+\begin{Sinput}
+> (cor(h,t))
+\end{Sinput}
+\begin{Soutput}
+[1] -0.9778414
+\end{Soutput}
+\end{Schunk}
+
+\bigskip
+El análisis de la covarianza resulta muy complicado ya que se trata de una medida que depende mucho del dominio de los datos
+a estudiar, es decir, no se encuentra normalizada. Por ello surge la correlación, una medida cuyo valor se encuentra en el
+intervalo [-1,1]. Un valor de la correlación igual a -1 (recta con pendiente negativa) o 1 (recta con pendiente positiva), indicará
+un buen ajuste de los datos a la recta de regresión.
+
+\bigskip
+Realización del análisis de regresión.
+\begin{Schunk}
+\begin{Sinput}
+> (regresionW<-lm(t~h,data=weather))
+\end{Sinput}
+\begin{Soutput}
+Call:
+lm(formula = t ~ h, data = weather)
+
+Coefficients:
+(Intercept)            h  
+     37.398       -0.291  
+\end{Soutput}
+\end{Schunk}
+\bigskip
+De acuerdo a la ecuación de una recta \texttt{y=a+b*x}, el primero de los coeficientes es el término independiente (a), y el segundo
+de ellos la b.
+
+\bigskip
+Mostrar gráficamente la recta de regresión.
+\begin{Schunk}
+\begin{Sinput}
+> plotDisp(weather,7,12,regresionW,"Humedad","Temperatura","regWeather.png")
+\end{Sinput}
+\end{Schunk}
+\includegraphics[width=\textwidth]{regWeather}
 
 \end{document}

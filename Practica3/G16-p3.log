@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.6960 64-bit) (preloaded format=pdflatex 2019.1.28)  31 OCT 2019 12:42
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.6960 64-bit) (preloaded format=pdflatex 2019.1.28)  31 OCT 2019 13:51
 entering extended mode
 **C:/Users/tromp/Documents/1.Curso_2019-20/1.Cuatrimetestre/2.Ciencia_Datos/LAB
 /CienciaDatos/Practica3/G16-p3.tex
@@ -374,10 +374,10 @@ Package pdftex.def Info: ./tmp/classT.png  used on input line 177.
 <./tmp/regPlanetas.png, id=27, 481.8pt x 481.8pt>
 File: ./tmp/regPlanetas.png Graphic file (type png)
 <use ./tmp/regPlanetas.png>
-Package pdftex.def Info: ./tmp/regPlanetas.png  used on input line 250.
+Package pdftex.def Info: ./tmp/regPlanetas.png  used on input line 251.
 (pdftex.def)             Requested size: 345.0pt x 345.00635pt.
 [5]
-Overfull \hbox (3.65692pt too wide) in paragraph at lines 264--279
+Overfull \hbox (3.65692pt too wide) in paragraph at lines 265--280
  [] 
  []
 
@@ -385,76 +385,76 @@ Overfull \hbox (3.65692pt too wide) in paragraph at lines 264--279
 <./tmp/classTreeV.png, id=35, 481.8pt x 481.8pt>
 File: ./tmp/classTreeV.png Graphic file (type png)
 <use ./tmp/classTreeV.png>
-Package pdftex.def Info: ./tmp/classTreeV.png  used on input line 322.
+Package pdftex.def Info: ./tmp/classTreeV.png  used on input line 323.
 (pdftex.def)             Requested size: 345.0pt x 345.00635pt.
 [7] [8 <./tmp/classTreeV.png (PNG copy)>]
 <./tmp/classTV.png, id=43, 481.8pt x 481.8pt>
 File: ./tmp/classTV.png Graphic file (type png)
 <use ./tmp/classTV.png>
-Package pdftex.def Info: ./tmp/classTV.png  used on input line 356.
+Package pdftex.def Info: ./tmp/classTV.png  used on input line 357.
 (pdftex.def)             Requested size: 345.0pt x 345.00635pt.
 [9 <./tmp/classTV.png>] [10]
 <./tmp/rPares.png, id=51, 481.8pt x 481.8pt>
 File: ./tmp/rPares.png Graphic file (type png)
 <use ./tmp/rPares.png>
-Package pdftex.def Info: ./tmp/rPares.png  used on input line 463.
+Package pdftex.def Info: ./tmp/rPares.png  used on input line 464.
 (pdftex.def)             Requested size: 345.0pt x 345.00635pt.
 [11 <./tmp/rPares.png>]
-Overfull \hbox (37.87512pt too wide) in paragraph at lines 486--487
+Overfull \hbox (37.87512pt too wide) in paragraph at lines 487--488
 []\T1/aer/m/n/10 cap-color: brown=n,buff=b,cinnamon=c,gray=g,green=r,pink=p,pur
 ple=u,red=e, 
  []
 
 
-Overfull \hbox (69.42459pt too wide) in paragraph at lines 488--489
+Overfull \hbox (69.42459pt too wide) in paragraph at lines 489--490
 []\T1/aer/m/n/10 odor: al-mond=a,anise=l,creosote=c,fishy=y,foul=f,musty=m,none
 =n,pungent=p,spicy=s 
  []
 
 
-Overfull \hbox (48.12508pt too wide) in paragraph at lines 492--493
+Overfull \hbox (48.12508pt too wide) in paragraph at lines 493--494
 []\T1/aer/m/n/10 gill-color: black=k,brown=n,buff=b,chocolate=h,gray=g, green=r
 ,orange=o,pink=p, 
  []
 
 
-Overfull \hbox (36.6544pt too wide) in paragraph at lines 494--495
+Overfull \hbox (36.6544pt too wide) in paragraph at lines 495--496
 []\T1/aer/m/n/10 stalk-root: bul-bous=b,club=c,cup=u,equal=e,rhizomorphs=z,root
 ed=r,missing=? 
  []
 
 
-Overfull \hbox (55.41524pt too wide) in paragraph at lines 497--498
+Overfull \hbox (55.41524pt too wide) in paragraph at lines 498--499
 []\T1/aer/m/n/10 stalk-color-above-ring: brown=n,buff=b,cinnamon=c,gray=g,orang
 e=o,pink=p,red=e, 
  []
 
 
-Overfull \hbox (55.40512pt too wide) in paragraph at lines 498--499
+Overfull \hbox (55.40512pt too wide) in paragraph at lines 499--500
 []\T1/aer/m/n/10 stalk-color-below-ring: brown=n,buff=b,cinnamon=c,gray=g,orang
 e=o,pink=p,red=e, 
  []
 
 
-Overfull \hbox (94.82434pt too wide) in paragraph at lines 502--503
+Overfull \hbox (94.82434pt too wide) in paragraph at lines 503--504
 []\T1/aer/m/n/10 ring-type: cob-webby=c,evanescent=e,flaring=f,large=l,none=n,p
 endant=p,sheathing=s,zone=z 
  []
 
 
-Overfull \hbox (54.6048pt too wide) in paragraph at lines 503--504
+Overfull \hbox (54.6048pt too wide) in paragraph at lines 504--505
 []\T1/aer/m/n/10 spore-print-color: black=k,brown=n,buff=b,chocolate=h,green=r,
 orange=o,purple=u, 
  []
 
 
-Overfull \hbox (45.61452pt too wide) in paragraph at lines 504--505
+Overfull \hbox (45.61452pt too wide) in paragraph at lines 505--506
 []\T1/aer/m/n/10 population: abun-dant=a,clustered=c,numerous=n,scattered=s,sev
 eral=v,solitary=y 
  []
 
 
-Overfull \hbox (22.96584pt too wide) in paragraph at lines 505--506
+Overfull \hbox (22.96584pt too wide) in paragraph at lines 506--507
 []\T1/aer/m/n/10 habitat: gras-ses=g,leaves=l,meadows=m,paths=p,urban=u,waste=w
 ,woods=d 
  []
@@ -463,29 +463,35 @@ Overfull \hbox (22.96584pt too wide) in paragraph at lines 505--506
 <./tmp/classTreeM.png, id=59, 481.8pt x 481.8pt>
 File: ./tmp/classTreeM.png Graphic file (type png)
 <use ./tmp/classTreeM.png>
-Package pdftex.def Info: ./tmp/classTreeM.png  used on input line 535.
+Package pdftex.def Info: ./tmp/classTreeM.png  used on input line 536.
 (pdftex.def)             Requested size: 345.0pt x 345.00635pt.
 [13 <./tmp/classTreeM.png>]
 <./tmp/classTree70.png, id=65, 481.8pt x 481.8pt>
 File: ./tmp/classTree70.png Graphic file (type png)
 <use ./tmp/classTree70.png>
-Package pdftex.def Info: ./tmp/classTree70.png  used on input line 581.
+Package pdftex.def Info: ./tmp/classTree70.png  used on input line 582.
 (pdftex.def)             Requested size: 345.0pt x 345.00635pt.
 [14]
 <./tmp/cmSetas.png, id=69, 481.8pt x 481.8pt>
 File: ./tmp/cmSetas.png Graphic file (type png)
 <use ./tmp/cmSetas.png>
-Package pdftex.def Info: ./tmp/cmSetas.png  used on input line 600.
+Package pdftex.def Info: ./tmp/cmSetas.png  used on input line 601.
 (pdftex.def)             Requested size: 345.0pt x 345.00635pt.
-[15 <./tmp/classTree70.png>] [16 <./tmp/cmSetas.png>] (G16-p3.aux
+[15 <./tmp/classTree70.png>] [16 <./tmp/cmSetas.png>]
+<./tmp/regWeather.png, id=78, 481.8pt x 481.8pt>
+File: ./tmp/regWeather.png Graphic file (type png)
+<use ./tmp/regWeather.png>
+Package pdftex.def Info: ./tmp/regWeather.png  used on input line 674.
+(pdftex.def)             Requested size: 345.0pt x 345.00635pt.
+[17] [18 <./tmp/regWeather.png>] (G16-p3.aux
 LaTeX Info: Redefining \. on input line 6.
 LaTeX Info: Redefining \% on input line 6.
 ) ) 
 Here is how much of TeX's memory you used:
- 3823 strings out of 492946
- 54482 string characters out of 3135527
+ 3828 strings out of 492946
+ 54700 string characters out of 3135527
  123223 words of memory out of 3000000
- 7609 multiletter control sequences out of 15000+200000
+ 7613 multiletter control sequences out of 15000+200000
  29203 words of font info for 63 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,8n,31p,374b,359s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -497,9 +503,9 @@ nts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
 /public/amsfonts/cm/cmsltt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
 c/amsfonts/cm/cmti10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfon
 ts/cm/cmtt10.pfb>
-Output written on G16-p3.pdf (16 pages, 193853 bytes).
+Output written on G16-p3.pdf (18 pages, 202434 bytes).
 PDF statistics:
- 104 PDF objects out of 1000 (max. 8388607)
+ 112 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 50 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 55 words of extra memory for PDF output out of 10000 (max. 10000000)
 
