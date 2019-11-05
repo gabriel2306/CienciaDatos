@@ -71,7 +71,6 @@ s9 & B & A & C & Ss \\ \hline
 \end{center}
 \end{table}
 
-\bigskip
 Procedemos a leer dicho fichero .txt mediante el uso de la función \textit{read.table.}
 \begin{Schunk}
 \begin{Sinput}
@@ -90,25 +89,13 @@ leídos en un \textbf{dataframe.}
 
 \bigskip
 Nuestros datos ya se encuentran preparados para aplicarles la función \textbf{rpart.} Es importante destacar
-el uso de minsplit ya que disponemos de una muestra con un número muy reducido de datos. Por otra parte, la función
-rpart usa como medida de impureza por defecto Gini.
+el uso de \textbf{minsplit} ya que disponemos de una muestra con un número muy reducido de datos, este parámetro indica
+el número mínimo de obervaciones que deben existir en un nodo para que se considere a la hora de clasificar. 
+Por otra parte, la función rpart usa como medida de impureza por defecto \textbf{Gini.}
 \begin{Schunk}
 \begin{Sinput}
 > clasificacion<-rpart(Calif~.,data=muestra,method="class",minsplit=1)
-> clasificacion
 \end{Sinput}
-\begin{Soutput}
-n= 9 
-
-node), split, n, loss, yval, (yprob)
-      * denotes terminal node
-
-1) root 9 3 Ss (0.3333333 0.6666667)  
-  2) Lab=A,B 5 2 Ap (0.6000000 0.4000000)  
-    4) Prac=A,B 3 0 Ap (1.0000000 0.0000000) *
-    5) Prac=C,D 2 0 Ss (0.0000000 1.0000000) *
-  3) Lab=C,D 4 0 Ss (0.0000000 1.0000000) *
-\end{Soutput}
 \end{Schunk}
 
 \bigskip
@@ -154,27 +141,14 @@ en el parámetro split.
 \begin{Schunk}
 \begin{Sinput}
 > clasificaciontree<-tree(Calif~.,data=muestra,mincut=1,minsize=2,split="gini")
-> clasificaciontree
-\end{Sinput}
-\begin{Soutput}
-node), split, n, deviance, yval, (yprob)
-      * denotes terminal node
-
-1) root 9 11.46 Ss ( 0.3333 0.6667 )  
-  2) Lab: A,B 5  6.73 Ap ( 0.6000 0.4000 )  
-    4) Prac: A,B 3  0.00 Ap ( 1.0000 0.0000 ) *
-    5) Prac: C,D 2  0.00 Ss ( 0.0000 1.0000 ) *
-  3) Lab: C,D 4  0.00 Ss ( 0.0000 1.0000 ) *
-\end{Soutput}
-\end{Schunk}
-
-\begin{Schunk}
-\begin{Sinput}
 > source("./Funciones/plotT.R")
 > plotT(clasificaciontree, "classT.png")
 \end{Sinput}
 \end{Schunk}
 \includegraphics[width=\textwidth]{classT}
+
+\bigskip
+Se puede observar que ambas funciones de clasificación son iguales independientemente de la función que se use (rpart o tree).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 1.2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -196,7 +170,6 @@ Marte & 3.4 & 3.9 \\ \hline
 \end{center}
 \end{table}
 
-\bigskip
 Al igual que anteriormente, es necesario leer dicho fichero y pasarlo a dataframe.
 \begin{Schunk}
 \begin{Sinput}
@@ -280,7 +253,6 @@ v10 & N & 2 & 1 & Bicicleta \\ \hline
 \end{center}
 \end{table}
 
-\bigskip
 Procedemos a leer dicho fichero como anteriormente y pasarlo a dataframe.
 \begin{Schunk}
 \begin{Sinput}
@@ -295,22 +267,7 @@ vehículo al que pertenece cada uno de ellos.
 \begin{Schunk}
 \begin{Sinput}
 > clasV<-rpart(TV~.,data=muestraV,method="class",minsplit=1)
-> clasV
 \end{Sinput}
-\begin{Soutput}
-n= 10 
-
-node), split, n, loss, yval, (yprob)
-      * denotes terminal node
-
- 1) root 10 7 Bicicleta (0.3000000 0.2000000 0.3000000 0.2000000)  
-   2) TC=N 3 0 Bicicleta (1.0000000 0.0000000 0.0000000 0.0000000) *
-   3) TC=A,B 7 4 Coche (0.0000000 0.2857143 0.4285714 0.2857143)  
-     6) NR>=3 5 2 Coche (0.0000000 0.4000000 0.6000000 0.0000000)  
-      12) NR>=5 2 0 Camion (0.0000000 1.0000000 0.0000000 0.0000000) *
-      13) NR< 5 3 0 Coche (0.0000000 0.0000000 1.0000000 0.0000000) *
-     7) NR< 3 2 0 Moto (0.0000000 0.0000000 0.0000000 1.0000000) *
-\end{Soutput}
 \end{Schunk}
 
 \bigskip
@@ -327,26 +284,7 @@ Por último, se aplica la función \textbf{tree} a nuestros datos.
 \begin{Schunk}
 \begin{Sinput}
 > classTV<-tree(TV~.,data=muestraV,mincut=1,minsize=2,split="gini")
-> classTV
 \end{Sinput}
-\begin{Soutput}
-node), split, n, deviance, yval, (yprob)
-      * denotes terminal node
-
- 1) root 10 27.320 Bicicleta ( 0.3000 0.2000 0.3000 0.2000 )  
-   2) NP < 1.5 3  3.819 Bicicleta ( 0.6667 0.0000 0.0000 0.3333 )  
-     4) TC: B 1  0.000 Moto ( 0.0000 0.0000 0.0000 1.0000 ) *
-     5) TC: N 2  0.000 Bicicleta ( 1.0000 0.0000 0.0000 0.0000 ) *
-   3) NP > 1.5 7 17.880 Coche ( 0.1429 0.2857 0.4286 0.1429 )  
-     6) NP < 3 3  6.592 Bicicleta ( 0.3333 0.3333 0.0000 0.3333 )  
-      12) TC: A 1  0.000 Moto ( 0.0000 0.0000 0.0000 1.0000 ) *
-      13) TC: B,N 2  2.773 Bicicleta ( 0.5000 0.5000 0.0000 0.0000 )  
-        26) TC: B 1  0.000 Camion ( 0.0000 1.0000 0.0000 0.0000 ) *
-        27) TC: N 1  0.000 Bicicleta ( 1.0000 0.0000 0.0000 0.0000 ) *
-     7) NP > 3 4  4.499 Coche ( 0.0000 0.2500 0.7500 0.0000 )  
-      14) NR < 5 3  0.000 Coche ( 0.0000 0.0000 1.0000 0.0000 ) *
-      15) NR > 5 1  0.000 Camion ( 0.0000 1.0000 0.0000 0.0000 ) *
-\end{Soutput}
 \end{Schunk}
 
 \begin{Schunk}
@@ -355,6 +293,11 @@ node), split, n, deviance, yval, (yprob)
 \end{Sinput}
 \end{Schunk}
 \includegraphics[width=\textwidth]{classTV}
+
+\bigskip
+En este caso las funciones de clasificación son distintas si usamos rpart o usamos tree. La obtenida por la primera de ellas es igual
+a la que se obtiene al realizar de clasificación manualmente; la que nos muestra tree es una función mucho más engorrosa y necesita
+muchos más pasos para obtener la clasificación final.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 2.2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Análisis de regresión lineal.}
@@ -510,20 +453,7 @@ Los atributos que encontramos en este documento son:
 \begin{Schunk}
 \begin{Sinput}
 > clasM<-rpart(class~.,data=setas,method="class")
-> clasM
 \end{Sinput}
-\begin{Soutput}
-n= 8124 
-
-node), split, n, loss, yval, (yprob)
-      * denotes terminal node
-
-1) root 8124 3916 e (0.51797144 0.48202856)  
-  2) odor=a,l,n 4328  120 e (0.97227357 0.02772643)  
-    4) spore.print.color=b,h,k,n,o,u,w,y 4256   48 e (0.98872180 0.01127820) *
-    5) spore.print.color=r 72    0 p (0.00000000 1.00000000) *
-  3) odor=c,f,m,p,s,y 3796    0 p (0.00000000 1.00000000) *
-\end{Soutput}
 \end{Schunk}
 
 \bigskip

@@ -66,7 +66,6 @@ s9 & B & A & C & Ss \\ \hline
 \end{center}
 \end{table}
 
-\bigskip
 Procedemos a leer dicho fichero .txt mediante el uso de la función \textit{read.table.}
 <<eval=TRUE>>=
 calificaciones<-read.table("./Datos/Calificaciones.txt")
@@ -81,11 +80,11 @@ muestra<-data.frame(calificaciones)
 
 \bigskip
 Nuestros datos ya se encuentran preparados para aplicarles la función \textbf{rpart.} Es importante destacar
-el uso de minsplit ya que disponemos de una muestra con un número muy reducido de datos. Por otra parte, la función
-rpart usa como medida de impureza por defecto Gini.
-<<eval=TRUE>>=
+el uso de \textbf{minsplit} ya que disponemos de una muestra con un número muy reducido de datos, este parámetro indica
+el número mínimo de obervaciones que deben existir en un nodo para que se considere a la hora de clasificar. 
+Por otra parte, la función rpart usa como medida de impureza por defecto \textbf{Gini.}
+<<eval=TRUE,results=hide>>=
 clasificacion<-rpart(Calif~.,data=muestra,method="class",minsplit=1)
-clasificacion
 @
 
 \bigskip
@@ -112,16 +111,15 @@ plotTree(clasificacion, "classTree.png")
 \bigskip
 Por último, se aplica la función \textbf{tree} a nuestros datos, para que esta use la medida de impureza \texttt{Gini} lo indicamos
 en el parámetro split.
-<<eval=TRUE>>=
-clasificaciontree<-tree(Calif~.,data=muestra,mincut=1,minsize=2,split="gini")
-clasificaciontree
-@
-
 <<eval=TRUE,results=hide>>=
+clasificaciontree<-tree(Calif~.,data=muestra,mincut=1,minsize=2,split="gini")
 source("./Funciones/plotT.R")
 plotT(clasificaciontree, "classT.png")
 @
 \includegraphics[width=\textwidth]{classT}
+
+\bigskip
+Se puede observar que ambas funciones de clasificación son iguales independientemente de la función que se use (rpart o tree).
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 1.2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
@@ -143,7 +141,6 @@ Marte & 3.4 & 3.9 \\ \hline
 \end{center}
 \end{table}
 
-\bigskip
 Al igual que anteriormente, es necesario leer dicho fichero y pasarlo a dataframe.
 <<eval=TRUE>>=
 planetas<-read.table("./Datos/Planetas.txt")
@@ -211,7 +208,6 @@ v10 & N & 2 & 1 & Bicicleta \\ \hline
 \end{center}
 \end{table}
 
-\bigskip
 Procedemos a leer dicho fichero como anteriormente y pasarlo a dataframe.
 <<eval=TRUE>>=
 vehiculos<-read.table("./Datos/Vehiculos.txt")
@@ -221,9 +217,8 @@ muestraV<-data.frame(vehiculos)
 \bigskip
 Nuestros datos ya se encuentran preparados para aplicarles la función \textbf{rpart.} La clasificación a obtener será el tipo de
 vehículo al que pertenece cada uno de ellos.
-<<eval=TRUE>>=
+<<eval=TRUE,results=hide>>=
 clasV<-rpart(TV~.,data=muestraV,method="class",minsplit=1)
-clasV
 @
 
 \bigskip
@@ -235,15 +230,19 @@ plotTree(clasV, "classTreeV.png")
 
 \bigskip
 Por último, se aplica la función \textbf{tree} a nuestros datos.
-<<eval=TRUE>>=
+<<eval=TRUE,results=hide>>=
 classTV<-tree(TV~.,data=muestraV,mincut=1,minsize=2,split="gini")
-classTV
 @
 
 <<eval=TRUE,results=hide>>=
 plotT(classTV, "classTV.png")
 @
 \includegraphics[width=\textwidth]{classTV}
+
+\bigskip
+En este caso las funciones de clasificación son distintas si usamos rpart o usamos tree. La obtenida por la primera de ellas es igual
+a la que se obtiene al realizar de clasificación manualmente; la que nos muestra tree es una función mucho más engorrosa y necesita
+muchos más pasos para obtener la clasificación final.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 2.2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \subsection{Análisis de regresión lineal.}
@@ -326,9 +325,8 @@ Los atributos que encontramos en este documento son:
 \end{itemize}
 
 \bigskip
-<<eval=TRUE>>=
+<<eval=TRUE,results=hide>>=
 clasM<-rpart(class~.,data=setas,method="class")
-clasM
 @
 
 \bigskip
