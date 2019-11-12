@@ -105,4 +105,5 @@ se encuentran en el restante.
 
 \section{Desarrollo por parte del alumno.}
 
+
 \end{document}
