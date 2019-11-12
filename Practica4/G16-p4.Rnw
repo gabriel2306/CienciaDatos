@@ -1,0 +1,478 @@
+\documentclass [a4paper] {article}
+
+\usepackage[spanish]{babel} 
+\usepackage[utf8]{inputenc} 
+\usepackage{multirow} 
+\usepackage{float} 
+
+\title{R-PL3}
+\author{Gabriel López, Sergio Sanz, Álvaro Zamorano}
+
+\begin{document}
+\SweaveOpts{concordance=TRUE}
+
+\maketitle
+
+\graphicspath{ {./tmp/} }
+
+\section{Ejercicio realizado en clase.}
+Para obtener la \textbf{función de clasificación} mediante el algoritmo construcción
+de \textbf{árboles de decisión de Hunt} es necesario usar los paquetes \texttt{rpart} y
+\texttt{tree}. Estos paquetes hay que descargarlos desde la página de CRAN y para instalarlos
+hay que ejecutar el siguiente código:
+
+<<eval=TRUE>>=
+install.packages("./Paquetes/rpart_4.1-15.zip")
+install.packages("./Paquetes/tree_1.0-40.zip")
+@
+
+\bigskip
+De esta forma, los paquete únicamente estarán instalados. Para poder usarlos es necesario cargarlos:
+<<eval=TRUE>>=
+library(rpart)
+library(tree)
+@
+
+\begin{itemize}
+\item Con rpart obtendremos las particiones recursivas para la clasificación y los árboles de decisión.
+\item Con tree, los árboles de clasificación y regresión.
+\end{itemize}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 1.1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Función de clasificación.}
+Los datos a usar en este primer ejercicio se componen de 9 calificaciones de estudiantes compuestas por
+Teoría, Laboratorio, Prácticas y Calificación Global.
+
+\bigskip
+Para introducir estos datos en el algoritmo a usar es necesario tener un fichero \texttt{.txt} con el
+siguiente aspecto.
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+Suceso & Teoría & Lab & Prac & Calif\\
+\hline \hline
+s1 & A & A & B & Ap \\ \hline
+s2 & A & B & D & Ss \\ \hline
+s3 & D & D & C & Ss \\ \hline
+s4 & D & D & A & Ss \\ \hline
+s5 & B & C & B & Ss \\ \hline
+s6 & C & B & B & Ap \\ \hline
+s7 & B & B & A & Ap \\ \hline
+s8 & C & D & C & Ss \\ \hline
+s9 & B & A & C & Ss \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+Procedemos a leer dicho fichero .txt mediante el uso de la función \textit{read.table.}
+<<eval=TRUE>>=
+calificaciones<-read.table("./Datos/Calificaciones.txt")
+@
+
+\bigskip
+Para asegurarnos de que todo irá bien a la hora de realizar la clasificación, convertimos los datos
+leídos en un \textbf{dataframe.}
+<<eval=TRUE>>=
+muestra<-data.frame(calificaciones)
+@
+
+\bigskip
+Nuestros datos ya se encuentran preparados para aplicarles la función \textbf{rpart.} Es importante destacar
+el uso de \textbf{minsplit} ya que disponemos de una muestra con un número muy reducido de datos, este parámetro indica
+el número mínimo de obervaciones que deben existir en un nodo para que se considere a la hora de clasificar. 
+Por otra parte, la función rpart usa como medida de impureza por defecto \textbf{Gini.}
+<<eval=TRUE,results=hide>>=
+clasificacion<-rpart(Calif~.,data=muestra,method="class",minsplit=1)
+@
+
+\bigskip
+Para mostrar el árbol de clasificación hacemos uso de una función que hemos definido, pero para poder usarla 
+en primer lugar es necesario instalar el paquete \textbf{rpart.plot.}
+<<eval=TRUE>>=
+install.packages("./Paquetes/rpart.plot_3.0.8.zip")
+library(rpart.plot)
+@
+
+Dicha función es:
+<<eval=TRUE>>=
+source("Funciones/plotTree.R")
+plotTree
+@
+
+\bigskip
+Procedemos a su ejecución.
+<<eval=TRUE,results=hide>>=
+plotTree(clasificacion, "classTree.png")
+@
+\includegraphics[width=\textwidth]{classTree}
+
+\bigskip
+Por último, se aplica la función \textbf{tree} a nuestros datos, para que esta use la medida de impureza \texttt{Gini} lo indicamos
+en el parámetro split.
+<<eval=TRUE,results=hide>>=
+clasificaciontree<-tree(Calif~.,data=muestra,mincut=1,minsize=2,split="gini")
+source("./Funciones/plotT.R")
+plotT(clasificaciontree, "classT.png")
+@
+\includegraphics[width=\textwidth]{classT}
+
+\bigskip
+Se puede observar que ambas funciones de clasificación son iguales independientemente de la función que se use (rpart o tree).
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 1.2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\subsection{Análisis de regresión lineal.}
+En este caso trabajaremos con datos de planetas, en concreto su Radio y su Diámetro. Los planetas de los que se tienen
+los datos son: Mercurio, Venus, Tierra y Marte, y el .txt del que se leen dichos datos tiene el aspecto que
+sigue.
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline
+Planeta & Radio & Diámetro\\
+\hline \hline
+Mercurio & 2.4 & 5.4 \\ \hline
+Venus & 6.1 & 5.2 \\ \hline
+Tierra & 6.4 & 5.5 \\ \hline
+Marte & 3.4 & 3.9 \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+Al igual que anteriormente, es necesario leer dicho fichero y pasarlo a dataframe.
+<<eval=TRUE>>=
+planetas<-read.table("./Datos/Planetas.txt")
+muestraP<-data.frame(planetas)
+@
+
+\bigskip
+El análisis de regresión se hace mediante el uso de la función \textbf{lm} contenida en el paquete stats. Cabe destacar que el primero
+de sus argumentos es de tipo \textit{fórmula} donde una expresión de la forma y \textasciitilde{} model se interpreta como una especificación de que 
+la respuesta \texttt{y} está modelada por un predictor lineal especificado simbólicamente por model, es decir, en nuestro caso model=x por lo que
+su ejecución queda como:
+<<eval=TRUE>>=
+regresionP<-lm(D~R,data=muestraP)
+regresionP
+@
+
+\bigskip
+De acuerdo a la ecuación de una recta \texttt{y=a+b*x}, el primero de los coeficientes es el término independiente (a), y el segundo
+de ellos la b.
+
+\bigskip
+Para mostrar el gráfico de dispersión y la recta de ajuste es necesario hacer uso de varias librerías.
+<<eval=TRUE>>=
+library(foreign)
+library(ggplot2)
+library(psych)
+@
+
+\bigskip
+Estas librerías se usan en funciones externas usadas para representar los gráficos requeridos. En dicha función es necesario
+indicar las columnas de los datos con los que se realizará la regresión.
+<<eval=TRUE, results=hide>>=
+source("Funciones/plotDisp.R")
+plotDisp(planetas,1,2,regresionP,"Radio","Diametro","regPlanetas.png")
+@
+\includegraphics[width=\textwidth]{regPlanetas}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 2.1 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\section{Segunda parte}
+\subsection{Función de clasificación.}
+En este ejercicio usaremos datos correspondientes a ventas de coches, en concreto son 10 muestras compuestas por: TipoCarnet, 
+NúmeroRuedas, NúmeroPasajeros y TipoVehículo.
+
+\bigskip
+Para introducir estos datos en el algoritmo a usar es necesario tener un fichero \texttt{.txt} con el
+siguiente aspecto.
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+Vehículo & TipoCarnet & NúmeroRuedas & NúmeroPasajeros & TipoVehículo\\
+\hline \hline
+v1 & B & 4 & 5 & Coche \\ \hline
+v2 & A & 2 & 2 & Moto \\ \hline
+v3 & N & 2 & 1 & Bicicleta \\ \hline
+v4 & B & 6 & 4 & Camión \\ \hline
+v5 & B & 4 & 6 & Coche \\ \hline
+v6 & B & 4 & 4 & Coche \\ \hline
+v7 & N & 2 & 2 & Bicicleta \\ \hline
+v8 & B & 2 & 1 & Moto \\ \hline
+v9 & B & 6 & 2 & Camión \\ \hline
+v10 & N & 2 & 1 & Bicicleta \\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
+Procedemos a leer dicho fichero como anteriormente y pasarlo a dataframe.
+<<eval=TRUE>>=
+vehiculos<-read.table("./Datos/Vehiculos.txt")
+muestraV<-data.frame(vehiculos)
+@
+
+\bigskip
+Nuestros datos ya se encuentran preparados para aplicarles la función \textbf{rpart.} La clasificación a obtener será el tipo de
+vehículo al que pertenece cada uno de ellos.
+<<eval=TRUE,results=hide>>=
+clasV<-rpart(TV~.,data=muestraV,method="class",minsplit=1)
+@
+
+\bigskip
+Procedemos a mostrar el árbol de clasificación.
+<<eval=TRUE,results=hide>>=
+plotTree(clasV, "classTreeV.png")
+@
+\includegraphics[width=\textwidth]{classTreeV}
+
+\bigskip
+Por último, se aplica la función \textbf{tree} a nuestros datos.
+<<eval=TRUE,results=hide>>=
+classTV<-tree(TV~.,data=muestraV,mincut=1,minsize=2,split="gini")
+@
+
+<<eval=TRUE,results=hide>>=
+plotT(classTV, "classTV.png")
+@
+\includegraphics[width=\textwidth]{classTV}
+
+\bigskip
+En este caso las funciones de clasificación son distintas si usamos rpart o usamos tree. La obtenida por la primera de ellas es igual
+a la que se obtiene al realizar de clasificación manualmente; la que nos muestra tree es una función mucho más engorrosa y necesita
+muchos más pasos para obtener la clasificación final.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 2.2 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Análisis de regresión lineal.}
+En este caso tenemos que hacer un análisis de regresión lineal para 4 muestras distintas compuestas
+por pares de datos.
+
+\bigskip
+Como en ocasiones anteriores, procedemos a leer dichas muestras y pasarlas a dataframe.
+<<eval=TRUE>>=
+pares<-read.table("./Datos/Pares.txt")
+muestraPS<-data.frame(pares)
+@
+
+\bigskip
+El análisis de regresión se hace mediante el uso de la función \textbf{lm.} En este caso será neceario hacer cuatro análisis diferentes.
+<<eval=TRUE>>=
+(r1<-lm(V2~V1,data=muestraPS))
+(r2<-lm(V4~V3,data=muestraPS))
+(r3<-lm(V6~V5,data=muestraPS))
+(r4<-lm(V8~V7,data=muestraPS))
+@
+
+\bigskip
+De acuerdo a la ecuación de una recta \texttt{y=a+b*x}, el primero de los coeficientes es el término independiente (a), y el segundo
+de ellos la b.
+
+\bigskip
+Mostraremos estos análisis en una misma figura mediante el uso de:
+<<eval=TRUE>>=
+source("Funciones/plotDisp2.R")
+plotDisp2
+@
+
+\bigskip
+Procedemos a su ejecución.
+<<eval=TRUE, results=hide>>=
+plotDisp2(pares, r1, r2, r3, r4, "rPares.png")
+@
+\includegraphics[width=\textwidth]{rPares}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%% 2.3 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\subsection{Desarrollo por parte del alumno.}
+
+\bigskip
+Para la parte de \textbf{clasificación} usaremos datos de \textit{Setas}, las cuales clasificaremos en función de si son venenosas (p) o 
+comestibles (e), es decir, los tipos de setas que encontramos en el archivo. Procedemos a leer dicho fichero como en prácticas anteriores
+haciendo uso de la librería readr.
+<<eval=TRUE>>=
+install.packages("readr")
+library("readr")
+setas<-read.csv("./Datos/mushrooms.csv")
+@
+
+\bigskip
+Los atributos que encontramos en este documento son:
+\begin{itemize}
+\item class: edible=e, poisonous=p
+\item cap-shape: bell=b,conical=c,convex=x,flat=f, knobbed=k,sunken=s
+\item cap-surface: fibrous=f,grooves=g,scaly=y,smooth=s
+\item cap-color: brown=n,buff=b,cinnamon=c,gray=g,green=r,pink=p,purple=u,red=e,\\white=w,yellow=y
+\item bruises: bruises=t,no=f
+\item odor: almond=a,anise=l,creosote=c,fishy=y,foul=f,musty=m,none=n,pungent=p,spicy=s
+\item gill-attachment: attached=a,descending=d,free=f,notched=n
+\item gill-spacing: close=c,crowded=w,distant=d
+\item gill-size: broad=b,narrow=n
+\item gill-color: black=k,brown=n,buff=b,chocolate=h,gray=g, green=r,orange=o,pink=p,\\purple=u,red=e,white=w,yellow=y
+\item stalk-shape: enlarging=e,tapering=t
+\item stalk-root: bulbous=b,club=c,cup=u,equal=e,rhizomorphs=z,rooted=r,missing=?
+\item stalk-surface-above-ring: fibrous=f,scaly=y,silky=k,smooth=s
+\item stalk-surface-below-ring: fibrous=f,scaly=y,silky=k,smooth=s
+\item stalk-color-above-ring: brown=n,buff=b,cinnamon=c,gray=g,orange=o,pink=p,red=e,\\white=w,yellow=y
+\item stalk-color-below-ring: brown=n,buff=b,cinnamon=c,gray=g,orange=o,pink=p,red=e,\\white=w,yellow=y
+\item veil-type: partial=p,universal=u
+\item veil-color: brown=n,orange=o,white=w,yellow=y
+\item ring-number: none=n,one=o,two=t
+\item ring-type: cobwebby=c,evanescent=e,flaring=f,large=l,none=n,pendant=p,sheathing=s,zone=z
+\item spore-print-color: black=k,brown=n,buff=b,chocolate=h,green=r,orange=o,purple=u,\\white=w,yellow=y
+\item population: abundant=a,clustered=c,numerous=n,scattered=s,several=v,solitary=y
+\item habitat: grasses=g,leaves=l,meadows=m,paths=p,urban=u,waste=w,woods=d
+\end{itemize}
+
+\bigskip
+<<eval=TRUE,results=hide>>=
+clasM<-rpart(class~.,data=setas,method="class")
+@
+
+\bigskip
+Procedemos a mostrar el árbol de clasificación.
+<<eval=TRUE,results=hide>>=
+plotTree(clasM, "classTreeM.png")
+@
+\includegraphics[width=\textwidth]{classTreeM}
+
+\bigskip
+Función de clasificación obtenida:
+\begin{itemize}
+\item Si el olor no es anisado ni almendrado, se trata de una seta venenosa.
+\item En caso contrario, si su color no es verde, estamos ante una seta comestible, para el resto es venenosa.
+\end{itemize}
+
+\bigskip
+Para usar la función \texttt{predict} con el fin de generar predicciones a partir de un modelo entrenado, necesitamos
+un set de entrenamiento y otro de prueba que compruebe la eficacia de las predicciones. Para obtener estos sets utilizamos
+la función \texttt{sample\_frac} la cual pertenece al paquete \textbf{dplyr}, además por el parámetro \textit{newdata} es
+necesario el uso del paquete \textbf{e1071.} Posteriormente, con la función \texttt{confusionMatrix} obtenemos la matriz de
+confusión del conjunto de pruebas, dicha función se encuentra en el paquete \textbf{caret}.
+
+\bigskip
+Instalación de paquetes.
+<<eval=TRUE,results=hide>>=
+install.packages("dplyr")
+library("dplyr")
+install.packages("e1071")
+library("e1071")
+install.packages("caret")
+library("caret")
+@
+
+\bigskip
+Separación de los datos para el set de entrenamiento y pruebas.
+<<eval=TRUE>>=
+setasTrain<-sample_frac(setas,.7)
+setasP<-setdiff(setas,setasTrain)
+@
+
+\bigskip
+Mostramos la función de clasificación perteneciente al 70\% del conjunto de datos.
+<<eval=TRUE,results=hide>>=
+clas70<-rpart(class~.,data=setasTrain,method="class")
+plotTree(clas70, "classTree70.png")
+@
+\includegraphics[width=\textwidth]{classTree70}
+
+\bigskip
+Ejecución de la predicción y la posterior matriz de confusión.
+<<eval=TRUE>>=
+prediccion<-predict(clas70, newdata=setasP, type="class")
+cm<-confusionMatrix(prediccion, setasP[["class"]])
+@
+
+\bigskip
+Una vez calculada la matriz de confusión procedemos a mostrarla gráficamente.
+<<eval=TRUE,results=hide>>=
+source("./Funciones/drawCM.R")
+drawCM(cm,"cmSetas.png")
+@
+\includegraphics[width=\textwidth]{cmSetas}
+
+\bigskip
+En la parte del \textbf{análisis de regresión lineal} usaremos datos pertenecientes al clima, de los cuales usaremos la 
+temperatura y humedad.
+
+\bigskip
+En primer lugar debemos leer estos datos contenidos en un .csv y convertirlos en dataframe.
+<<eval=TRUE>>=
+w<-read.csv("./Datos/weather.csv")
+weather<-data.frame(w)
+@
+
+\bigskip
+Guardamos en dos variables los datos de temperatura y humedad para facilitar su utilización.
+<<eval=TRUE>>=
+t<-weather$tempm
+h<-weather$hum
+@
+
+\bigskip
+Se han realizado funciones para calcular los datos necesarios a la hora de obtener la recta de regresión. Hemos observado que
+el valor de la Covarianza no es correcto y por ello hemos hecho una función con dicho fin. Las funciones son las siguientes:
+<<eval=TRUE>>=
+source("./Funciones/anovaR.R")
+anovaR
+ssR
+ssY
+calcularRecta
+desviacion
+covarianza
+correlacion
+@
+
+\bigskip
+Cálculo de la \textbf{covarianza} y la \textbf{correlación.}
+<<eval=TRUE>>=
+(cov<-covarianza(h,t,mean(h),mean(t)))
+(correlacion(cov,h,t))
+@
+
+\bigskip
+El análisis de la covarianza resulta muy complicado ya que se trata de una medida que depende mucho del dominio de los datos
+a estudiar, es decir, no se encuentra normalizada. Por ello surge la correlación, una medida cuyo valor se encuentra en el
+intervalo [-1,1]. Un valor de la correlación igual a -1 (recta con pendiente negativa) o 1 (recta con pendiente positiva), indicará
+un buen ajuste de los datos a la recta de regresión.
+
+\bigskip
+Cálculo de los coeficientes de la recta de acuerdo a \texttt{y=a+b*x.}
+<<eval=TRUE>>=
+(recta<-calcularRecta(h,t,mean(h),mean(t)))
+@
+
+\bigskip
+Mostrar gráficamente la recta de regresión.
+<<eval=TRUE,results=hide>>=
+plotDisp(weather,7,12,lm(t~h,data=weather),"Humedad","Temperatura","regWeather.png")
+@
+\includegraphics[width=\textwidth]{regWeather}
+
+\bigskip
+El segundo paso consiste en realizar el análisis \textbf{ANOVA.} Obtendremos a partir de la \textit{Dispersión SSR} y la
+\textit{Dispersión SSY} la \textbf{Correlación cuadrada.}
+<<eval=TRUE>>=
+(anovaR(h,t))
+@
+
+\bigskip
+El valor de la correlación cuadrada se encuentra en el intervalo [0,1], indicando 1 un ajuste perfecto entre las variables. Como se 
+puede observar, dicho ajuste es casi perfecto.
+
+\bigskip
+Por último, calculamos el \textbf{Error estándar} con la función:
+<<eval=TRUE>>=
+source("./Funciones/errorE.R")
+errorE
+@
+
+\bigskip
+Procedemos a su cálculo.
+<<eval=TRUE>>=
+(errorE(h,t,recta))
+@
+
+Un valor, de dicho error, próximo a 0 indica un buen ajuste de la recta.
+
+\end{document}
