@@ -10,21 +10,18 @@ KMeans <- function(matrizMuestras, matrizCentroides) {
 }
 
 ejecutarKMeans <- function (matrizMuestras,matrizCentroides,dimensiones) {
-    iguales <- TRUE
+    iguales <- FALSE
     centros <- matrizCentroides
-    matrizP1 <- c()
-    i<-1
     nCentroides<-length(matrizCentroides)/dimensiones
+    matrizP1 <- matrix(0,nrow=nCentroides,ncol=length(matrizMuestras)/dimensiones)
+    i<-1
 
-    while(iguales){
+    while(!iguales){
         matrizD<-calcularMatrizDistancias(matrizMuestras, centros, dimensiones)
         matrizP2<-calcularMatrizPertenencia(matrizD,nCentroides)
         muestrasEnCluster<-muestrasPorCluster(matrizP2,nCentroides)
         muestrasSeparadas<-obtenerMuestrasSeparadas(matrizMuestras,muestrasEnCluster,dimensiones)
-        centros<-obtenerNuevosCentroides(muestrasSeparadas,dimensiones) 
-        if (i==1){
-            matrizP1<-matrizP2
-        }
+        centros<-obtenerNuevosCentroides(muestrasSeparadas,dimensiones)
         iguales<-comprobarMatrizPertenencia(matrizP1,matrizP2)
         matrizP1<-matrizP2
     }
