@@ -19,7 +19,7 @@ ejecutarKMeans <- function (matrizMuestras,matrizCentroides,dimensiones) {
     while(iguales){
         matrizD<-calcularMatrizDistancias(matrizMuestras, centros, dimensiones)
         matrizP2<-calcularMatrizPertenencia(matrizD,nCentroides)
-        muestrasEnCluster<-muestrasPorCluster(matrizP,nCentroides)
+        muestrasEnCluster<-muestrasPorCluster(matrizP2,nCentroides)
         muestrasSeparadas<-obtenerMuestrasSeparadas(matrizMuestras,muestrasEnCluster,dimensiones)
         centros<-obtenerNuevosCentroides(muestrasSeparadas,dimensiones) 
         if (i==1){
