@@ -1,12 +1,35 @@
-KMeans <- function(matrizCentroides, matrizMuestras) {
-
-    dimensiones <- length(matrizMuestras[1,])
+KMeans <- function(matrizMuestras, matrizCentroides) {
+    centroidesFinales<-c()
 
     if (class(matrizCentroides)=="matrix" && class(matrizMuestras)=="matrix") {
-
-    } else {
-
+        dimensiones <- length(matrizMuestras[1,])
+        centroidesFinales<-ejecutarKMeans(matrizMuestras, matrizCentroides, dimensiones)
     }
+
+    return(centroidesFinales)
+}
+
+ejecutarKMeans <- function (matrizMuestras,matrizCentroides,dimensiones) {
+    iguales <- TRUE
+    centros <- matrizCentroides
+    matrizP1 <- c()
+    i<-1
+    nCentroides<-length(matrizCentroides)/dimensiones
+
+    while(iguales){
+        matrizD<-calcularMatrizDistancias(matrizMuestras, centros, dimensiones)
+        matrizP2<-calcularMatrizPertenencia(matrizD,nCentroides)
+        muestrasEnCluster<-muestrasPorCluster(matrizP,nCentroides)
+        muestrasSeparadas<-obtenerMuestrasSeparadas(matrizMuestras,muestrasEnCluster,dimensiones)
+        centros<-obtenerNuevosCentroides(muestrasSeparadas,dimensiones) 
+        if (i==1){
+            matrizP1<-matrizP2
+        }
+        iguales<-comprobarMatrizPertenencia(matrizP1,matrizP2)
+        matrizP1<-matrizP2
+    }
+
+    return(centros)
 }
 
 calcularMatrizDistancias <- function (matrizMuestras, matrizCentroides,dimensiones) {
@@ -108,21 +131,46 @@ distanciaEuclidea <- function (a,b) {
     return(sqrt(sum))
 }
 
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-
-datosPorCluster <- function (matrizMuestras, muestrasPorCluster, dimensiones) {
+obtenerMuestrasSeparadas <- function (matrizMuestras, muestrasPorCluster, dimensiones) {
+    muestras<-t(matrizMuestras)
     sizeMuestras <- length(matrizMuestras)/dimensiones
-    colocacion<-c()
+    separadas<-list()
 
-    for (i in 1:dimensiones) {
-        mismoCluster<-c()
+    for (i in 1:length(muestrasPorCluster)){
+        nMuestrasCluster<-length(muestrasPorCluster[[i]])
+        temp<-c()
         for (j in 1:sizeMuestras) {
-            if (j %in% muestrasPorCluster[i]) {
-                mismoCluster <- c(mismoCluster, list(matrizMuestras[j,]))
+            if (j %in% muestrasPorCluster[[i]]) {
+                temp<-c(temp, muestras[,j])
             }
         }
-        colocacion<-c(colocacion,list(mismoCluster))
+        separadas[[i]]<-matrix(temp,nrow=dimensiones,ncol=nMuestrasCluster)
     }
 
-    return(colocacion)
+    return(separadas)
+}
+
+obtenerNuevosCentroides <- function (muestrasSeparadas, dimensiones) {
+    sizeMuestras <- length(muestrasSeparadas)
+    centros<-c()
+
+    for (i in 1:sizeMuestras){
+        matriz<-muestrasSeparadas[[i]]
+        centros<-c(centros,nuevoCentroide(t(matriz),dimensiones))
+    }
+
+    return(matrix(centros,nrow=sizeMuestras,ncol=dimensiones,byrow=T))
+}
+
+nuevoCentroide <- function (matrizMuestras, dimensiones) {
+    centro<-c()
+
+    for (i in 1:dimensiones){
+        suma<-0
+        columna <- matrizMuestras[,i]
+        media <- mean(columna)
+        centro<-c(centro, media)
+    }
+
+    return(matrix(centro,nrow=1,ncol=dimensiones))
 }
