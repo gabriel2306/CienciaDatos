@@ -14,7 +14,6 @@ ejecutarKMeans <- function (matrizMuestras,matrizCentroides,dimensiones) {
     centros <- matrizCentroides
     nCentroides<-length(matrizCentroides)/dimensiones
     matrizP1 <- matrix(0,nrow=nCentroides,ncol=length(matrizMuestras)/dimensiones)
-    i<-1
 
     while(!iguales){
         matrizD<-calcularMatrizDistancias(matrizMuestras, centros, dimensiones)
