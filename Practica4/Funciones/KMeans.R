@@ -8,7 +8,7 @@ KMeans <- function(matrizMuestras, matrizCentroides) {
         centroidesFinales<-lista[[2]]
 
         if (dimensiones==2) {
-            ejecutarRepresentar(matrizMuestras,allData)
+            ejecutarRepresentar(matrizMuestras,matrizCentroides,allData)
         }
     }
 
@@ -39,7 +39,7 @@ ejecutarKMeans <- function (matrizMuestras,matrizCentroides,dimensiones) {
     return(data)
 }
 
-ejecutarRepresentar <- function (matrizMuestras, data) {
+ejecutarRepresentar <- function (matrizMuestras, matrizCentroides, data) {
     png(paste("./tmp/resultadoKMeans.png"))
 
     size<-length(data)
@@ -50,7 +50,9 @@ ejecutarRepresentar <- function (matrizMuestras, data) {
         div <- floor(size/2) + 1
     }
 
-    par(mfrow = c(2, div))
+    par(mfrow = c(div, 2))
+
+    representarInicial(matrizMuestras, matrizCentroides)
 
     for (i in 1:(size-1)) {
         info<-data[[i]]
@@ -203,6 +205,21 @@ nuevoCentroide <- function (matrizMuestras, dimensiones) {
     return(matrix(centro,nrow=1,ncol=dimensiones))
 }
 
+representarInicial <- function (matrizMuestras,matrizCentroides){
+    colores <- c("red","blue","green","black","purple")
+
+    titulo<-"Estado inicial"
+
+    limites <- obtenerLimites(matrizMuestras)
+    plot(matrizMuestras[,1],matrizMuestras[,2],pch=1,col="orange",xlim=limites$x,ylim=limites$y,main=titulo,xlab="X",ylab="Y")
+
+    nClusters<-length(matrizCentroides)/2
+    for (i in 1:nClusters) {
+        m<- matrizCentroides[i,]
+        points(m[1],m[2],pch=8,col=colores[i])
+    }
+}
+
 representar <- function(muestrasSeparadas,matrizMuestras,matrizCentroides,i){
     colores <- c("red","blue","green","black","purple")
 
@@ -210,7 +227,7 @@ representar <- function(muestrasSeparadas,matrizMuestras,matrizCentroides,i){
 
     m<-muestrasSeparadas[[1]]
     limites <- obtenerLimites(matrizMuestras)
-    plot(m[1,],m[2,],pch=1,col=colores[1],xlim=limites$x,ylim=limites$y,main=titulo,xlab="X",ylab="Y",)
+    plot(m[1,],m[2,],pch=1,col=colores[1],xlim=limites$x,ylim=limites$y,main=titulo,xlab="X",ylab="Y")
 
     centroide<-matrizCentroides[1,]
     points(centroide[1],centroide[2],pch=8,col=colores[1])
