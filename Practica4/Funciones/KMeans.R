@@ -3,7 +3,13 @@ KMeans <- function(matrizMuestras, matrizCentroides) {
 
     if (class(matrizCentroides)=="matrix" && class(matrizMuestras)=="matrix") {
         dimensiones <- length(matrizMuestras[1,])
-        centroidesFinales<-ejecutarKMeans(matrizMuestras, matrizCentroides, dimensiones)
+        allData<-ejecutarKMeans(matrizMuestras, matrizCentroides, dimensiones)
+        lista<-allData[[length(allData)]]
+        centroidesFinales<-lista[[2]]
+
+        if (dimensiones==2) {
+            ejecutarRepresentar(matrizMuestras,allData)
+        }
     }
 
     return(centroidesFinales)
@@ -15,6 +21,8 @@ ejecutarKMeans <- function (matrizMuestras,matrizCentroides,dimensiones) {
     nCentroides<-length(matrizCentroides)/dimensiones
     matrizP1 <- matrix(0,nrow=nCentroides,ncol=length(matrizMuestras)/dimensiones)
 
+    data<-list()
+    i<-1
     while(!iguales){
         matrizD<-calcularMatrizDistancias(matrizMuestras, centros, dimensiones)
         matrizP2<-calcularMatrizPertenencia(matrizD,nCentroides)
@@ -24,9 +32,32 @@ ejecutarKMeans <- function (matrizMuestras,matrizCentroides,dimensiones) {
         iguales<-comprobarMatrizPertenencia(matrizP1,matrizP2)
         matrizP1<-matrizP2
 
+        data[[i]]<-list(muestrasSeparadas,centros)
+        i<-i+1
     }
 
-    return(centros)
+    return(data)
+}
+
+ejecutarRepresentar <- function (matrizMuestras, data) {
+    png(paste("./tmp/resultadoKMeans.png"))
+
+    size<-length(data)
+    
+    if (size%%2 == 0) {
+        div <- size/2 
+    } else {
+        div <- floor(size/2) + 1
+    }
+
+    par(mfrow = c(2, div))
+
+    for (i in 1:(size-1)) {
+        info<-data[[i]]
+        representar(info[[1]],matrizMuestras,info[[2]],i)
+    }
+
+    dev.off()
 }
 
 calcularMatrizDistancias <- function (matrizMuestras, matrizCentroides,dimensiones) {
@@ -172,40 +203,36 @@ nuevoCentroide <- function (matrizMuestras, dimensiones) {
     return(matrix(centro,nrow=1,ncol=dimensiones))
 }
 
-representar <- function(muestrasSeparadas,matrizCentroides){
-    
+representar <- function(muestrasSeparadas,matrizMuestras,matrizCentroides,i){
+    colores <- c("red","blue","green","black","purple")
 
+    titulo<-paste("Iteracion ",i)
+
+    m<-muestrasSeparadas[[1]]
+    limites <- obtenerLimites(matrizMuestras)
+    plot(m[1,],m[2,],pch=1,col=colores[1],xlim=limites$x,ylim=limites$y,main=titulo,xlab="X",ylab="Y",)
+
+    centroide<-matrizCentroides[1,]
+    points(centroide[1],centroide[2],pch=8,col=colores[1])
+
+    nClusters<-length(muestrasSeparadas)
+    for (i in 2:nClusters) {
+        m<- muestrasSeparadas[[i]]
+        points(m[1,],m[2,],pch=1,col=colores[i])
+
+        centroide<-matrizCentroides[i,]
+        points(centroide[1],centroide[2],pch=8,col=colores[i])
+    }
 }
 
 obtenerLimites <- function(matrizMuestras){
     maximos <- c()
     minimos <- c()
 
-    size <- length(matrizMuestras)/2
-    for(i in 1:size){
-        maximos<-c(maximos,obtenerMaximo(matrizMuestras[,i]))
-        minimos<-c(minimos,obtenerMinimo(matrizMuestras[,i]))
+    for(i in 1:2){
+        maximos<-c(maximos,max(matrizMuestras[,i]))
+        minimos<-c(minimos,min(matrizMuestras[,i]))
     }
-    l<-list("x"=c(maximos[1],minimos[1]),"y"=c(maximos[2],minimos[2]))
+    l<-list("x"=c(minimos[1],maximos[1]),"y"=c(minimos[2],maximos[2]))
     return(l)
-}
-
-obtenerMaximo <- function(columna){
-    maximo<-columna[0]
-    for(i in columna){
-        if(i>maximo){
-            maximo = i
-        }
-    }
-    return(maximo)
-}
-
-obtenerMinimo <- function(columna){
-    minimo<-columna[0]
-    for(i in columna){
-        if(i<minimo){
-            minimo = i
-        }
-    }
-    return(minimo)
 }
