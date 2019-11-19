@@ -23,6 +23,7 @@ ejecutarKMeans <- function (matrizMuestras,matrizCentroides,dimensiones) {
         centros<-obtenerNuevosCentroides(muestrasSeparadas,dimensiones)
         iguales<-comprobarMatrizPertenencia(matrizP1,matrizP2)
         matrizP1<-matrizP2
+
     }
 
     return(centros)
@@ -169,4 +170,42 @@ nuevoCentroide <- function (matrizMuestras, dimensiones) {
     }
 
     return(matrix(centro,nrow=1,ncol=dimensiones))
+}
+
+representar <- function(muestrasSeparadas,matrizCentroides){
+    
+
+}
+
+obtenerLimites <- function(matrizMuestras){
+    maximos <- c()
+    minimos <- c()
+
+    size <- length(matrizMuestras)/2
+    for(i in 1:size){
+        maximos<-c(maximos,obtenerMaximo(matrizMuestras[,i]))
+        minimos<-c(minimos,obtenerMinimo(matrizMuestras[,i]))
+    }
+    l<-list("x"=c(maximos[1],minimos[1]),"y"=c(maximos[2],minimos[2]))
+    return(l)
+}
+
+obtenerMaximo <- function(columna){
+    maximo<-columna[0]
+    for(i in columna){
+        if(i>maximo){
+            maximo = i
+        }
+    }
+    return(maximo)
+}
+
+obtenerMinimo <- function(columna){
+    minimo<-columna[0]
+    for(i in columna){
+        if(i<minimo){
+            minimo = i
+        }
+    }
+    return(minimo)
 }
