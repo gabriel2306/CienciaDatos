@@ -213,11 +213,12 @@ hCJ<-hclust(d = dist(x=datosCJ, method="euclidean"), method="complete")
 \bigskip
 Para mostrar los resultados obtenidos se usa una función definida por nosotros y así poder pasar estos
 a un formato de foto. Es necesario indicar el número de clusters que queremos obtener.
-<<eval=TRUE,results=hide>>=
+\begin{center}
+<<figura1, eval=TRUE,results=hide, fig=TRUE>>=
 source("./Funciones/representarCJ.R")
-representarCJ(hCJ,2,"resultadoCJ.png")
+fviz_dend(x=hCJ, k=2) 
 @
-\includegraphics[width=\textwidth]{resultadoCJ}
+\end{center}
 
 \bigskip
 Se puede observar que la clusterización de países se corresponde con la obtenida anteriormente mediante

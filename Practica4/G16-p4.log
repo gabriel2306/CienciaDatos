@@ -1,10 +1,7 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.6960 64-bit) (preloaded format=pdflatex 2019.1.28)  21 NOV 2019 18:00
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.10.15)  21 NOV 2019 18:16
 entering extended mode
-**C:/Users/tromp/Documents/1.Curso_2019-20/1.Cuatrimetestre/2.Ciencia_Datos/LAB
-/CienciaDatos/Practica4/G16-p4.tex
-
-(C:/Users/tromp/Documents/1.Curso_2019-20/1.Cuatrimetestre/2.Ciencia_Datos/LAB/
-CienciaDatos/Practica4/G16-p4.tex
+**C:/GIT/CienciaDatos/Practica4/G16-p4.tex
+(C:/GIT/CienciaDatos/Practica4/G16-p4.tex
 LaTeX2e <2018-12-01>
 ("C:\Program Files\MiKTeX 2.9\tex/latex/base\article.cls"
 Document Class: article 2018/09/03 v1.4i Standard LaTeX document class
@@ -23,9 +20,9 @@ File: size10.clo 2018/09/03 v1.4i Standard LaTeX file (size option)
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
 ) ("C:\Program Files\MiKTeX 2.9\tex/generic/babel\babel.sty"
-Package: babel 2018/11/13 3.27 The Babel package
+Package: babel 2019/07/19 3.33 The Babel package
 ("C:\Program Files\MiKTeX 2.9\tex/generic/babel\switch.def"
-File: switch.def 2018/11/13 3.27 Babel switching mechanism
+File: switch.def 2019/07/19 3.33 Babel switching mechanism
 )
 *************************************
 * Local config file bblopts.cfg used
@@ -36,7 +33,7 @@ File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
 ) ("C:\Program Files\MiKTeX 2.9\tex/latex/babel-spanish\spanish.ldf"
 Language: spanish.ldf 2016/03/03 v5.0p Spanish support from the babel system
 ("C:\Program Files\MiKTeX 2.9\tex/generic/babel\babel.def"
-File: babel.def 2018/11/13 3.27 Babel common definitions
+File: babel.def 2019/07/19 3.33 Babel common definitions
 \babel@savecnt=\count88
 \U@D=\dimen103
 ("C:\Program Files\MiKTeX 2.9\tex/generic/babel\txtbabel.def")
@@ -53,7 +50,7 @@ Package: inputenc 2018/08/11 v1.3c Input encoding file
 \inpenc@prehook=\toks15
 \inpenc@posthook=\toks16
 ) ("C:\Program Files\MiKTeX 2.9\tex/latex/multirow\multirow.sty"
-Package: multirow 2019/01/01 v2.4 Span multiple rows of a table
+Package: multirow 2019/05/31 v2.5 Span multiple rows of a table
 \multirow@colwidth=\skip43
 \multirow@cntb=\count91
 \multirow@dima=\skip44
@@ -292,7 +289,7 @@ File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 LaTeX Font Info:    ... okay on input line 12.
 LaTeX Info: Redefining \. on input line 12.
 LaTeX Info: Redefining \% on input line 12.
-("C:\Program Files\MiKTeX 2.9\tex/context/base\supp-pdf.mkii"
+("C:\Program Files\MiKTeX 2.9\tex/context/base/mkii\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count96
 \scratchdimen=\dimen107
@@ -325,7 +322,7 @@ Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
 Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
 Package ifluatex Info: LuaTeX not detected.
 )))) ("C:\Program Files\MiKTeX 2.9\tex/generic/oberdiek\pdftexcmds.sty"
-Package: pdftexcmds 2018/09/10 v0.29 Utility functions of pdfTeX for LuaTeX (HO
+Package: pdftexcmds 2019/07/25 v0.30 Utility functions of pdfTeX for LuaTeX (HO
 )
 ("C:\Program Files\MiKTeX 2.9\tex/generic/oberdiek\ifpdf.sty"
 Package: ifpdf 2018/09/07 v3.3 Provides the ifpdf switch
@@ -357,36 +354,36 @@ LaTeX Font Info:    Try loading font information for T1+aett on input line 46.
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
 ) [1
 
-{C:/Users/tromp/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
-Overfull \hbox (12.36594pt too wide) in paragraph at lines 139--140
+{C:/Users/Álvaro Zamorano/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}]
+Overfull \hbox (12.36594pt too wide) in paragraph at lines 128--129
 []\T1/aer/m/n/10 Los re-sul-ta-dos ob-te-ni-dos son los mis-mos que los de cla-
 se, es de-cir, \T1/aer/bx/n/10 C1{1.25,1.5}
  []
 
-[3] [4] [5] [6]
+[2] [3] [4] [5] [6]
 <./tmp/resultadoKMeans.png, id=30, 481.8pt x 481.8pt>
 File: ./tmp/resultadoKMeans.png Graphic file (type png)
 <use ./tmp/resultadoKMeans.png>
-Package pdftex.def Info: ./tmp/resultadoKMeans.png  used on input line 413.
+Package pdftex.def Info: ./tmp/resultadoKMeans.png  used on input line 402.
 (pdftex.def)             Requested size: 345.0pt x 345.00635pt.
 [7] [8 <./tmp/resultadoKMeans.png>]
-<./tmp/resultadoCJ.png, id=39, 481.8pt x 481.8pt>
-File: ./tmp/resultadoCJ.png Graphic file (type png)
-<use ./tmp/resultadoCJ.png>
-Package pdftex.def Info: ./tmp/resultadoCJ.png  used on input line 502.
-(pdftex.def)             Requested size: 345.0pt x 345.00635pt.
-[9] [10 <./tmp/resultadoCJ.png>] (G16-p4.aux
+<G16-p4-figura1.pdf, id=39, 433.62pt x 433.62pt>
+File: G16-p4-figura1.pdf Graphic file (type pdf)
+<use G16-p4-figura1.pdf>
+Package pdftex.def Info: G16-p4-figura1.pdf  used on input line 492.
+(pdftex.def)             Requested size: 276.00105pt x 276.0139pt.
+[9] [10 <./G16-p4-figura1.pdf>] (G16-p4.aux
 LaTeX Info: Redefining \. on input line 6.
 LaTeX Info: Redefining \% on input line 6.
 ) ) 
 Here is how much of TeX's memory you used:
- 3778 strings out of 492946
- 53401 string characters out of 3135527
- 122223 words of memory out of 3000000
- 7579 multiletter control sequences out of 15000+200000
+ 3804 strings out of 492895
+ 53401 string characters out of 3133443
+ 124351 words of memory out of 3000000
+ 7624 multiletter control sequences out of 15000+200000
  23573 words of font info for 54 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,7n,31p,374b,359s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,7n,31p,303b,361s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbsy10.pfb><C:/
 Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/Program 
 Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program Files/Mi
@@ -396,9 +393,9 @@ e1/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public
 /amsfonts/cm/cmsltt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfo
 nts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
 mtt10.pfb>
-Output written on G16-p4.pdf (10 pages, 140900 bytes).
+Output written on G16-p4.pdf (10 pages, 145815 bytes).
 PDF statistics:
- 76 PDF objects out of 1000 (max. 8388607)
+ 80 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  15 words of extra memory for PDF output out of 10000 (max. 10000000)
 

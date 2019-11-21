@@ -87,18 +87,10 @@ arrancar R; para comprobarlo se hace uso de la función \texttt{search()}.
 > search()
 \end{Sinput}
 \begin{Soutput}
- [1] ".GlobalEnv"        
- [2] "package:factoextra"
- [3] "package:ggplot2"   
- [4] "package:readr"     
- [5] "package:foreign"   
- [6] "package:stats"     
- [7] "package:graphics"  
- [8] "package:grDevices" 
- [9] "package:utils"     
-[10] "package:datasets"  
-[11] "package:methods"   
-[12] "Autoloads"         
+ [1] ".GlobalEnv"         "package:factoextra" "package:ggplot2"   
+ [4] "package:readr"      "package:foreign"    "package:stats"     
+ [7] "package:graphics"   "package:grDevices"  "package:utils"     
+[10] "package:datasets"   "package:methods"    "Autoloads"         
 [13] "package:base"      
 \end{Soutput}
 \end{Schunk}
@@ -127,11 +119,8 @@ Within cluster sum of squares by cluster:
 
 Available components:
 
-[1] "cluster"      "centers"     
-[3] "totss"        "withinss"    
-[5] "tot.withinss" "betweenss"   
-[7] "size"         "iter"        
-[9] "ifault"      
+[1] "cluster"      "centers"      "totss"        "withinss"     "tot.withinss"
+[6] "betweenss"    "size"         "iter"         "ifault"      
 \end{Soutput}
 \end{Schunk}
 
@@ -493,13 +482,15 @@ Por último, usando la función \texttt{hclust} se realiza dicha clusterización
 \bigskip
 Para mostrar los resultados obtenidos se usa una función definida por nosotros y así poder pasar estos
 a un formato de foto. Es necesario indicar el número de clusters que queremos obtener.
+\begin{center}
 \begin{Schunk}
 \begin{Sinput}
 > source("./Funciones/representarCJ.R")
-> representarCJ(hCJ,2,"resultadoCJ.png")
+> fviz_dend(x=hCJ, k=2) 
 \end{Sinput}
 \end{Schunk}
-\includegraphics[width=\textwidth]{resultadoCJ}
+\includegraphics{G16-p4-figura1}
+\end{center}
 
 \bigskip
 Se puede observar que la clusterización de países se corresponde con la obtenida anteriormente mediante
