@@ -108,7 +108,8 @@ se encuentran en el restante.
 \bigskip
 En primer lugar hemos realizado un conjunto de funciones que realizan el algoritmo \textbf{K-Means}. Los parámetros
 de esta función deben ser la matriz de muestras y la matriz con los centroides iniciales, al igual que se indica 
-anteriormente. Como resultado, proporciona las coordenadas finales del centroide de cada uno de los clusters.
+anteriormente. Como resultado, proporciona las coordenadas finales del centroide de cada uno de los clusters y varias
+listas (número de clusters) incluyendo en cada una de ellas las muestras que pertenece a cada uno de los clusters.
 Además, esta función, en caso de que los datos tengan 2 dimensiones, nos generará un gráfico donde se muestra la 
 evolución del algoritmo a la largo de las diferentes iteraciones realizadas. 
 
@@ -150,7 +151,7 @@ Probamos nuestras funciones con los datos del apartado anterior y obtenemos la e
 <<eval=TRUE>>=
 m<-t(matrix(c(4,4,3,5,1,2,5,5,0,1,2,2,4,5,2,1),2,8))
 c<-t(matrix(c(0,1,2,2),2,2))
-(centroides<-KMeans(m,c))
+(resultado<-KMeans(m,c,"resultadoKMeans.png"))
 @
 \includegraphics[width=\textwidth]{resultadoKMeans}
 
@@ -161,10 +162,18 @@ Se observa que los resultados obtenidos son los mismos que los conseguidos en cl
 Con el uso de estas funciones se realizará una clasterización no jerárquica de datos obtenidos de \texttt{Kaggle}
 sobre información de diferentes países. Procedemos a leer dichos datos.
 
+\bigskip
 <<eval=TRUE>>=
 library("readr")
 datos<-read.csv("./Datos/countries.csv")
 @
 
+\bigskip
+Se usarán los datos porcentuales pertenecientes a los sectores de agricultura, industria y servicios.
+
+\bigskip
+<<eval=TRUE>>=
+datosEvaluar<-
+@
 
 \end{document}

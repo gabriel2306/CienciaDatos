@@ -1,18 +1,22 @@
-KMeans <- function(matrizMuestras, matrizCentroides) {
+KMeans <- function(matrizMuestras, matrizCentroides, ruta) {
     centroidesFinales<-c()
 
     if (class(matrizCentroides)=="matrix" && class(matrizMuestras)=="matrix") {
         dimensiones <- length(matrizMuestras[1,])
         allData<-ejecutarKMeans(matrizMuestras, matrizCentroides, dimensiones)
-        lista<-allData[[length(allData)]]
-        centroidesFinales<-lista[[2]]
+        tam<-length(allData)
+        listaResultado<-allData[[tam]]
+        centroidesFinales<-listaResultado[[2]]
+        muestrasCluster<-listaResultado[[3]]
 
         if (dimensiones==2) {
-            ejecutarRepresentar(matrizMuestras,matrizCentroides,allData)
+            ejecutarRepresentar(matrizMuestras,matrizCentroides,allData, ruta)
         }
     }
 
-    return(centroidesFinales)
+    l<-list("centroides"=centroidesFinales, "muestrasPorCluster"=muestrasCluster)
+
+    return(l)
 }
 
 ejecutarKMeans <- function (matrizMuestras,matrizCentroides,dimensiones) {
@@ -32,15 +36,15 @@ ejecutarKMeans <- function (matrizMuestras,matrizCentroides,dimensiones) {
         iguales<-comprobarMatrizPertenencia(matrizP1,matrizP2)
         matrizP1<-matrizP2
 
-        data[[i]]<-list(muestrasSeparadas,centros)
+        data[[i]]<-list(muestrasSeparadas,centros,muestrasEnCluster)
         i<-i+1
     }
 
     return(data)
 }
 
-ejecutarRepresentar <- function (matrizMuestras, matrizCentroides, data) {
-    png(paste("./tmp/resultadoKMeans.png"))
+ejecutarRepresentar <- function (matrizMuestras, matrizCentroides, data, ruta) {
+    png(paste("./tmp/",ruta,sep=""))
 
     size<-length(data)
     
