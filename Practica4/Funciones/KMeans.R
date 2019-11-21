@@ -213,10 +213,16 @@ representarInicial <- function (matrizMuestras,matrizCentroides){
     limites <- obtenerLimites(matrizMuestras)
     plot(matrizMuestras[,1],matrizMuestras[,2],pch=1,col="orange",xlim=limites$x,ylim=limites$y,main=titulo,xlab="X",ylab="Y")
 
+    indiceColor <- 1
+
     nClusters<-length(matrizCentroides)/2
     for (i in 1:nClusters) {
         m<- matrizCentroides[i,]
-        points(m[1],m[2],pch=8,col=colores[i])
+        points(m[1],m[2],pch=8,col=colores[indiceColor])
+        indiceColor <- indiceColor + 1
+        if (indiceColor==5) {
+            indiceColor <- 1
+        }
     }
 }
 
@@ -232,13 +238,20 @@ representar <- function(muestrasSeparadas,matrizMuestras,matrizCentroides,i){
     centroide<-matrizCentroides[1,]
     points(centroide[1],centroide[2],pch=8,col=colores[1])
 
+    indiceColor <- 1
+
     nClusters<-length(muestrasSeparadas)
     for (i in 2:nClusters) {
         m<- muestrasSeparadas[[i]]
         points(m[1,],m[2,],pch=1,col=colores[i])
 
         centroide<-matrizCentroides[i,]
-        points(centroide[1],centroide[2],pch=8,col=colores[i])
+        points(centroide[1],centroide[2],pch=8,col=colores[indiceColor])
+
+        indiceColor <- indiceColor + 1
+        if (indiceColor==5) {
+            indiceColor <- 1
+        }
     }
 }
 
