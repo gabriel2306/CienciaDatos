@@ -87,9 +87,15 @@ arrancar R; para comprobarlo se hace uso de la función \texttt{search()}.
 > search()
 \end{Sinput}
 \begin{Soutput}
- [1] ".GlobalEnv"        "package:foreign"   "package:stats"    
- [4] "package:graphics"  "package:grDevices" "package:utils"    
- [7] "package:datasets"  "package:methods"   "Autoloads"        
+ [1] ".GlobalEnv"       
+ [2] "package:foreign"  
+ [3] "package:stats"    
+ [4] "package:graphics" 
+ [5] "package:grDevices"
+ [6] "package:utils"    
+ [7] "package:datasets" 
+ [8] "package:methods"  
+ [9] "Autoloads"        
 [10] "package:base"     
 \end{Soutput}
 \end{Schunk}
@@ -118,8 +124,11 @@ Within cluster sum of squares by cluster:
 
 Available components:
 
-[1] "cluster"      "centers"      "totss"        "withinss"     "tot.withinss"
-[6] "betweenss"    "size"         "iter"         "ifault"      
+[1] "cluster"      "centers"     
+[3] "totss"        "withinss"    
+[5] "tot.withinss" "betweenss"   
+[7] "size"         "iter"        
+[9] "ifault"      
 \end{Soutput}
 \end{Schunk}
 
@@ -188,5 +197,206 @@ Se puede observar que las muestras 3,5,6,8 pertenecen al mismo grupo, mientras q
 se encuentran en el restante.
 
 \section{Desarrollo por parte del alumno.}
+
+\bigskip
+En primer lugar hemos realizado un conjunto de funciones que realizan el algoritmo \textbf{K-Means}. Los parámetros
+de esta función deben ser la matriz de muestras y la matriz con los centroides iniciales, al igual que se indica 
+anteriormente. Como resultado, proporciona las coordenadas finales del centroide de cada uno de los clusters.
+Además, esta función, en caso de que los datos tengan 2 dimensiones, nos generará un gráfico donde se muestra la 
+evolución del algoritmo a la largo de las diferentes iteraciones realizadas. 
+
+\bigskip
+Procedemos a cargar dichas funciones.
+\begin{Schunk}
+\begin{Sinput}
+> source("./Funciones/KMeans.R")
+\end{Sinput}
+\end{Schunk}
+
+\bigskip
+Las principales funciones codificadas son:
+\begin{Schunk}
+\begin{Sinput}
+> calcularMatrizDistancias
+\end{Sinput}
+\begin{Soutput}
+function (matrizMuestras, matrizCentroides,dimensiones) {
+    sizeCentroides <- length(matrizCentroides)/dimensiones
+    sizeMuestras <- length(matrizMuestras)/dimensiones
+    x<-c()
+
+    for (i in 1:sizeCentroides) {
+        for (j in 1:sizeMuestras)
+            x<-c(x,distanciaEuclidea(matrizCentroides[i,],matrizMuestras[j,]))
+    }
+
+    m<-matrix(x,nrow=sizeCentroides,ncol=sizeMuestras,byrow=T)
+
+    return(m)
+}
+\end{Soutput}
+\begin{Sinput}
+> calcularMatrizPertenencia
+\end{Sinput}
+\begin{Soutput}
+function (matrizDistancias, nCentroides) {
+    sizeDistancias <- length(matrizDistancias)/nCentroides
+    x<-c()
+
+    for (i in 1:sizeDistancias) {
+        posMinimo <- filaMinimo(matrizDistancias[,i])
+        for (j in 1:nCentroides)
+            if (j==posMinimo){
+                x<-c(x,1)
+            } else {
+                x<-c(x,0)
+            }
+    }
+
+    m<-matrix(x,nrow=nCentroides,ncol=sizeDistancias)
+
+    return(m)
+}
+\end{Soutput}
+\begin{Sinput}
+> muestrasPorCluster
+\end{Sinput}
+\begin{Soutput}
+function (matrizPertenencia, nCentroides) {
+    sizeDistancias <- length(matrizPertenencia)/nCentroides
+    finalList<-c()
+    for (i in 1:nCentroides){
+        finalList<-c(finalList, list(muestrasPorFila(matrizPertenencia[i,])))
+    }
+    
+    m<-matrix(finalList,nrow=nCentroides,ncol=sizeDistancias)
+    return(finalList)
+}
+\end{Soutput}
+\begin{Sinput}
+> obtenerMuestrasSeparadas
+\end{Sinput}
+\begin{Soutput}
+function (matrizMuestras, muestrasPorCluster, dimensiones) {
+    muestras<-t(matrizMuestras)
+    sizeMuestras <- length(matrizMuestras)/dimensiones
+    separadas<-list()
+
+    for (i in 1:length(muestrasPorCluster)){
+        nMuestrasCluster<-length(muestrasPorCluster[[i]])
+        temp<-c()
+        for (j in 1:sizeMuestras) {
+            if (j %in% muestrasPorCluster[[i]]) {
+                temp<-c(temp, muestras[,j])
+            }
+        }
+        separadas[[i]]<-matrix(temp,nrow=dimensiones,ncol=nMuestrasCluster)
+    }
+
+    return(separadas)
+}
+\end{Soutput}
+\begin{Sinput}
+> obtenerNuevosCentroides
+\end{Sinput}
+\begin{Soutput}
+function (muestrasSeparadas, dimensiones) {
+    sizeMuestras <- length(muestrasSeparadas)
+    centros<-c()
+
+    for (i in 1:sizeMuestras){
+        matriz<-muestrasSeparadas[[i]]
+        centros<-c(centros,nuevoCentroide(t(matriz),dimensiones))
+    }
+
+    return(matrix(centros,nrow=sizeMuestras,ncol=dimensiones,byrow=T))
+}
+\end{Soutput}
+\begin{Sinput}
+> comprobarMatrizPertenencia
+\end{Sinput}
+\begin{Soutput}
+function (matriz1, matriz2) {
+    iguales<-TRUE
+    i<-1
+
+    while(iguales && i<=length(matriz1)){
+        if (matriz1[i]==matriz2[i]){
+            i<-i+1
+        } else {
+            iguales<-FALSE
+        }
+    }
+
+    return(iguales)
+}
+\end{Soutput}
+\end{Schunk}
+
+\bigskip
+Todas ellas se encuentran dentro de un bucle while realizado siempre y cuando cambie la matriz de pertenencia.
+
+\bigskip
+Respecto a la parte de \textbf{representación} se ha realizado otro conjunto de funciones con dicho fin. La
+principal de ellas es:
+\begin{Schunk}
+\begin{Sinput}
+> representar
+\end{Sinput}
+\begin{Soutput}
+function(muestrasSeparadas,matrizMuestras,matrizCentroides,i){
+    colores <- c("red","blue","green","black","purple")
+
+    titulo<-paste("Iteracion ",i)
+
+    m<-muestrasSeparadas[[1]]
+    limites <- obtenerLimites(matrizMuestras)
+    plot(m[1,],m[2,],pch=1,col=colores[1],xlim=limites$x,ylim=limites$y,
+        main=titulo,xlab="X",ylab="Y")
+
+    centroide<-matrizCentroides[1,]
+    points(centroide[1],centroide[2],pch=8,col=colores[1])
+
+    indiceColor <- 2
+
+    nClusters<-length(muestrasSeparadas)
+    for (i in 2:nClusters) {
+        m<- muestrasSeparadas[[i]]
+        points(m[1,],m[2,],pch=1,col=colores[i])
+
+        centroide<-matrizCentroides[i,]
+        points(centroide[1],centroide[2],pch=8,col=colores[indiceColor])
+
+        indiceColor <- indiceColor + 1
+        if (indiceColor==5) {
+            indiceColor <- 1
+        }
+    }
+}
+\end{Soutput}
+\end{Schunk}
+
+\bigskip
+Cabe indicar que únicamente se dispone de 5 colores diferentes, es decir, en caso de haber más de 5 clusters,
+los colores de la gráfica volverían a repetirse.
+
+\bigskip
+Probamos nuestras funciones con los datos del apartado anterior y obtenemos la evolución del algoritmo.
+\begin{Schunk}
+\begin{Sinput}
+> m<-t(matrix(c(4,4,3,5,1,2,5,5,0,1,2,2,4,5,2,1),2,8))
+> c<-t(matrix(c(0,1,2,2),2,2))
+> (centroides<-KMeans(m,c))
+\end{Sinput}
+\begin{Soutput}
+     [,1] [,2]
+[1,] 1.25 1.50
+[2,] 4.00 4.75
+\end{Soutput}
+\end{Schunk}
+\includegraphics[width=\textwidth]{resultadoKMeans}
+
+\bigskip
+Se observa que los resultados obtenidos son los mismos que los conseguidos en clase.
 
 \end{document}

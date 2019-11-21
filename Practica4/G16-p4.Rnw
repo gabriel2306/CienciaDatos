@@ -105,5 +105,66 @@ se encuentran en el restante.
 
 \section{Desarrollo por parte del alumno.}
 
+\bigskip
+En primer lugar hemos realizado un conjunto de funciones que realizan el algoritmo \textbf{K-Means}. Los parámetros
+de esta función deben ser la matriz de muestras y la matriz con los centroides iniciales, al igual que se indica 
+anteriormente. Como resultado, proporciona las coordenadas finales del centroide de cada uno de los clusters.
+Además, esta función, en caso de que los datos tengan 2 dimensiones, nos generará un gráfico donde se muestra la 
+evolución del algoritmo a la largo de las diferentes iteraciones realizadas. 
+
+Cabe destacar que el uso de la función se hace mediante matrices.
+
+\bigskip
+Procedemos a cargar dichas funciones.
+<<eval=TRUE>>=
+source("./Funciones/KMeans.R")
+@
+
+\bigskip
+Las principales funciones codificadas son:
+<<eval=TRUE>>=
+calcularMatrizDistancias
+calcularMatrizPertenencia
+muestrasPorCluster
+obtenerMuestrasSeparadas
+obtenerNuevosCentroides
+comprobarMatrizPertenencia
+@
+
+\bigskip
+Todas ellas se encuentran dentro de un bucle while realizado siempre y cuando cambie la matriz de pertenencia.
+
+\bigskip
+Respecto a la parte de \textbf{representación} se ha realizado otro conjunto de funciones con dicho fin. La
+principal de ellas es:
+<<eval=TRUE>>=
+representar
+@
+
+\bigskip
+Cabe indicar que únicamente se dispone de 5 colores diferentes, es decir, en caso de haber más de 5 clusters,
+los colores de la gráfica volverían a repetirse.
+
+\bigskip
+Probamos nuestras funciones con los datos del apartado anterior y obtenemos la evolución del algoritmo.
+<<eval=TRUE>>=
+m<-t(matrix(c(4,4,3,5,1,2,5,5,0,1,2,2,4,5,2,1),2,8))
+c<-t(matrix(c(0,1,2,2),2,2))
+(centroides<-KMeans(m,c))
+@
+\includegraphics[width=\textwidth]{resultadoKMeans}
+
+\bigskip
+Se observa que los resultados obtenidos son los mismos que los conseguidos en clase.
+
+\bigskip
+Con el uso de estas funciones se realizará una clasterización no jerárquica de datos obtenidos de \texttt{Kaggle}
+sobre información de diferentes países. Procedemos a leer dichos datos.
+
+<<eval=TRUE>>=
+library("readr")
+datos<-read.csv("./Datos/countries.csv")
+@
+
 
 \end{document}
