@@ -1,4 +1,4 @@
-Population,Area (sq. mi.),Pop. Density (per sq. mi.),Coastline (coast/area ratio),Net migration,Infant mortality (per 1000 births),GDP ($ per capita),Literacy (%),Phones (per 1000),Arable (%),Crops (%),Other (%),Climate,Birthrate,Deathrate,Agriculture,Industry,Service
+Population,Area,Pop.Density,Coastline,NetMigration,InfantMortality,GDP,Literacy,Phones,Arable,Crops,Other,Climate,Birthrate,Deathrate,Agriculture,Industry,Service
 Argentina ,39921833,2766890,14.4,0.18,0.61,15.18,11200,97.1,220.4,12.31,0.48,87.21,3,16.73,7.55,0.095,0.358,0.547
 Spain ,40397842,504782,80,0.98,0.99,4.42,22000,97.9,453.5,26.07,9.87,64.06,3,10.06,9.72,0.04,0.295,0.665
 Portugal ,10605870,92391,114.8,1.94,3.57,5.05,18000,93.3,399.2,21.75,7.81,70.44,3,10.72,10.5,0.053,0.274,0.673

@@ -178,7 +178,9 @@ obtenerMuestrasSeparadas <- function (matrizMuestras, muestrasPorCluster, dimens
                 temp<-c(temp, muestras[,j])
             }
         }
+
         separadas[[i]]<-matrix(temp,nrow=dimensiones,ncol=nMuestrasCluster)
+        
     }
 
     return(separadas)

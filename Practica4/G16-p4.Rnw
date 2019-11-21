@@ -169,11 +169,58 @@ datos<-read.csv("./Datos/countries.csv")
 @
 
 \bigskip
-Se usarán los datos porcentuales pertenecientes a los sectores de agricultura, industria y servicios.
+Se usarán los datos porcentuales pertenecientes a los sectores de agricultura, industria y servicios para realizar
+k-Means.
 
 \bigskip
 <<eval=TRUE>>=
-datosEvaluar<-
+datosEvaluar<-c(datos$Agriculture,datos$Industry,datos$Service)
+datosEvaluar<-matrix(datosEvaluar,15,3)
+cIniciales<-matrix(c(0.04,0.08,0.25,0.35,0.60,0.65),2,3)
+(resultado2<-KMeans(datosEvaluar,cIniciales,"resultadoKMeans.png"))
 @
+
+\bigskip
+A la vista de los resultados obtenidos, los países se clusterizan de la siguiente manera:
+\begin{enumerate}
+\item España, Portugal, Reino Unido, Estados Unidos, Alemania, Francia, Italia, Mexico, Canada
+\item Argentina, Rusia, Brasil, China, Chile, Turquía
+\end{enumerate}
+
+Una de las diferencias de los países del primer cluster respecto a los restantes es el mayor 
+porcentaje en el sector servicios y menor en el sector primario.
+
+\bigskip
+Con estos mismos datos realizaremos una clusterización \textbf{jerárquica} mediante el uso de los
+paquetes \texttt{stats} y \texttt{factorextra}. Procedemos a cargar el segundo de ellos.
+<<eval=TRUE,results=hide>>=
+install.packages("factoextra")
+library(factoextra)
+@
+
+\bigskip
+Previo a la clusterización es necesario escalar los datos mediante la función \texttt{scale.}
+<<eval=TRUE>>=
+datosCJ<-scale(datosEvaluar)
+@
+
+\bigskip
+Por último, usando la función \texttt{hclust} se realiza dicha clusterización.
+<<eval=TRUE,results=hide>>=
+hCJ<-hclust(d = dist(x=datosCJ, method="euclidean"), method="complete")
+@
+
+\bigskip
+Para mostrar los resultados obtenidos se usa una función definida por nosotros y así poder pasar estos
+a un formato de foto. Es necesario indicar el número de clusters que queremos obtener.
+<<eval=TRUE,results=hide>>=
+source("./Funciones/representarCJ.R")
+representarCJ(hCJ,2,"resultadoCJ.png")
+@
+\includegraphics[width=\textwidth]{resultadoCJ}
+
+\bigskip
+Se puede observar que la clusterización de países se corresponde con la obtenida anteriormente mediante
+el uso de KMeans.
 
 \end{document}
