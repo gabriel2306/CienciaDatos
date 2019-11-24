@@ -61,7 +61,7 @@ En primer lugar se introducirán los datos en forma de matriz y se hará la tras
 \end{Schunk}
 
 \bigskip
-En primer lugar se deben seleccionar el número de clusters en los que se van a agrupar los datos,
+En segundo lugar se deben seleccionar el número de clusters en los que se van a agrupar los datos,
 en este caso serán 2. Además es necesario indicar los centroides iniciales de cada uno de ellos, en
 este caso son C1\{0,1\} y C2\{2,2\}. Todo ello es elegido de forma arbitraria.
 
@@ -128,7 +128,7 @@ Available components:
 Los resultados obtenidos son los mismos que los de clase, es decir, \textbf{C1\{1.25,1.5\} y C2\{4,4.75\}.}
 
 \bigskip
-A continuación usaremos los clusters obtenios para separar los datos de la muestra en dos grupos. Para ello
+A continuación usaremos los clusters obtenidos para separar los datos de la muestra en dos grupos. Para ello
 se hace uso de la función \texttt{cbind} la cuál añade (por delante) una columna a la matriz de datos. Dicha
 columna se corresponde con la clasificación obtenida, será 1 ó 2 dependiendo del cluster al que pertenezca
 cada muestra.
@@ -420,6 +420,31 @@ sobre información de diferentes países. Procedemos a leer dichos datos.
 Se usarán los datos porcentuales pertenecientes a los sectores de agricultura, industria y servicios para realizar
 k-Means.
 
+\begin{table}[H]
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+País & Id & Sector Primario & Sector Secundario & Sector Terciario\\
+\hline \hline
+Argentina & 1 & 0.095 & 0.358 & 0.547\\ \hline
+España & 2 & 0.040 & 0.295 & 0.665\\ \hline
+Portugal & 3 & 0.053 & 0.274 & 0.673\\ \hline
+Reino Unido & 4 & 0.005 & 0.237 & 0.758\\ \hline
+Estados Unidos & 5 & 0.010 & 0.204 & 0.787\\ \hline
+Rusia & 6 & 0.054 & 0.371 & 0.575\\ \hline
+Alemania & 7 & 0.009 & 0.296 & 0.695\\ \hline
+Francia & 8 & 0.022 & 0.214 & 0.764\\ \hline
+Brasil & 9 & 0.084 & 0.400 & 0.516\\ \hline
+Italia & 10 & 0.021 & 0.291 & 0.688\\ \hline
+China & 11 & 0.125 & 0.473 & 0.403\\ \hline
+Chile & 12 & 0.060 & 0.493 & 0.447\\ \hline
+Turquía & 13 & 0.117 & 0.298 & 0.585\\ \hline
+Mexico & 14 & 0.038 & 0.259 & 0.702\\ \hline
+Canadá & 15 & 0.022 & 0.294 & 0.684\\ \hline
+\end{tabular}
+\end{center}
+\end{table}
+
 \bigskip
 \begin{Schunk}
 \begin{Sinput}
@@ -485,7 +510,6 @@ a un formato de foto. Es necesario indicar el número de clusters que queremos o
 \begin{center}
 \begin{Schunk}
 \begin{Sinput}
-> source("./Funciones/representarCJ.R")
 > fviz_dend(x=hCJ, k=2) 
 \end{Sinput}
 \end{Schunk}
