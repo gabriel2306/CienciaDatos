@@ -170,20 +170,24 @@ obtenerMuestrasSeparadas <- function (matrizMuestras, muestrasPorCluster, dimens
     sizeMuestras <- length(matrizMuestras)/dimensiones
     separadas<-list()
 
-    for (i in 1:length(muestrasPorCluster)){
-        nMuestrasCluster<-length(muestrasPorCluster[[i]])
-        temp<-c()
-        for (j in 1:sizeMuestras) {
-            if (j %in% muestrasPorCluster[[i]]) {
-                temp<-c(temp, muestras[,j])
+    tryCatch(
+    {   for (i in   1:length(muestrasPorCluster)){
+            nMuestrasCluster<-length(muestrasPorCluster[[i]])
+            temp<-c()
+            for (j in 1:sizeMuestras) {
+                if (j %in% muestrasPorCluster[[i]]) {
+                    temp<-c(temp, muestras[,j])
+                }
             }
+
+            separadas[[i]]<-matrix(temp,nrow=dimensiones,ncol=nMuestrasCluster)  
         }
+        return(separadas)
 
-        separadas[[i]]<-matrix(temp,nrow=dimensiones,ncol=nMuestrasCluster)
-        
-    }
-
-    return(separadas)
+    }, error = function (e) {
+        cat("Los centroides escogidos no son correctos (hay clusters sin datos)")
+        exit()
+    })
 }
 
 obtenerNuevosCentroides <- function (muestrasSeparadas, dimensiones) {
@@ -273,4 +277,8 @@ obtenerLimites <- function(matrizMuestras){
     }
     l<-list("x"=c(minimos[1],maximos[1]),"y"=c(minimos[2],maximos[2]))
     return(l)
+}
+
+exit <- function() {
+  .Internal(.invokeRestart(list(NULL, NULL), NULL))
 }

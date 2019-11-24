@@ -197,7 +197,7 @@ Canadá & 15 & 0.022 & 0.294 & 0.684\\ \hline
 \end{center}
 \end{table}
 
-\bigskip
+Procedemos con la ejecución.
 <<eval=TRUE>>=
 datosEvaluar<-c(datos$Agriculture,datos$Industry,datos$Service)
 datosEvaluar<-matrix(datosEvaluar,15,3)
@@ -206,7 +206,7 @@ cIniciales<-matrix(c(0.04,0.08,0.25,0.35,0.60,0.65),2,3)
 @
 
 \bigskip
-A la vista de los resultados obtenidos, los países se clusterizan de la siguiente manera:
+A la vista de los \textbf{resultados} obtenidos, los países se clusterizan de la siguiente manera:
 \begin{enumerate}
 \item España, Portugal, Reino Unido, Estados Unidos, Alemania, Francia, Italia, Mexico, Canada
 \item Argentina, Rusia, Brasil, China, Chile, Turquía
@@ -214,6 +214,13 @@ A la vista de los resultados obtenidos, los países se clusterizan de la siguien
 
 Una de las diferencias de los países del primer cluster respecto a los restantes es el mayor 
 porcentaje en el sector servicios y menor en el sector primario.
+
+\bigskip
+En caso de que los centroides escogidos no sean correctos, es decir, que durante la ejecución del algoritmo uno de los clusters no contenga
+datos, se lanzará un mensaje de error y se parará la ejecución. Este comportamiento se realiza en la siguiente función.
+<<eval=TRUE>>=
+obtenerMuestrasSeparadas
+@
 
 \bigskip
 Con estos mismos datos realizaremos una clusterización \textbf{jerárquica} mediante el uso de los
@@ -245,7 +252,7 @@ fviz_dend(x=hCJ, k=2)
 \end{center}
 
 \bigskip
-Se puede observar que la clusterización de países se corresponde con la obtenida anteriormente mediante
+Se puede \textbf{observar} que la clusterización de países se corresponde con la obtenida anteriormente mediante
 el uso de KMeans.
 
 \end{document}

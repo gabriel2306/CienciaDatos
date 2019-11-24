@@ -87,10 +87,12 @@ arrancar R; para comprobarlo se hace uso de la función \texttt{search()}.
 > search()
 \end{Sinput}
 \begin{Soutput}
- [1] ".GlobalEnv"         "package:factoextra" "package:ggplot2"   
- [4] "package:readr"      "package:foreign"    "package:stats"     
- [7] "package:graphics"   "package:grDevices"  "package:utils"     
-[10] "package:datasets"   "package:methods"    "Autoloads"         
+ [1] ".GlobalEnv"         "package:factoextra"
+ [3] "package:ggplot2"    "package:readr"     
+ [5] "package:foreign"    "package:stats"     
+ [7] "package:graphics"   "package:grDevices" 
+ [9] "package:utils"      "package:datasets"  
+[11] "package:methods"    "Autoloads"         
 [13] "package:base"      
 \end{Soutput}
 \end{Schunk}
@@ -119,8 +121,9 @@ Within cluster sum of squares by cluster:
 
 Available components:
 
-[1] "cluster"      "centers"      "totss"        "withinss"     "tot.withinss"
-[6] "betweenss"    "size"         "iter"         "ifault"      
+[1] "cluster"      "centers"      "totss"       
+[4] "withinss"     "tot.withinss" "betweenss"   
+[7] "size"         "iter"         "ifault"      
 \end{Soutput}
 \end{Schunk}
 
@@ -277,20 +280,24 @@ function (matrizMuestras, muestrasPorCluster, dimensiones) {
     sizeMuestras <- length(matrizMuestras)/dimensiones
     separadas<-list()
 
-    for (i in 1:length(muestrasPorCluster)){
-        nMuestrasCluster<-length(muestrasPorCluster[[i]])
-        temp<-c()
-        for (j in 1:sizeMuestras) {
-            if (j %in% muestrasPorCluster[[i]]) {
-                temp<-c(temp, muestras[,j])
+    tryCatch(
+    {   for (i in   1:length(muestrasPorCluster)){
+            nMuestrasCluster<-length(muestrasPorCluster[[i]])
+            temp<-c()
+            for (j in 1:sizeMuestras) {
+                if (j %in% muestrasPorCluster[[i]]) {
+                    temp<-c(temp, muestras[,j])
+                }
             }
+
+            separadas[[i]]<-matrix(temp,nrow=dimensiones,ncol=nMuestrasCluster)  
         }
+        return(separadas)
 
-        separadas[[i]]<-matrix(temp,nrow=dimensiones,ncol=nMuestrasCluster)
-        
-    }
-
-    return(separadas)
+    }, error = function (e) {
+        cat("Los centroides escogidos no son correctos (hay clusters sin datos)")
+        exit()
+    })
 }
 \end{Soutput}
 \begin{Sinput}
@@ -445,7 +452,7 @@ Canadá & 15 & 0.022 & 0.294 & 0.684\\ \hline
 \end{center}
 \end{table}
 
-\bigskip
+Procedemos con la ejecución.
 \begin{Schunk}
 \begin{Sinput}
 > datosEvaluar<-c(datos$Agriculture,datos$Industry,datos$Service)
@@ -469,7 +476,7 @@ $muestrasPorCluster[[2]]
 \end{Schunk}
 
 \bigskip
-A la vista de los resultados obtenidos, los países se clusterizan de la siguiente manera:
+A la vista de los \textbf{resultados} obtenidos, los países se clusterizan de la siguiente manera:
 \begin{enumerate}
 \item España, Portugal, Reino Unido, Estados Unidos, Alemania, Francia, Italia, Mexico, Canada
 \item Argentina, Rusia, Brasil, China, Chile, Turquía
@@ -477,6 +484,42 @@ A la vista de los resultados obtenidos, los países se clusterizan de la siguien
 
 Una de las diferencias de los países del primer cluster respecto a los restantes es el mayor 
 porcentaje en el sector servicios y menor en el sector primario.
+
+\bigskip
+En caso de que los centroides escogidos no sean correctos, es decir, que durante la ejecución del algoritmo uno de los clusters no contenga
+datos, se lanzará un mensaje de error y se parará la ejecución. Este comportamiento se realiza en la siguiente función.
+\begin{Schunk}
+\begin{Sinput}
+> obtenerMuestrasSeparadas
+\end{Sinput}
+\begin{Soutput}
+function (matrizMuestras, muestrasPorCluster, dimensiones) {
+    muestras<-t(matrizMuestras)
+    sizeMuestras <- length(matrizMuestras)/dimensiones
+    separadas<-list()
+
+    tryCatch(
+    {   for (i in   1:length(muestrasPorCluster)){
+            nMuestrasCluster<-length(muestrasPorCluster[[i]])
+            temp<-c()
+            for (j in 1:sizeMuestras) {
+                if (j %in% muestrasPorCluster[[i]]) {
+                    temp<-c(temp, muestras[,j])
+                }
+            }
+
+            separadas[[i]]<-matrix(temp,nrow=dimensiones,ncol=nMuestrasCluster)  
+        }
+        return(separadas)
+
+    }, error = function (e) {
+        cat("Los centroides escogidos no son correctos (hay clusters sin datos)")
+        exit()
+    })
+}
+<bytecode: 0x0000000019486230>
+\end{Soutput}
+\end{Schunk}
 
 \bigskip
 Con estos mismos datos realizaremos una clusterización \textbf{jerárquica} mediante el uso de los
@@ -517,7 +560,7 @@ a un formato de foto. Es necesario indicar el número de clusters que queremos o
 \end{center}
 
 \bigskip
-Se puede observar que la clusterización de países se corresponde con la obtenida anteriormente mediante
+Se puede \textbf{observar} que la clusterización de países se corresponde con la obtenida anteriormente mediante
 el uso de KMeans.
 
 \end{document}
