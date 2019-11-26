@@ -62,20 +62,19 @@ en una matriz. El cálculo de las distancias lo realizamos mediante la función 
 \bigskip
 En tercer lugar, ordenamos las columnas de la matriz de distancias por los valores de cada una de
 las filas de menor a mayor. Se tiene en cuenta el tercer vecino, por lo que debemos estudiar la cuarta 
-fila de la matriz ya que se tiene en cuenta la distancia de un punto consigo mismo.
-Desoués se muestran las muestras cuyo suceso es anómalo o outlier.
+fila de la matriz ya que se tiene en cuenta la distancia de un punto consigo mismo. Se obtienen las 
+muestras cuyo suceso es anómalo o outlier, el grado de outlier es \texttt{2.5.}
 \begin{Schunk}
 \begin{Sinput}
-> for(i in 1:5){
-+     distancias[,i] = sort(distancias[,i])
-+     if(distancias[4,i] > 2.5) {
-+         print(i);print("es un dato anómalo o outlier")
-+     }
-+ }
+> source("./Funciones/anomalosKVecinos.R")
+> (anomalosKVecinos(distancias,3,2.5))
 \end{Sinput}
 \begin{Soutput}
-[1] 4
-[1] "es un dato anómalo o outlier"
+[1] "La muestra 4con valor1.4142135623731 es outlier - " 
+[2] "La muestra 4con valor2.23606797749979 es outlier - "
+[3] "La muestra 4con valor2.23606797749979 es outlier - "
+[4] "La muestra 4con valor5 es outlier - "               
+[5] "La muestra 4con valor5 es outlier - "               
 \end{Soutput}
 \end{Schunk}
 
@@ -107,7 +106,8 @@ En primer lugar, introducimos los datos en una matriz y lo convertimos a datafra
 columnas sea más cómodo.
 \begin{Schunk}
 \begin{Sinput}
-> muestra = t(matrix(c(3,2,3.5,12,4.7,4.1,5.2,4.9,7.1,6.1,6.2,5.2,14,5.3),2,7,dimnames = list(c("r","d"))))
+> muestra = t(matrix(c(3,2,3.5,12,4.7,4.1,5.2,4.9,7.1,6.1,6.2,5.2,14,5.3),
++         2,7,dimnames = list(c("r","d"))))
 > muestra = data.frame(muestra)
 \end{Sinput}
 \end{Schunk}
@@ -136,7 +136,8 @@ En segundo lugar:
 \begin{Sinput}
 > for(i in 1:length(muestra$r)){
 +      if(muestra$r[i] < int[1] || muestra$r[i] > int[2]){
-+            print("El suceso "); print(i);print(" con valor ");print(muestra$r[i]); print(" es un suceso anomalo o outiler")
++            print("El suceso "); print(i);print(" con valor ");
++            print(muestra$r[i]); print(" es un suceso anomalo o outiler")
 +       }
 + }
 \end{Sinput}
