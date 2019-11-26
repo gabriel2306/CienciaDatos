@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.6960 64-bit) (preloaded format=pdflatex 2019.1.28)  26 NOV 2019 15:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.6960 64-bit) (preloaded format=pdflatex 2019.1.28)  26 NOV 2019 16:56
 entering extended mode
 **C:/Users/tromp/Documents/1.Curso_2019-20/1.Cuatrimetestre/2.Ciencia_Datos/LAB
 /CienciaDatos/Practica5/G16-p5.tex
@@ -361,7 +361,7 @@ File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
 <./tmp/bigotes.png, id=16, 481.8pt x 481.8pt>
 File: ./tmp/bigotes.png Graphic file (type png)
 <use ./tmp/bigotes.png>
-Package pdftex.def Info: ./tmp/bigotes.png  used on input line 162.
+Package pdftex.def Info: ./tmp/bigotes.png  used on input line 158.
 (pdftex.def)             Requested size: 345.0pt x 345.00635pt.
 [3 <./tmp/bigotes.png>] (G16-p5.aux
 LaTeX Info: Redefining \. on input line 6.
@@ -369,7 +369,7 @@ LaTeX Info: Redefining \% on input line 6.
 ) ) 
 Here is how much of TeX's memory you used:
  3779 strings out of 492946
- 53070 string characters out of 3135527
+ 53069 string characters out of 3135527
  122223 words of memory out of 3000000
  7576 multiletter control sequences out of 15000+200000
  26719 words of font info for 60 fonts, out of 3000000 for 9000
@@ -382,7 +382,7 @@ eX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fo
 nts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
 /public/amsfonts/cm/cmsltt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
 c/amsfonts/cm/cmtt10.pfb>
-Output written on G16-p5.pdf (3 pages, 102650 bytes).
+Output written on G16-p5.pdf (3 pages, 101980 bytes).
 PDF statistics:
  43 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)

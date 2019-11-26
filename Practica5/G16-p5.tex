@@ -67,14 +67,10 @@ muestras cuyo suceso es anómalo o outlier, el grado de outlier es \texttt{2.5.}
 \begin{Schunk}
 \begin{Sinput}
 > source("./Funciones/anomalosKVecinos.R")
-> (anomalosKVecinos(distancias,3,2.5))
+> (anomalosKVecinos(distancias,muestra,3,2.5))
 \end{Sinput}
 \begin{Soutput}
-[1] "La muestra 4con valor1.4142135623731 es outlier - " 
-[2] "La muestra 4con valor2.23606797749979 es outlier - "
-[3] "La muestra 4con valor2.23606797749979 es outlier - "
-[4] "La muestra 4con valor5 es outlier - "               
-[5] "La muestra 4con valor5 es outlier - "               
+[1] "La muestra 4 con valor (1 1) es outlier \n"
 \end{Soutput}
 \end{Schunk}
 

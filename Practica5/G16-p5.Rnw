@@ -61,7 +61,7 @@ fila de la matriz ya que se tiene en cuenta la distancia de un punto consigo mis
 muestras cuyo suceso es anómalo o outlier, el grado de outlier es \texttt{2.5.}
 <<eval=TRUE>>=
 source("./Funciones/anomalosKVecinos.R")
-(anomalosKVecinos(distancias,3,2.5))
+(anomalosKVecinos(distancias,muestra,3,2.5))
 @
 
 \subsection{Caja y bigotes.}
