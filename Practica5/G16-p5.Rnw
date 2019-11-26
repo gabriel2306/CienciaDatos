@@ -127,7 +127,7 @@ for(i in 1:length(muestra$r)){
 \bigskip
 Por último, mostramos el diagrama de caja y bigotes donde se identifica el valor anómalo.
 <<eval=TRUE>>=
-source("Bigotes.R")
+source("./Funciones/Bigotes.R")
 bigotes(muestra$r,"bigotes.png",1.5)
 @
 \includegraphics[width=\textwidth]{bigotes}
