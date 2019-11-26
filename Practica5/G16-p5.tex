@@ -8,8 +8,9 @@
 \title{R-PL4}
 \author{Gabriel López, Sergio Sanz, Álvaro Zamorano}
 
+\usepackage{Sweave}
 \begin{document}
-\SweaveOpts{concordance=TRUE}
+\input{G16-p5-concordance}
 
 \maketitle
 
@@ -39,34 +40,44 @@ A5 & 5 & 4 \\ \hline
 \end{table}
 
 En primer lugar se introducirán los datos en forma de matriz y se hará la traspuesta de esta.
-<<eval=TRUE>>=
-muestra = matrix(c(4,4,4,3,5,5,1,1,5,4),2,5)
-muestra = t(muestra)
-@
+\begin{Schunk}
+\begin{Sinput}
+> muestra = matrix(c(4,4,4,3,5,5,1,1,5,4),2,5)
+> muestra = t(muestra)
+\end{Sinput}
+\end{Schunk}
 
 \bigskip
 En segundo lugar, calculamos las distancias euclídeas entre todos los puntos y los almacenamos 
 en una matriz. El cálculo de las distancias lo realizamos mediante la función \textbf{as.matrix}. 
 
 \bigskip
-<<eval=TRUE>>=
-distancias = as.matrix(dist(muestra))
-distancias = matrix(distancias,5,5)
-@
+\begin{Schunk}
+\begin{Sinput}
+> distancias = as.matrix(dist(muestra))
+> distancias = matrix(distancias,5,5)
+\end{Sinput}
+\end{Schunk}
 
 \bigskip
 En tercer lugar, ordenamos las columnas de la matriz de distancias por los valores de cada una de
 las filas de menor a mayor. Se tiene en cuenta el tercer vecino, por lo que debemos estudiar la cuarta 
 fila de la matriz ya que se tiene en cuenta la distancia de un punto consigo mismo.
 Desoués se muestran las muestras cuyo suceso es anómalo o outlier.
-<<eval=TRUE>>=
-for(i in 1:5){
-    distancias[,i] = sort(distancias[,i])
-    if(distancias[4,i] > 2.5) {
-        print(i);print("es un dato anómalo o outlier")
-    }
-}
-@
+\begin{Schunk}
+\begin{Sinput}
+> for(i in 1:5){
++     distancias[,i] = sort(distancias[,i])
++     if(distancias[4,i] > 2.5) {
++         print(i);print("es un dato anómalo o outlier")
++     }
++ }
+\end{Sinput}
+\begin{Soutput}
+[1] 4
+[1] "es un dato anómalo o outlier"
+\end{Soutput}
+\end{Schunk}
 
 \subsection{Caja y bigotes.}
 \bigskip
@@ -94,42 +105,59 @@ H7 & 14 & 5.3 \\ \hline
 \bigskip
 En primer lugar, introducimos los datos en una matriz y lo convertimos a dataframe para que el trabajo con las 
 columnas sea más cómodo.
-<<eval=TRUE>>=
-muestra = t(matrix(c(3,2,3.5,12,4.7,4.1,5.2,4.9,7.1,6.1,6.2,5.2,14,5.3),2,7,dimnames = list(c("r","d"))))
-muestra = data.frame(muestra)
-@
+\begin{Schunk}
+\begin{Sinput}
+> muestra = t(matrix(c(3,2,3.5,12,4.7,4.1,5.2,4.9,7.1,6.1,6.2,5.2,14,5.3),2,7,dimnames = list(c("r","d"))))
+> muestra = data.frame(muestra)
+\end{Sinput}
+\end{Schunk}
 
 \bigskip
 En segundo lugar:
 \begin{enumerate}
 \item Se determina el grado de outlier de forma arbitraria. El valor dado es \texttt{1.5}.
 \item Se ordenan los datos y se obtienen los cuartiles.
-<<eval=TRUE>>=
-cuar1 <- quantile(muestra$r,0.25)
-cuar3 <- quantile(muestra$r,0.75)
-@
+\begin{Schunk}
+\begin{Sinput}
+> cuar1 <- quantile(muestra$r,0.25)
+> cuar3 <- quantile(muestra$r,0.75)
+\end{Sinput}
+\end{Schunk}
 
 \item Se calculan los límites del intervalo.
-<<eval=TRUE>>=
-int = c(cuar1 - 1.5 * (cuar3 - cuar1),cuar3 + 1.5*(cuar3-cuar1))
-@
+\begin{Schunk}
+\begin{Sinput}
+> int = c(cuar1 - 1.5 * (cuar3 - cuar1),cuar3 + 1.5*(cuar3-cuar1))
+\end{Sinput}
+\end{Schunk}
 
 \item Se identifican como outliers los valores que quedan fuera del intervalo.
-<<eval=TRUE>>=
-for(i in 1:length(muestra$r)){
-     if(muestra$r[i] < int[1] || muestra$r[i] > int[2]){
-           print("El suceso "); print(i);print(" con valor ");print(muestra$r[i]); print(" es un suceso anomalo o outiler")
-      }
-}
-@
+\begin{Schunk}
+\begin{Sinput}
+> for(i in 1:length(muestra$r)){
++      if(muestra$r[i] < int[1] || muestra$r[i] > int[2]){
++            print("El suceso "); print(i);print(" con valor ");print(muestra$r[i]); print(" es un suceso anomalo o outiler")
++       }
++ }
+\end{Sinput}
+\begin{Soutput}
+[1] "El suceso "
+[1] 7
+[1] " con valor "
+[1] 14
+[1] " es un suceso anomalo o outiler"
+\end{Soutput}
+\end{Schunk}
 \end{enumerate}
 
 \bigskip
 Por último, mostramos el diagrama de caja y bigotes donde se identifica el valor anómalo.
-<<eval=TRUE,results = hide>>=
-source("./Funciones/Bigotes.R")
-bigotes(muestra$r,"bigotes.png",1.5)
-@
+\begin{Schunk}
+\begin{Sinput}
+> source("./Funciones/Bigotes.R")
+> bigotes(muestra$r,"bigotes.png",1.5)
+\end{Sinput}
+\end{Schunk}
 \includegraphics[width=\textwidth]{bigotes}
 
 \end{document}
