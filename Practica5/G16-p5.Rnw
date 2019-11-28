@@ -116,7 +116,7 @@ int = c(cuar1 - 1.5 * (cuar3 - cuar1),cuar3 + 1.5*(cuar3-cuar1))
 for(i in 1:length(muestra$r)){
      if(muestra$r[i] < int[1] || muestra$r[i] > int[2]){
            print("El suceso "); print(i);print(" con valor ");
-           print(muestra$r[i]); print(" es un suceso anomalo o outiler")
+           print(muestra$r[i]); print(" es un suceso anomalo o outlier")
       }
 }
 @
@@ -129,5 +129,35 @@ source("./Funciones/Bigotes.R")
 bigotes(muestra$r,"bigotes.png",1.5)
 @
 \includegraphics[width=\textwidth]{bigotes}
+
+\subsection{Desviación Típica.}
+\bigskip
+Ahora con los mismos datos del apartado anterior deseamos realizar un análisis de detección de datos 
+anómalos utilizando medidas de dispersión sobre la densidad con el método de \textbf{Desviación Típica}.
+\begin{enumerate}
+\item Se determina el grado de outlier de forma arbitraria. El valor dado es \texttt{2}.
+\item Se obtiene la media aritmética.
+<<eval=TRUE>>=
+media<-mean(muestra$d)
+@
+\item Se obtiene la desviación típica.
+<<eval=TRUE>>=
+sdd<-sd(muestra$d)
+desviacion<-sqrt((sdd^2)*((length(muestra$d)-1)/length(muestra$d)))
+@
+\item Y por último, se calculan los límites del intervalo para los valores atípicos.
+<<eval=TRUE>>=
+intdes<-c(media-2*desviacion,media+2*desviacion)
+@
+\item Se identifican como outliers los valores que quedan fuera del intervalo.
+<<eval=TRUE>>=
+for(i in 1:length(muestra$d)){
+     if(muestra$d[i] < intdes[1] || muestra$d[i] > intdes[2]){
+           print("El suceso "); print(i);print(" con valor ");
+           print(muestra$d[i]); print(" es un suceso anomalo o outlier")
+      }
+}
+@
+\end{enumerate}
 
 \end{document}

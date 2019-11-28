@@ -70,7 +70,7 @@ muestras cuyo suceso es anómalo o outlier, el grado de outlier es \texttt{2.5.}
 > (anomalosKVecinos(distancias,muestra,3,2.5))
 \end{Sinput}
 \begin{Soutput}
-[1] "La muestra 4 con valor (1 1) es outlier \n"
+[1] "La muestra 4 con valor (1 1) es outlier - "
 \end{Soutput}
 \end{Schunk}
 
@@ -133,7 +133,7 @@ En segundo lugar:
 > for(i in 1:length(muestra$r)){
 +      if(muestra$r[i] < int[1] || muestra$r[i] > int[2]){
 +            print("El suceso "); print(i);print(" con valor ");
-+            print(muestra$r[i]); print(" es un suceso anomalo o outiler")
++            print(muestra$r[i]); print(" es un suceso anomalo o outlier")
 +       }
 + }
 \end{Sinput}
@@ -142,7 +142,7 @@ En segundo lugar:
 [1] 7
 [1] " con valor "
 [1] 14
-[1] " es un suceso anomalo o outiler"
+[1] " es un suceso anomalo o outlier"
 \end{Soutput}
 \end{Schunk}
 \end{enumerate}
@@ -156,5 +156,50 @@ Por último, mostramos el diagrama de caja y bigotes donde se identifica el valo
 \end{Sinput}
 \end{Schunk}
 \includegraphics[width=\textwidth]{bigotes}
+
+\subsection{Desviación Típica.}
+\bigskip
+Ahora con los mismos datos del apartado anterior deseamos realizar un análisis de detección de datos 
+anómalos utilizando medidas de dispersión sobre la densidad con el método de \textbf{Desviación Típica}.
+\begin{enumerate}
+\item Se determina el grado de outlier de forma arbitraria. El valor dado es \texttt{2}.
+\item Se obtiene la media aritmética.
+\begin{Schunk}
+\begin{Sinput}
+> media<-mean(muestra$d)
+\end{Sinput}
+\end{Schunk}
+\item Se obtiene la desviación típica.
+\begin{Schunk}
+\begin{Sinput}
+> sdd<-sd(muestra$d)
+> desviacion<-sqrt((sdd^2)*((length(muestra$d)-1)/length(muestra$d)))
+\end{Sinput}
+\end{Schunk}
+\item Y por último, se calculan los límites del intervalo para los valores atípicos.
+\begin{Schunk}
+\begin{Sinput}
+> intdes<-c(media-2*desviacion,media+2*desviacion)
+\end{Sinput}
+\end{Schunk}
+\item Se identifican como outliers los valores que quedan fuera del intervalo.
+\begin{Schunk}
+\begin{Sinput}
+> for(i in 1:length(muestra$d)){
++      if(muestra$d[i] < intdes[1] || muestra$d[i] > intdes[2]){
++            print("El suceso "); print(i);print(" con valor ");
++            print(muestra$d[i]); print(" es un suceso anomalo o outlier")
++       }
++ }
+\end{Sinput}
+\begin{Soutput}
+[1] "El suceso "
+[1] 2
+[1] " con valor "
+[1] 12
+[1] " es un suceso anomalo o outlier"
+\end{Soutput}
+\end{Schunk}
+\end{enumerate}
 
 \end{document}
