@@ -1,0 +1,2 @@
+Sweave("G16-p6.Rnw")
+tools::texi2pdf("G16-p6.tex")
