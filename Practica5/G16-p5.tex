@@ -18,7 +18,7 @@
 
 \section{Ejercicio realizado en clase.}
 
-\subsection{K-vecinos}
+\subsection{K-vecinos.}
 \bigskip
 A partir del siguiente conjunto de calificaciones académicas,formados por dos notas: teoría y laboratorio, 
 que tendrán valores entre 0 y 5, realizar un análisis de detección de datos anómalos utilizando el algoritmo
@@ -380,7 +380,7 @@ Procedemos a su ejecución:
 Como en el apartado anterior hemos desarrollado el método de K-vecinos, ahora hemos buscado
 otros paquetes capaces de encontrar los outliers de una muestra realizando éste mismo método.
 
-\subsection{Paquete <adamethods>}
+\subsection{Paquete <adamethods>.}
 \bigskip
 En primer lugar hemos encontrado el paquete \textbf{adamethods}, el cual necesita previamente
 \textbf{shapes}.
@@ -407,9 +407,11 @@ la muestra con la que vamos a trabajar, la cual es la utilizada en el apartado 1
 
 \bigskip
 Para usar la función debemos introducir la muestra, el número de vecino con el que queremos trabajar
-(en este caso 3) y el número de outliers que queremos obtener. Por esta última característica 
-consideramos que el funcionamiento del paquete no es adecuado ya que se recomienda indicar el grado
-de outlier, y con ello el rango de valores permitidos.
+(en este caso 3) y el número de outliers que queremos obtener. El puntaje de anomalía de cada punto
+es la distancia a su k-ésimo vecino (3 en este caso) más cercano en el conjunto de datos. Luego, todos
+los puntos se clasifican en función de esta distancia. Cuanto más alto es el puntaje de un ejemplo,
+más anómalo es. Por esta característica consideramos que el funcionamiento del paquete no es adecuado 
+ya que se recomienda indicar el grado de outlier, y con ello el rango de valores permitidos.
 
 \bigskip
 Además aunque al calcular el número de outliers de la forma indicada en el apartado 1.1 nos salgan 2,
@@ -428,7 +430,7 @@ Procedemos a llamar a la función.
 \end{Soutput}
 \end{Schunk}
 
-\subsection{Paquete <outliers>}
+\subsection{Paquete <outliers>.}
 \bigskip
 Ahora hemos estudiado el paquete \textbf{outliers}, el cual nos devuelve un outlier de la muestra.
 \begin{Schunk}
@@ -452,10 +454,11 @@ con la utilizada en el apartado anterior y en el apartado 1.1 para comparar los 
 \bigskip
 Una vez introducidos los datos de la muestra procedemos a encontrar los outliers utilizando la función
 del paquete \textbf{outlier()}. A esta función hay que pasarle como parámetro la muestra de datos introducida,
-y esta nos devolverá un outlier, es decir, solo un outlier, si por ejemplo en el apartado 1.1 la función
-K-Vecino nos devuelve más de un outlier, esta función tan solo nos va a devolver uno de esos outliers. Incluso
-si no detecta ningúna outlier nuestra función, aqui nos dará uno de los datos de la muestra como outlier.
-Por esto consideramos que la funcionalidad de este paquete no es óptima.
+y esta nos devolverá un outlier ya que encuentra el valor con la mayor diferencia entre él y la media
+muestral. Si por ejemplo en el apartado 1.1 la función K-vecinos nos devuelve más de un outlier, 
+esta función tan solo nos va a devolver uno de esos outliers. Incluso si no detecta ningúna outlier nuestra
+función, aqui nos dará uno de los datos de la muestra como outlier. Por esto consideramos que la 
+funcionalidad de este paquete no es óptima.
 
 \bigskip
 Procedemos a llamar a la función.
@@ -468,7 +471,7 @@ Procedemos a llamar a la función.
 \end{Soutput}
 \end{Schunk}
 
-\subsection{Paquete <referenceIntervals>}
+\subsection{Paquete <referenceIntervals>.}
 \bigskip
 Ahora estudiaremos el paquete \textbf{referenceIntervals}, entonces primero inicializamos este paquete.
 \begin{Schunk}
@@ -490,10 +493,12 @@ anteriores y en el 1.1 para comparar resultado.
 \end{Schunk}
 
 \bigskip
-Ahora buscaremos los outliers de la muestra con la función \textbf{cook.outliers()}. A esta función se
-le introduce una columna de la muestra de datos, por ello, la funcionalidad de este paquete no es muy
-útil para muestras que cuenten con varios datos. Porque puede darse que con una de las columnas de datos
-identifique unos outliers, y con otras, otros outliers distintos.
+Ahora buscaremos los outliers de la muestra con la función \textbf{cook.outliers()}. Esta función calcula
+un modelo de regresión lineal para los datos (que es la media de los datos unidimensionales). A partir de eso,
+utilizando las distancias de Cook de cada punto de datos, se determinan los valores atípicos y se
+devuelven. Lo malo de esta función es que solo se puede introducir una columna de la muestra de datos, por ello,
+la funcionalidad de este paquete no es muy útil para muestras que cuenten con varios datos. Porque puede
+darse que con una de las columnas de datos identifique unos outliers, y con otras, otros outliers distintos.
 
 \bigskip
 Por lo tanto, procedemos a llamar a la función con los datos correspondientes a las calificaciones de teoría.
