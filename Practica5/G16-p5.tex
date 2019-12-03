@@ -205,6 +205,7 @@ Procedemos a su ejecución:
 [1] "El suceso 7 con valor 14 es un outlier - "
 \end{Soutput}
 \end{Schunk}
+
 \end{enumerate}
 
 \bigskip
@@ -215,6 +216,7 @@ Por último, mostramos el diagrama de caja y bigotes donde se identifica el valo
 > bigotes(muestra$r,"bigotes.png",1.5)
 \end{Sinput}
 \end{Schunk}
+
 \includegraphics[width=\textwidth]{bigotes}
 
 \subsection{Desviación Típica.}
@@ -232,6 +234,7 @@ anómalos utilizando medidas de dispersión sobre la densidad con el método de 
 [1] 5.657143
 \end{Soutput}
 \end{Schunk}
+
 \item Se obtiene la desviación típica.
 \begin{Schunk}
 \begin{Sinput}
@@ -242,6 +245,7 @@ anómalos utilizando medidas de dispersión sobre la densidad con el método de 
 [1] 2.857
 \end{Soutput}
 \end{Schunk}
+
 \item Y por último, se calculan los límites del intervalo para los valores atípicos.
 \begin{Schunk}
 \begin{Sinput}
@@ -251,6 +255,7 @@ anómalos utilizando medidas de dispersión sobre la densidad con el método de 
 [1] -0.05685714 11.37114285
 \end{Soutput}
 \end{Schunk}
+
 \item Se identifican como outliers los valores que quedan fuera del intervalo. Para ello
 hemos creado una función:
 \begin{Schunk}
@@ -284,6 +289,7 @@ Procedemos a su ejecución:
 [1] "El suceso 2 con valor 12 es un outlier - "
 \end{Soutput}
 \end{Schunk}
+
 \end{enumerate}
 
 \subsection{Regresión.}
@@ -307,6 +313,7 @@ Coefficients:
     6.01445     -0.05723  
 \end{Soutput}
 \end{Schunk}
+
 \item Se obtiene el Error Estándar de los residuos.
 \begin{Schunk}
 \begin{Sinput}
@@ -317,6 +324,7 @@ Coefficients:
 [1] 2.850242
 \end{Soutput}
 \end{Schunk}
+
 \item Se calcula el límite para considerar atípico un valor siguiendo la ecuación 
 \texttt{Grado outlier * Error estándar}.
 \begin{Schunk}
@@ -327,6 +335,7 @@ Coefficients:
 [1] 5.700484
 \end{Soutput}
 \end{Schunk}
+
 \item Se identifican los outliers como aquellos tales que \texttt{|yObservada - yCalculada| > limite}.
 El valor de |yObservada - yCalculada| es cada uno de los residuos.
 \begin{Schunk}
@@ -350,6 +359,7 @@ function (residuos, limite, muestra) {
 }
 \end{Soutput}
 \end{Schunk}
+
 \bigskip
 Procedemos a su ejecución:
 \begin{Schunk}
@@ -360,13 +370,16 @@ Procedemos a su ejecución:
 [1] "El suceso 2 con valor (3.5 12) es outlier - "
 \end{Soutput}
 \end{Schunk}
+
 \end{enumerate}
 
 \bigskip
 \section{Desarrollo de métodos.}
+
 \bigskip
 Como en el apartado anterior hemos desarrollado el método de K-vecinos, ahora hemos buscado
 otros paquetes capaces de encontrar los outliers de una muestra realizando éste mismo método.
+
 \subsection{Paquete <adamethods>}
 \bigskip
 En primer lugar hemos encontrado el paquete \textbf{adamethods}, el cual necesita previamente
@@ -379,6 +392,7 @@ En primer lugar hemos encontrado el paquete \textbf{adamethods}, el cual necesit
 > library(adamethods)
 \end{Sinput}
 \end{Schunk}
+
 \bigskip
 Vamos a utilizar la función \textbf{do\_knno()} que forma parte del paquete adamethods, la cual
 nos devuelve los números de las muestras que son outliers. Para ello primero vamos a introducir
@@ -390,6 +404,7 @@ la muestra con la que vamos a trabajar, la cual es la utilizada en el apartado 1
 > data = as.matrix(muestra)
 \end{Sinput}
 \end{Schunk}
+
 \bigskip
 Para usar la función debemos introducir la muestra, el número de vecino con el que queremos trabajar
 (en este caso 3) y el número de outliers que queremos obtener. Por esta última característica 
@@ -422,6 +437,7 @@ Ahora hemos estudiado el paquete \textbf{outliers}, el cual nos devuelve un outl
 > library(outliers)
 \end{Sinput}
 \end{Schunk}
+
 \bigskip
 Una vez que inicializamos el paquete a utilizar introducimos la muestra de datos, la cual corresponde
 con la utilizada en el apartado anterior y en el apartado 1.1 para comparar los resultados.
@@ -432,6 +448,7 @@ con la utilizada en el apartado anterior y en el apartado 1.1 para comparar los 
 > data = as.matrix(muestra)
 \end{Sinput}
 \end{Schunk}
+
 \bigskip
 Una vez introducidos los datos de la muestra procedemos a encontrar los outliers utilizando la función
 del paquete \textbf{outlier()}. A esta función hay que pasarle como parámetro la muestra de datos introducida,
@@ -460,6 +477,7 @@ Ahora estudiaremos el paquete \textbf{referenceIntervals}, entonces primero inic
 > library(referenceIntervals)
 \end{Sinput}
 \end{Schunk}
+
 \bigskip
 Posteriormente introducimos la muestra de datos, la cual corresponde con la utilizada en los apartados
 anteriores y en el 1.1 para comparar resultado.
@@ -470,6 +488,7 @@ anteriores y en el 1.1 para comparar resultado.
 > data = as.matrix(muestra)
 \end{Sinput}
 \end{Schunk}
+
 \bigskip
 Ahora buscaremos los outliers de la muestra con la función \textbf{cook.outliers()}. A esta función se
 le introduce una columna de la muestra de datos, por ello, la funcionalidad de este paquete no es muy
@@ -490,6 +509,7 @@ $subset
 [1] 4 4 5 5
 \end{Soutput}
 \end{Schunk}
+
 \bigskip
 Sin embargo, si en vez de introducir la columna de datos de las calificaciones de la teoría, introducimos
 las calificaciones de la práctica, vemos como los outliers son distintos.

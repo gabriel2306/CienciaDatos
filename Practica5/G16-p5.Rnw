@@ -133,6 +133,7 @@ Procedemos a su ejecución:
 <<eval=TRUE>>=
 (sucesosAnomalos(muestra$r,int))
 @
+
 \end{enumerate}
 
 \bigskip
@@ -141,6 +142,7 @@ Por último, mostramos el diagrama de caja y bigotes donde se identifica el valo
 source("./Funciones/Bigotes.R")
 bigotes(muestra$r,"bigotes.png",1.5)
 @
+
 \includegraphics[width=\textwidth]{bigotes}
 
 \subsection{Desviación Típica.}
@@ -153,15 +155,18 @@ anómalos utilizando medidas de dispersión sobre la densidad con el método de 
 <<eval=TRUE>>=
 (media<-mean(muestra$d))
 @
+
 \item Se obtiene la desviación típica.
 <<eval=TRUE>>=
 sdd<-sd(muestra$d)
 (desviacion<-sqrt((sdd^2)*((length(muestra$d)-1)/length(muestra$d))))
 @
+
 \item Y por último, se calculan los límites del intervalo para los valores atípicos.
 <<eval=TRUE>>=
 (intdes<-c(media-2*desviacion,media+2*desviacion))
 @
+
 \item Se identifican como outliers los valores que quedan fuera del intervalo. Para ello
 hemos creado una función:
 <<eval=TRUE>>=
@@ -174,6 +179,7 @@ Procedemos a su ejecución:
 <<eval=TRUE>>=
 (sucesosAnomalos(muestra$d,intdes))
 @
+
 \end{enumerate}
 
 \subsection{Regresión.}
@@ -187,34 +193,41 @@ error estándar de los residuos con el método de \textbf{Regresión}.
 <<eval=TRUE>>=
 (dfr<-lm(muestra$d~muestra$r))
 @
+
 \item Se obtiene el Error Estándar de los residuos.
 <<eval=TRUE>>=
 res<-summary(dfr)$residuals
 (sr=sqrt(sum(res^2)/7))
 @
+
 \item Se calcula el límite para considerar atípico un valor siguiendo la ecuación 
 \texttt{Grado outlier * Error estándar}.
 <<eval=TRUE>>=
 (intSr<-(2*sr))
 @
+
 \item Se identifican los outliers como aquellos tales que \texttt{|yObservada - yCalculada| > limite}.
 El valor de |yObservada - yCalculada| es cada uno de los residuos.
 <<eval=TRUE>>=
 source("./Funciones/anomalosRegresion.R")
 anomalosRegresion
 @
+
 \bigskip
 Procedemos a su ejecución:
 <<eval=TRUE>>=
 (anomalosRegresion(res, intSr, muestra))
 @
+
 \end{enumerate}
 
 \bigskip
 \section{Desarrollo de métodos.}
+
 \bigskip
 Como en el apartado anterior hemos desarrollado el método de K-vecinos, ahora hemos buscado
 otros paquetes capaces de encontrar los outliers de una muestra realizando éste mismo método.
+
 \subsection{Paquete <adamethods>}
 \bigskip
 En primer lugar hemos encontrado el paquete \textbf{adamethods}, el cual necesita previamente
@@ -225,6 +238,7 @@ library(shapes)
 install.packages("adamethods")
 library(adamethods)
 @
+
 \bigskip
 Vamos a utilizar la función \textbf{do\_knno()} que forma parte del paquete adamethods, la cual
 nos devuelve los números de las muestras que son outliers. Para ello primero vamos a introducir
@@ -234,6 +248,7 @@ muestra = matrix(c(4,4,4,3,5,5,1,1,5,4),2,5)
 muestra = t(muestra)
 data = as.matrix(muestra)
 @
+
 \bigskip
 Para usar la función debemos introducir la muestra, el número de vecino con el que queremos trabajar
 (en este caso 3) y el número de outliers que queremos obtener. Por esta última característica 
@@ -259,6 +274,7 @@ Ahora hemos estudiado el paquete \textbf{outliers}, el cual nos devuelve un outl
 install.packages("outliers")
 library(outliers)
 @
+
 \bigskip
 Una vez que inicializamos el paquete a utilizar introducimos la muestra de datos, la cual corresponde
 con la utilizada en el apartado anterior y en el apartado 1.1 para comparar los resultados.
@@ -267,6 +283,7 @@ muestra = matrix(c(4,4,4,3,5,5,1,1,5,4),2,5)
 muestra = t(muestra)
 data = as.matrix(muestra)
 @
+
 \bigskip
 Una vez introducidos los datos de la muestra procedemos a encontrar los outliers utilizando la función
 del paquete \textbf{outlier()}. A esta función hay que pasarle como parámetro la muestra de datos introducida,
@@ -288,6 +305,7 @@ Ahora estudiaremos el paquete \textbf{referenceIntervals}, entonces primero inic
 install.packages("referenceIntervals")
 library(referenceIntervals)
 @
+
 \bigskip
 Posteriormente introducimos la muestra de datos, la cual corresponde con la utilizada en los apartados
 anteriores y en el 1.1 para comparar resultado.
@@ -296,6 +314,7 @@ muestra = matrix(c(4,4,4,3,5,5,1,1,5,4),2,5)
 muestra = t(muestra)
 data = as.matrix(muestra)
 @
+
 \bigskip
 Ahora buscaremos los outliers de la muestra con la función \textbf{cook.outliers()}. A esta función se
 le introduce una columna de la muestra de datos, por ello, la funcionalidad de este paquete no es muy
@@ -307,6 +326,7 @@ Por lo tanto, procedemos a llamar a la función con los datos correspondientes a
 <<eval=TRUE>>=
 cook.outliers(data[,1])
 @
+
 \bigskip
 Sin embargo, si en vez de introducir la columna de datos de las calificaciones de la teoría, introducimos
 las calificaciones de la práctica, vemos como los outliers son distintos.
