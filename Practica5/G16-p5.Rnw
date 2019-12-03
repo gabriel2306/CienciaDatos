@@ -5,7 +5,7 @@
 \usepackage{multirow} 
 \usepackage{float} 
 
-\title{R-PL4}
+\title{R-PL5}
 \author{Gabriel López, Sergio Sanz, Álvaro Zamorano}
 
 \begin{document}
