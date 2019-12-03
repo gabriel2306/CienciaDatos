@@ -6,7 +6,7 @@
 \usepackage{float} 
 
 \title{R-PL5}
-\author{Gabriel López, Sergio Sanz, Álvaro Zamorano}
+\author{Gabriel López Cuenca, Sergio Sanz Sacristán, Álvaro Zamorano Ortega}
 
 \usepackage{Sweave}
 \begin{document}
@@ -78,11 +78,7 @@ function (distancias, muestra, k, grado,dimensiones) {
         if(distancias[k+1,i] > grado) {
             valor<-""
             for (j in 1:dimensiones){
-<<<<<<< HEAD
-                valor<-paste(valor,muestra[k+1,j],sep="")
-=======
                 valor<-paste(valor,muestra[k+1,j],sep=" ")
->>>>>>> 1bd6af06f4166899e896b89688b703e1993bcd92
             }
             tmp<-paste(tmp,"La muestra ", i, 
                 " con valor (", valor, " ) es outlier - ",sep="")
@@ -101,11 +97,7 @@ Procedemos a su ejecución:
 > (anomalosKVecinos(distancias,muestra,3,2.5,2))
 \end{Sinput}
 \begin{Soutput}
-<<<<<<< HEAD
-[1] "La muestra 4 con valor (11) es outlier - "
-=======
 [1] "La muestra 4 con valor ( 1 1 ) es outlier - "
->>>>>>> 1bd6af06f4166899e896b89688b703e1993bcd92
 \end{Soutput}
 \end{Schunk}
 
@@ -369,5 +361,94 @@ Procedemos a su ejecución:
 \end{Soutput}
 \end{Schunk}
 \end{enumerate}
+
+\bigskip
+\section{Desarrollo de métodos.}
+\bigskip
+Como en el apartado anterior hemos desarrollado el método de K-vecinos, ahora hemos buscado
+otros paquetes capaces de encontrar los outliers de una muestra realizando éste mismo método.
+\subsection{Paquete <adamethods>}
+\bigskip
+En primer lugar hemos encontrado el paquete \textbf{adamethods}, el cual necesita previamente
+\textbf{shapes}.
+\begin{Schunk}
+\begin{Sinput}
+> install.packages("shapes")
+> library(shapes)
+> install.packages("adamethods")
+> library(adamethods)
+\end{Sinput}
+\end{Schunk}
+\bigskip
+Vamos a utilizar la función \textbf{do\_knno()} que forma parte del paquete adamethods, la cual
+nos devuelve los números de las muestras que son outliers. Para ello primero vamos a introducir
+la muestra con la que vamos a trabajar, la cual es la utilizada en el apartado 1.1.
+\begin{Schunk}
+\begin{Sinput}
+> muestra = matrix(c(4,4,4,3,5,5,1,1,5,4),2,5)
+> muestra = t(muestra)
+> data = as.matrix(muestra)
+\end{Sinput}
+\end{Schunk}
+\bigskip
+Para usar la función debemos introducir la muestra, el número de vecino con el que queremos trabajar
+(en este caso 3) y el número de outliers que queremos obtener. Por esta última característica 
+consideramos que el funcionamiento del paquete no es adecuado ya que se recomienda indicar el grado
+de outlier, y con ello el rango de valores permitidos.
+
+\bigskip
+Además aunque al calcular el número de outliers de la forma indicada en el apartado 1.1 nos salgan 2,
+si al realizar está función le introducimos que solo nos calcule 1 outlier, solo nos devolverá 1.
+Por lo tanto, la función no se corresponde con la realidad.
+
+\bigskip
+Procedemos a llamar a la función.
+\begin{Schunk}
+\begin{Sinput}
+> out <- do_knno(data,3,1)
+> (data[out,])
+\end{Sinput}
+\begin{Soutput}
+[1] 1 1
+\end{Soutput}
+\end{Schunk}
+
+\subsection{Paquete <outliers>}
+\bigskip
+Ahora hemos estudiado el paquete \textbf{outliers}, el cual nos devuelve un outlier de la muestra.
+\begin{Schunk}
+\begin{Sinput}
+> install.packages("outliers")
+> library(outliers)
+\end{Sinput}
+\end{Schunk}
+\bigskip
+Una vez que inicializamos el paquete a utilizar introducimos la muestra de datos, la cual corresponde
+con la utilizada en el apartado anterior y en el apartado 1.1 para comparar los resultados.
+\begin{Schunk}
+\begin{Sinput}
+> muestra = matrix(c(4,4,4,3,5,5,1,1,5,4),2,5)
+> muestra = t(muestra)
+> data = as.matrix(muestra)
+\end{Sinput}
+\end{Schunk}
+\bigskip
+Una vez introducidos los datos de la muestra procedemos a encontrar los outliers utilizando la función
+del paquete \textbf{outlier()}. A esta función hay que pasarle como parámetro la muestra de datos introducida,
+y esta nos devolverá un outlier, es decir, solo un outlier, si por ejemplo en el apartado 1.1 la función
+K-Vecino nos devuelve más de un outlier, esta función tan solo nos va a devolver uno de esos outliers. Incluso
+si no detecta ningúna outlier nuestra función, aqui nos dará uno de los datos de la muestra como outlier.
+Por esto consideramos que la funcionalidad de este paquete no es óptima.
+
+\bigskip
+Procedemos a llamar a la función.
+\begin{Schunk}
+\begin{Sinput}
+> outlier(data)
+\end{Sinput}
+\begin{Soutput}
+[1] 1 1
+\end{Soutput}
+\end{Schunk}
 
 \end{document}

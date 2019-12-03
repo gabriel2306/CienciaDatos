@@ -6,7 +6,7 @@
 \usepackage{float} 
 
 \title{R-PL5}
-\author{Gabriel López, Sergio Sanz, Álvaro Zamorano}
+\author{Gabriel López Cuenca, Sergio Sanz Sacristán, Álvaro Zamorano Ortega}
 
 \begin{document}
 \SweaveOpts{concordance=TRUE}
@@ -209,5 +209,76 @@ Procedemos a su ejecución:
 (anomalosRegresion(res, intSr, muestra))
 @
 \end{enumerate}
+
+\bigskip
+\section{Desarrollo de métodos.}
+\bigskip
+Como en el apartado anterior hemos desarrollado el método de K-vecinos, ahora hemos buscado
+otros paquetes capaces de encontrar los outliers de una muestra realizando éste mismo método.
+\subsection{Paquete <adamethods>}
+\bigskip
+En primer lugar hemos encontrado el paquete \textbf{adamethods}, el cual necesita previamente
+\textbf{shapes}.
+<<eval=TRUE, results=hide>>=
+install.packages("shapes")
+library(shapes)
+install.packages("adamethods")
+library(adamethods)
+@
+\bigskip
+Vamos a utilizar la función \textbf{do\_knno()} que forma parte del paquete adamethods, la cual
+nos devuelve los números de las muestras que son outliers. Para ello primero vamos a introducir
+la muestra con la que vamos a trabajar, la cual es la utilizada en el apartado 1.1.
+<<eval=TRUE>>=
+muestra = matrix(c(4,4,4,3,5,5,1,1,5,4),2,5)
+muestra = t(muestra)
+data = as.matrix(muestra)
+@
+\bigskip
+Para usar la función debemos introducir la muestra, el número de vecino con el que queremos trabajar
+(en este caso 3) y el número de outliers que queremos obtener. Por esta última característica 
+consideramos que el funcionamiento del paquete no es adecuado ya que se recomienda indicar el grado
+de outlier, y con ello el rango de valores permitidos.
+
+\bigskip
+Además aunque al calcular el número de outliers de la forma indicada en el apartado 1.1 nos salgan 2,
+si al realizar está función le introducimos que solo nos calcule 1 outlier, solo nos devolverá 1.
+Por lo tanto, la función no se corresponde con la realidad.
+
+\bigskip
+Procedemos a llamar a la función.
+<<eval=TRUE>>=
+out <- do_knno(data,3,1)
+(data[out,])
+@
+
+\subsection{Paquete <outliers>}
+\bigskip
+Ahora hemos estudiado el paquete \textbf{outliers}, el cual nos devuelve un outlier de la muestra.
+<<eval=TRUE>>=
+install.packages("outliers")
+library(outliers)
+@
+\bigskip
+Una vez que inicializamos el paquete a utilizar introducimos la muestra de datos, la cual corresponde
+con la utilizada en el apartado anterior y en el apartado 1.1 para comparar los resultados.
+<<eval=TRUE>>=
+muestra = matrix(c(4,4,4,3,5,5,1,1,5,4),2,5)
+muestra = t(muestra)
+data = as.matrix(muestra)
+@
+\bigskip
+Una vez introducidos los datos de la muestra procedemos a encontrar los outliers utilizando la función
+del paquete \textbf{outlier()}. A esta función hay que pasarle como parámetro la muestra de datos introducida,
+y esta nos devolverá un outlier, es decir, solo un outlier, si por ejemplo en el apartado 1.1 la función
+K-Vecino nos devuelve más de un outlier, esta función tan solo nos va a devolver uno de esos outliers. Incluso
+si no detecta ningúna outlier nuestra función, aqui nos dará uno de los datos de la muestra como outlier.
+Por esto consideramos que la funcionalidad de este paquete no es óptima.
+
+\bigskip
+Procedemos a llamar a la función.
+<<eval=TRUE>>=
+outlier(data)
+@
 
 \end{document}
