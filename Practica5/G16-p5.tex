@@ -61,7 +61,7 @@ en una matriz. El cálculo de las distancias lo realizamos mediante la función 
 
 \bigskip
 En tercer lugar, ordenamos las columnas de la matriz de distancias por los valores de cada una de
-las filas de menor a mayor. Se tiene en cuenta el tercer vecino, por lo que debemos estudiar la cuarta 
+las filas de menor a mayor. Se tiene en cuenta el \textbf{tercer} vecino, por lo que debemos estudiar la cuarta 
 fila de la matriz ya que se tiene en cuenta la distancia de un punto consigo mismo. Se obtienen las 
 muestras cuyo suceso es anómalo o outlier, el grado de outlier es \texttt{2.5.}
 \begin{Schunk}
@@ -70,14 +70,18 @@ muestras cuyo suceso es anómalo o outlier, el grado de outlier es \texttt{2.5.}
 > anomalosKVecinos
 \end{Sinput}
 \begin{Soutput}
-function (data, muestra, k, grado) {
+function (distancias, muestra, k, grado,dimensiones) {
     tmp<-""
 
-    for(i in 1:length(data[1,])){
-        data[,i] = sort(data[,i])
-        if(data[k+1,i] > grado) {
-            valor<-paste(muestra[k+1,1],muestra[k+1,2])
-            tmp<-paste(tmp,"La muestra ", i, " con valor (", valor, ") es outlier - ",sep="")
+    for(i in 1:(length(muestra)/dimensiones)){
+        distancias[,i] = sort(distancias[,i])
+        if(distancias[k+1,i] > grado) {
+            valor<-""
+            for (j in 1:dimensiones){
+                valor<-paste(valor,muestra[k+1,j])
+            }
+            tmp<-paste(tmp,"La muestra ", i, 
+                " con valor (", valor, ") es outlier - ",sep="")
         }
     }
 
@@ -90,12 +94,16 @@ function (data, muestra, k, grado) {
 Procedemos a su ejecución:
 \begin{Schunk}
 \begin{Sinput}
-> (anomalosKVecinos(distancias,muestra,3,2.5))
+> (anomalosKVecinos(distancias,muestra,3,2.5,2))
 \end{Sinput}
 \begin{Soutput}
-[1] "La muestra 4 con valor (1 1) es outlier - "
+[1] "La muestra 4 con valor ( 1 1) es outlier - "
 \end{Soutput}
 \end{Schunk}
+
+\bigskip
+Es importante indicar que la función necesita conocer el número de \textbf{dimensiones} que tiene
+la muestra.
 
 \subsection{Caja y bigotes.}
 \bigskip

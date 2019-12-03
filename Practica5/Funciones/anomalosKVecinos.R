@@ -1,10 +1,13 @@
-anomalosKVecinos <- function (data, muestra, k, grado) {
+anomalosKVecinos <- function (distancias, muestra, k, grado,dimensiones) {
     tmp<-""
 
-    for(i in 1:length(data[1,])){
-        data[,i] = sort(data[,i])
-        if(data[k+1,i] > grado) {
-            valor<-paste(muestra[k+1,1],muestra[k+1,2])
+    for(i in 1:(length(muestra)/dimensiones)){
+        distancias[,i] = sort(distancias[,i])
+        if(distancias[k+1,i] > grado) {
+            valor<-""
+            for (j in 1:dimensiones){
+                valor<-paste(valor,muestra[k+1,j],sep="")
+            }
             tmp<-paste(tmp,"La muestra ", i, 
                 " con valor (", valor, ") es outlier - ",sep="")
         }
