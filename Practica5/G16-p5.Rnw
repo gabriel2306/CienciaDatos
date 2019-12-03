@@ -117,14 +117,17 @@ cuar3 <- quantile(muestra$r,0.75)
 int = c(cuar1 - 1.5 * (cuar3 - cuar1),cuar3 + 1.5*(cuar3-cuar1))
 @
 
-\item Se identifican como outliers los valores que quedan fuera del intervalo.
+\item Se identifican como outliers los valores que quedan fuera del intervalo. Para ello 
+hemos creado una función:
 <<eval=TRUE>>=
-for(i in 1:length(muestra$r)){
-     if(muestra$r[i] < int[1] || muestra$r[i] > int[2]){
-           print("El suceso "); print(i);print(" con valor ");
-           print(muestra$r[i]); print(" es un suceso anomalo o outlier")
-      }
-}
+source("./Funciones/sucesosAnomalos.R")
+sucesosAnomalos
+@
+
+\bigskip
+Procedemos a su ejecución:
+<<eval=TRUE>>=
+(sucesosAnomalos(muestra$r,int))
 @
 \end{enumerate}
 
@@ -155,14 +158,17 @@ desviacion<-sqrt((sdd^2)*((length(muestra$d)-1)/length(muestra$d)))
 <<eval=TRUE>>=
 intdes<-c(media-2*desviacion,media+2*desviacion)
 @
-\item Se identifican como outliers los valores que quedan fuera del intervalo.
+\item Se identifican como outliers los valores que quedan fuera del intervalo. Para ello
+hemos creado una función:
 <<eval=TRUE>>=
-for(i in 1:length(muestra$d)){
-     if(muestra$d[i] < intdes[1] || muestra$d[i] > intdes[2]){
-           print("El suceso "); print(i);print(" con valor ");
-           print(muestra$d[i]); print(" es un suceso anomalo o outlier")
-      }
-}
+source("./Funciones/sucesosAnomalos.R")
+sucesosAnomalos
+@
+
+\bigskip
+Procedemos a su ejecución:
+<<eval=TRUE>>=
+(sucesosAnomalos(muestra$d,intdes))
 @
 \end{enumerate}
 
