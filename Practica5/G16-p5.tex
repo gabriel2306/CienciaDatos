@@ -73,6 +73,7 @@ muestras cuyo suceso es anómalo o outlier, el grado de outlier es \texttt{2.5.}
 function (distancias, muestra, k, grado,dimensiones) {
     tmp<-""
 
+<<<<<<< HEAD
     for(i in 1:(length(muestra)/dimensiones)){
         distancias[,i] = sort(distancias[,i])
         if(distancias[k+1,i] > grado) {
@@ -80,6 +81,12 @@ function (distancias, muestra, k, grado,dimensiones) {
             for (j in 1:dimensiones){
                 valor<-paste(valor,muestra[k+1,j])
             }
+=======
+    for(i in 1:length(data[1,])){
+        data[,i] = sort(data[,i])
+        if(data[k+1,i] > grado) {
+            valor<-paste(muestra[k+1,1],muestra[k+1,2])
+>>>>>>> 9ef270e55b002d0c75328fe1533805b14afff179
             tmp<-paste(tmp,"La muestra ", i, 
                 " con valor (", valor, ") es outlier - ",sep="")
         }
@@ -158,22 +165,37 @@ En segundo lugar:
 \end{Sinput}
 \end{Schunk}
 
-\item Se identifican como outliers los valores que quedan fuera del intervalo.
+\item Se identifican como outliers los valores que quedan fuera del intervalo. Para ello 
+hemos creado una función:
 \begin{Schunk}
 \begin{Sinput}
-> for(i in 1:length(muestra$r)){
-+      if(muestra$r[i] < int[1] || muestra$r[i] > int[2]){
-+            print("El suceso "); print(i);print(" con valor ");
-+            print(muestra$r[i]); print(" es un suceso anomalo o outlier")
-+       }
-+ }
+> source("./Funciones/sucesosAnomalos.R")
+> sucesosAnomalos
 \end{Sinput}
 \begin{Soutput}
-[1] "El suceso "
-[1] 7
-[1] " con valor "
-[1] 14
-[1] " es un suceso anomalo o outlier"
+function (muestra, intervalo) {
+    tmp<-""
+
+    for(i in 1:length(muestra)){
+        if(muestra[i] < intervalo[1] || muestra[i] > intervalo[2]){
+            tmp<-paste(tmp, "El suceso ", i, " con valor ", muestra[i],
+            " es un outlier - ", sep="")
+        }
+    }
+    
+    return(tmp)
+}
+\end{Soutput}
+\end{Schunk}
+
+\bigskip
+Procedemos a su ejecución:
+\begin{Schunk}
+\begin{Sinput}
+> (sucesosAnomalos(muestra$r,int))
+\end{Sinput}
+\begin{Soutput}
+[1] "El suceso 7 con valor 14 es un outlier - "
 \end{Soutput}
 \end{Schunk}
 \end{enumerate}
@@ -213,22 +235,37 @@ anómalos utilizando medidas de dispersión sobre la densidad con el método de 
 > intdes<-c(media-2*desviacion,media+2*desviacion)
 \end{Sinput}
 \end{Schunk}
-\item Se identifican como outliers los valores que quedan fuera del intervalo.
+\item Se identifican como outliers los valores que quedan fuera del intervalo. Para ello
+hemos creado una función:
 \begin{Schunk}
 \begin{Sinput}
-> for(i in 1:length(muestra$d)){
-+      if(muestra$d[i] < intdes[1] || muestra$d[i] > intdes[2]){
-+            print("El suceso "); print(i);print(" con valor ");
-+            print(muestra$d[i]); print(" es un suceso anomalo o outlier")
-+       }
-+ }
+> source("./Funciones/sucesosAnomalos.R")
+> sucesosAnomalos
 \end{Sinput}
 \begin{Soutput}
-[1] "El suceso "
-[1] 2
-[1] " con valor "
-[1] 12
-[1] " es un suceso anomalo o outlier"
+function (muestra, intervalo) {
+    tmp<-""
+
+    for(i in 1:length(muestra)){
+        if(muestra[i] < intervalo[1] || muestra[i] > intervalo[2]){
+            tmp<-paste(tmp, "El suceso ", i, " con valor ", muestra[i],
+            " es un outlier - ", sep="")
+        }
+    }
+    
+    return(tmp)
+}
+\end{Soutput}
+\end{Schunk}
+
+\bigskip
+Procedemos a su ejecución:
+\begin{Schunk}
+\begin{Sinput}
+> (sucesosAnomalos(muestra$d,intdes))
+\end{Sinput}
+\begin{Soutput}
+[1] "El suceso 2 con valor 12 es un outlier - "
 \end{Soutput}
 \end{Schunk}
 \end{enumerate}
