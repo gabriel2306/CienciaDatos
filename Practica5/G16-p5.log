@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.6960 64-bit) (preloaded format=pdflatex 2019.1.28)  3 DEC 2019 12:14
-=======
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.10.11)  3 DEC 2019 12:13
->>>>>>> 9ef270e55b002d0c75328fe1533805b14afff179
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.10.11)  3 DEC 2019 12:48
 entering extended mode
 **C:/GitHub/CienciaDatos/Practica5/G16-p5.tex
 (C:/GitHub/CienciaDatos/Practica5/G16-p5.tex
@@ -405,38 +401,23 @@ LaTeX Font Info:    Try loading font information for T1+aett on input line 44.
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
 ) [1
 
-{C:/Users/SENAJ/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2]
-<./tmp/bigotes.png, id=16, 481.8pt x 481.8pt>
+{C:/Users/SENAJ/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2] [3]
+<./tmp/bigotes.png, id=19, 481.8pt x 481.8pt>
 File: ./tmp/bigotes.png Graphic file (type png)
 <use ./tmp/bigotes.png>
-<<<<<<< HEAD
-Package pdftex.def Info: ./tmp/bigotes.png  used on input line 189.
-=======
-Package pdftex.def Info: ./tmp/bigotes.png  used on input line 197.
->>>>>>> 9ef270e55b002d0c75328fe1533805b14afff179
+Package pdftex.def Info: ./tmp/bigotes.png  used on input line 218.
 (pdftex.def)             Requested size: 345.0pt x 345.00635pt.
-[3] [4 <./tmp/bigotes.png>] [5] (G16-p5.aux
+[4 <./tmp/bigotes.png>] [5] [6] (G16-p5.aux
 LaTeX Info: Redefining \. on input line 6.
 LaTeX Info: Redefining \% on input line 6.
 ) ) 
 Here is how much of TeX's memory you used:
- 3805 strings out of 492895
- 55216 string characters out of 3123734
+ 3809 strings out of 492895
+ 55357 string characters out of 3123734
  124351 words of memory out of 3000000
- 7621 multiletter control sequences out of 15000+200000
+ 7625 multiletter control sequences out of 15000+200000
  26719 words of font info for 60 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
-<<<<<<< HEAD
- 41i,7n,31p,374b,359s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/P
-rogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program F
-iles/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKT
-eX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fo
-nts/type1/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1
-/public/amsfonts/cm/cmsltt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/publi
-c/amsfonts/cm/cmtt10.pfb>
-Output written on G16-p5.pdf (5 pages, 109695 bytes).
-=======
  41i,7n,31p,306b,361s stack positions out of 5000i,500n,10000p,200000b,50000s
 <C:/Users/SENAJ/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfont
 s/cm/cmbx10.pfb><C:/Users/SENAJ/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/p
@@ -446,11 +427,11 @@ fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/SENAJ/AppData/Local/Programs
 cal/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/Users/SENA
 J/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmsltt10.pfb
 ><C:/Users/SENAJ/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/
-cm/cmtt10.pfb>
-Output written on G16-p5.pdf (5 pages, 109546 bytes).
->>>>>>> 9ef270e55b002d0c75328fe1533805b14afff179
+cm/cmsy10.pfb><C:/Users/SENAJ/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pub
+lic/amsfonts/cm/cmtt10.pfb>
+Output written on G16-p5.pdf (6 pages, 124374 bytes).
 PDF statistics:
- 49 PDF objects out of 1000 (max. 8388607)
+ 56 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  10 words of extra memory for PDF output out of 10000 (max. 10000000)
 

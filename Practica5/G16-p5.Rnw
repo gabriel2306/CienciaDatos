@@ -112,13 +112,13 @@ En segundo lugar:
 \item Se determina el grado de outlier de forma arbitraria. El valor dado es \texttt{1.5}.
 \item Se ordenan los datos y se obtienen los cuartiles.
 <<eval=TRUE>>=
-cuar1 <- quantile(muestra$r,0.25)
-cuar3 <- quantile(muestra$r,0.75)
+(cuar1 <- quantile(muestra$r,0.25))
+(cuar3 <- quantile(muestra$r,0.75))
 @
 
 \item Se calculan los límites del intervalo.
 <<eval=TRUE>>=
-int = c(cuar1 - 1.5 * (cuar3 - cuar1),cuar3 + 1.5*(cuar3-cuar1))
+(int = c(cuar1 - 1.5 * (cuar3 - cuar1),cuar3 + 1.5*(cuar3-cuar1)))
 @
 
 \item Se identifican como outliers los valores que quedan fuera del intervalo. Para ello 
@@ -151,16 +151,16 @@ anómalos utilizando medidas de dispersión sobre la densidad con el método de 
 \item Se determina el grado de outlier de forma arbitraria. El valor dado es \texttt{2}.
 \item Se obtiene la media aritmética.
 <<eval=TRUE>>=
-media<-mean(muestra$d)
+(media<-mean(muestra$d))
 @
 \item Se obtiene la desviación típica.
 <<eval=TRUE>>=
 sdd<-sd(muestra$d)
-desviacion<-sqrt((sdd^2)*((length(muestra$d)-1)/length(muestra$d)))
+(desviacion<-sqrt((sdd^2)*((length(muestra$d)-1)/length(muestra$d))))
 @
 \item Y por último, se calculan los límites del intervalo para los valores atípicos.
 <<eval=TRUE>>=
-intdes<-c(media-2*desviacion,media+2*desviacion)
+(intdes<-c(media-2*desviacion,media+2*desviacion))
 @
 \item Se identifican como outliers los valores que quedan fuera del intervalo. Para ello
 hemos creado una función:
@@ -173,6 +173,40 @@ sucesosAnomalos
 Procedemos a su ejecución:
 <<eval=TRUE>>=
 (sucesosAnomalos(muestra$d,intdes))
+@
+\end{enumerate}
+
+\subsection{Regresión.}
+\bigskip
+Con los mismos datos de los apartados anteriores deseamos realizar un análisis de detección de datos 
+anómalos sobre la regresión de las variables, densidad en función de la resistencia, utilizando el
+error estándar de los residuos con el método de \textbf{Regresión}.
+\begin{enumerate}
+\item Se determina el grado de outlier de forma arbitraria. El valor dado es \texttt{2}.
+\item Se obtiene la regresión lineal.
+<<eval=TRUE>>=
+(dfr<-lm(muestra$d~muestra$r))
+@
+\item Se obtiene el Error Estándar de los residuos.
+<<eval=TRUE>>=
+res<-summary(dfr)$residuals
+(sr=sqrt(sum(res^2)/7))
+@
+\item Se calcula el límite para considerar atípico un valor siguiendo la ecuación 
+\texttt{Grado outlier * Error estándar}.
+<<eval=TRUE>>=
+(intSr<-(2*sr))
+@
+\item Se identifican los outliers como aquellos tales que \texttt{|yObservada - yCalculada| > limite}.
+El valor de |yObservada - yCalculada| es cada uno de los residuos.
+<<eval=TRUE>>=
+source("./Funciones/anomalosRegresion.R")
+anomalosRegresion
+@
+\bigskip
+Procedemos a su ejecución:
+<<eval=TRUE>>=
+(anomalosRegresion(res, intSr, muestra))
 @
 \end{enumerate}
 

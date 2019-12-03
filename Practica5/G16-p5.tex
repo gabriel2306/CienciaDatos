@@ -73,20 +73,13 @@ muestras cuyo suceso es anómalo o outlier, el grado de outlier es \texttt{2.5.}
 function (distancias, muestra, k, grado,dimensiones) {
     tmp<-""
 
-<<<<<<< HEAD
     for(i in 1:(length(muestra)/dimensiones)){
         distancias[,i] = sort(distancias[,i])
         if(distancias[k+1,i] > grado) {
             valor<-""
             for (j in 1:dimensiones){
-                valor<-paste(valor,muestra[k+1,j])
+                valor<-paste(valor,muestra[k+1,j],sep="")
             }
-=======
-    for(i in 1:length(data[1,])){
-        data[,i] = sort(data[,i])
-        if(data[k+1,i] > grado) {
-            valor<-paste(muestra[k+1,1],muestra[k+1,2])
->>>>>>> 9ef270e55b002d0c75328fe1533805b14afff179
             tmp<-paste(tmp,"La muestra ", i, 
                 " con valor (", valor, ") es outlier - ",sep="")
         }
@@ -104,7 +97,7 @@ Procedemos a su ejecución:
 > (anomalosKVecinos(distancias,muestra,3,2.5,2))
 \end{Sinput}
 \begin{Soutput}
-[1] "La muestra 4 con valor ( 1 1) es outlier - "
+[1] "La muestra 4 con valor (11) es outlier - "
 \end{Soutput}
 \end{Schunk}
 
@@ -153,16 +146,30 @@ En segundo lugar:
 \item Se ordenan los datos y se obtienen los cuartiles.
 \begin{Schunk}
 \begin{Sinput}
-> cuar1 <- quantile(muestra$r,0.25)
-> cuar3 <- quantile(muestra$r,0.75)
+> (cuar1 <- quantile(muestra$r,0.25))
 \end{Sinput}
+\begin{Soutput}
+25% 
+4.1 
+\end{Soutput}
+\begin{Sinput}
+> (cuar3 <- quantile(muestra$r,0.75))
+\end{Sinput}
+\begin{Soutput}
+ 75% 
+6.65 
+\end{Soutput}
 \end{Schunk}
 
 \item Se calculan los límites del intervalo.
 \begin{Schunk}
 \begin{Sinput}
-> int = c(cuar1 - 1.5 * (cuar3 - cuar1),cuar3 + 1.5*(cuar3-cuar1))
+> (int = c(cuar1 - 1.5 * (cuar3 - cuar1),cuar3 + 1.5*(cuar3-cuar1)))
 \end{Sinput}
+\begin{Soutput}
+   25%    75% 
+ 0.275 10.475 
+\end{Soutput}
 \end{Schunk}
 
 \item Se identifican como outliers los valores que quedan fuera del intervalo. Para ello 
@@ -219,21 +226,30 @@ anómalos utilizando medidas de dispersión sobre la densidad con el método de 
 \item Se obtiene la media aritmética.
 \begin{Schunk}
 \begin{Sinput}
-> media<-mean(muestra$d)
+> (media<-mean(muestra$d))
 \end{Sinput}
+\begin{Soutput}
+[1] 5.657143
+\end{Soutput}
 \end{Schunk}
 \item Se obtiene la desviación típica.
 \begin{Schunk}
 \begin{Sinput}
 > sdd<-sd(muestra$d)
-> desviacion<-sqrt((sdd^2)*((length(muestra$d)-1)/length(muestra$d)))
+> (desviacion<-sqrt((sdd^2)*((length(muestra$d)-1)/length(muestra$d))))
 \end{Sinput}
+\begin{Soutput}
+[1] 2.857
+\end{Soutput}
 \end{Schunk}
 \item Y por último, se calculan los límites del intervalo para los valores atípicos.
 \begin{Schunk}
 \begin{Sinput}
-> intdes<-c(media-2*desviacion,media+2*desviacion)
+> (intdes<-c(media-2*desviacion,media+2*desviacion))
 \end{Sinput}
+\begin{Soutput}
+[1] -0.05685714 11.37114285
+\end{Soutput}
 \end{Schunk}
 \item Se identifican como outliers los valores que quedan fuera del intervalo. Para ello
 hemos creado una función:
@@ -266,6 +282,82 @@ Procedemos a su ejecución:
 \end{Sinput}
 \begin{Soutput}
 [1] "El suceso 2 con valor 12 es un outlier - "
+\end{Soutput}
+\end{Schunk}
+\end{enumerate}
+
+\subsection{Regresión.}
+\bigskip
+Con los mismos datos de los apartados anteriores deseamos realizar un análisis de detección de datos 
+anómalos sobre la regresión de las variables, densidad en función de la resistencia, utilizando el
+error estándar de los residuos con el método de \textbf{Regresión}.
+\begin{enumerate}
+\item Se determina el grado de outlier de forma arbitraria. El valor dado es \texttt{2}.
+\item Se obtiene la regresión lineal.
+\begin{Schunk}
+\begin{Sinput}
+> (dfr<-lm(muestra$d~muestra$r))
+\end{Sinput}
+\begin{Soutput}
+Call:
+lm(formula = muestra$d ~ muestra$r)
+
+Coefficients:
+(Intercept)    muestra$r  
+    6.01445     -0.05723  
+\end{Soutput}
+\end{Schunk}
+\item Se obtiene el Error Estándar de los residuos.
+\begin{Schunk}
+\begin{Sinput}
+> res<-summary(dfr)$residuals
+> (sr=sqrt(sum(res^2)/7))
+\end{Sinput}
+\begin{Soutput}
+[1] 2.850242
+\end{Soutput}
+\end{Schunk}
+\item Se calcula el límite para considerar atípico un valor siguiendo la ecuación 
+\texttt{Grado outlier * Error estándar}.
+\begin{Schunk}
+\begin{Sinput}
+> (intSr<-(2*sr))
+\end{Sinput}
+\begin{Soutput}
+[1] 5.700484
+\end{Soutput}
+\end{Schunk}
+\item Se identifican los outliers como aquellos tales que \texttt{|yObservada - yCalculada| > limite}.
+El valor de |yObservada - yCalculada| es cada uno de los residuos.
+\begin{Schunk}
+\begin{Sinput}
+> source("./Funciones/anomalosRegresion.R")
+> anomalosRegresion
+\end{Sinput}
+\begin{Soutput}
+function (residuos, limite, muestra) {
+    tmp<-""
+
+    for(i in 1:length(residuos)){
+        if(residuos[i]>limite){
+            tmp<-paste(tmp,"El suceso ", i, 
+                " con valor (", muestra$r[i]," ",
+                 muestra$d[i], ") es outlier - ",sep="")
+        }
+    }
+
+    return(tmp)
+}
+\end{Soutput}
+\end{Schunk}
+\bigskip
+Procedemos a su ejecución:
+\begin{Schunk}
+\begin{Sinput}
+> (anomalosRegresion(res, intSr, muestra))
+\end{Sinput}
+\begin{Soutput}
+[1] "El suceso 2 con valor (3.5 12) es outlier - "
 \end{Soutput}
 \end{Schunk}
 \end{enumerate}
