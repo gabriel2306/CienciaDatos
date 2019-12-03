@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.10.11)  3 DEC 2019 15:54
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.10.11)  3 DEC 2019 17:05
 entering extended mode
 **C:/GitHub/CienciaDatos/Practica5/G16-p5.tex
 (C:/GitHub/CienciaDatos/Practica5/G16-p5.tex
@@ -412,15 +412,15 @@ File: ./tmp/bigotes.png Graphic file (type png)
 <use ./tmp/bigotes.png>
 Package pdftex.def Info: ./tmp/bigotes.png  used on input line 218.
 (pdftex.def)             Requested size: 345.0pt x 345.00635pt.
-[4 <./tmp/bigotes.png>] [5] [6] [7] [8] (G16-p5.aux
+[4 <./tmp/bigotes.png>] [5] [6] [7] [8] [9] (G16-p5.aux
 LaTeX Info: Redefining \. on input line 6.
 LaTeX Info: Redefining \% on input line 6.
 ) ) 
 Here is how much of TeX's memory you used:
- 3815 strings out of 492895
- 55581 string characters out of 3123734
+ 3816 strings out of 492895
+ 55678 string characters out of 3123734
  124376 words of memory out of 3000000
- 7631 multiletter control sequences out of 15000+200000
+ 7632 multiletter control sequences out of 15000+200000
  26719 words of font info for 60 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,7n,31p,306b,361s stack positions out of 5000i,500n,10000p,200000b,50000s
@@ -435,9 +435,9 @@ NAJ/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb>
 m/cmsltt10.pfb><C:/Users/SENAJ/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pu
 blic/amsfonts/cm/cmsy10.pfb><C:/Users/SENAJ/AppData/Local/Programs/MiKTeX 2.9/f
 onts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on G16-p5.pdf (8 pages, 140966 bytes).
+Output written on G16-p5.pdf (9 pages, 143462 bytes).
 PDF statistics:
- 68 PDF objects out of 1000 (max. 8388607)
+ 71 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
  10 words of extra memory for PDF output out of 10000 (max. 10000000)
 

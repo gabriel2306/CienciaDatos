@@ -281,4 +281,37 @@ Procedemos a llamar a la función.
 outlier(data)
 @
 
+\subsection{Paquete <referenceIntervals>}
+\bigskip
+Ahora estudiaremos el paquete \textbf{referenceIntervals}, entonces primero inicializamos este paquete.
+<<eval=TRUE>>=
+install.packages("referenceIntervals")
+library(referenceIntervals)
+@
+\bigskip
+Posteriormente introducimos la muestra de datos, la cual corresponde con la utilizada en los apartados
+anteriores y en el 1.1 para comparar resultado.
+<<eval=TRUE>>=
+muestra = matrix(c(4,4,4,3,5,5,1,1,5,4),2,5)
+muestra = t(muestra)
+data = as.matrix(muestra)
+@
+\bigskip
+Ahora buscaremos los outliers de la muestra con la función \textbf{cook.outliers()}. A esta función se
+le introduce una columna de la muestra de datos, por ello, la funcionalidad de este paquete no es muy
+útil para muestras que cuenten con varios datos. Porque puede darse que con una de las columnas de datos
+identifique unos outliers, y con otras, otros outliers distintos.
+
+\bigskip
+Por lo tanto, procedemos a llamar a la función con los datos correspondientes a las calificaciones de teoría.
+<<eval=TRUE>>=
+cook.outliers(data[,1])
+@
+\bigskip
+Sin embargo, si en vez de introducir la columna de datos de las calificaciones de la teoría, introducimos
+las calificaciones de la práctica, vemos como los outliers son distintos.
+<<eval=TRUE>>=
+cook.outliers(data[,2])
+@
+
 \end{document}
