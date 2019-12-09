@@ -496,9 +496,9 @@ anteriores y en el 1.1 para comparar resultado.
 Ahora buscaremos los outliers de la muestra con la función \textbf{cook.outliers()}. Esta función calcula
 un modelo de regresión lineal para los datos (que es la media de los datos unidimensionales). A partir de eso,
 utilizando las distancias de Cook de cada punto de datos, se determinan los valores atípicos y se
-devuelven. Lo malo de esta función es que solo se puede introducir una columna de la muestra de datos, por ello,
-la funcionalidad de este paquete no es muy útil para muestras que cuenten con varios datos. Porque puede
-darse que con una de las columnas de datos identifique unos outliers, y con otras, otros outliers distintos.
+devuelven.La distancia de Cook es una medida calculada con respecto a un modelo de regresiónn dado y, por lo tanto, 
+solo se ve afectada por las variables X incluidas en el modelo. Por tanto, calcula la infuencia ejercida por cada 
+uno de los datos en el resultado predicho.
 
 \bigskip
 Por lo tanto, procedemos a llamar a la función con los datos correspondientes a las calificaciones de teoría.
@@ -515,19 +515,38 @@ $subset
 \end{Soutput}
 \end{Schunk}
 
+\subsection{Paquete <DMwR>.}
 \bigskip
-Sin embargo, si en vez de introducir la columna de datos de las calificaciones de la teoría, introducimos
-las calificaciones de la práctica, vemos como los outliers son distintos.
+\textbf{Local Outlier Factor} es un algoritmo que obtiene los factores locales atípicos. La función lofactor del 
+paquete DMwR implementa este algoritmo comparando la densidad local de cada punto con sus vecinos.
+
+\bigskip
+De este modo, calculamos los factores locales atípicos con 3 vecinos para la muestra de los diferentes 
+tipos de hormigón: 
 \begin{Schunk}
 \begin{Sinput}
-> cook.outliers(data[,2])
+> install.packages("DMwR")
+> library(DMwR)
+> muestra = t(matrix(c(3,2,3.5,12,4.7,4.1,5.2,4.9,7.1,6.1,6.2,5.2,14,5.3),
++         2,7,dimnames = list(c("r","d"))))
+> muestra = data.frame(muestra)
+> outlier.scores <- lofactor(muestra, k=3)
+> outlier.scores
 \end{Sinput}
 \begin{Soutput}
-$outliers
-numeric(0)
+[1] 1.3396226 2.8149337 0.9956255 0.9684164 0.8914178 1.0339798 3.0800034
+\end{Soutput}
+\end{Schunk}
 
-$subset
-[1] 4 3 5 1 4
+\bigskip
+Como se puede observar, se obtiene un índice de densidad para cada instancia. Por tanto, si escogemos arbitrariamente
+como grado de outlier el 3, obtenemos que el suceso 7 es un outlier:
+\begin{Schunk}
+\begin{Sinput}
+> anomalosRegresion(outlier.scores,3,muestra)
+\end{Sinput}
+\begin{Soutput}
+[1] "El suceso 7 con valor (14 5.3) es outlier - "
 \end{Soutput}
 \end{Schunk}
 

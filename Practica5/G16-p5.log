@@ -1,11 +1,11 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.10.11)  3 DEC 2019 17:48
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.10.15)  9 DEC 2019 14:06
 entering extended mode
-**C:/GitHub/CienciaDatos/Practica5/G16-p5.tex
-(C:/GitHub/CienciaDatos/Practica5/G16-p5.tex
+**C:/GIT/CienciaDatos/Practica5/G16-p5.tex
+(C:/GIT/CienciaDatos/Practica5/G16-p5.tex
 LaTeX2e <2018-12-01>
-("C:\Users\SENAJ\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\article.cls"
+("C:\Program Files\MiKTeX 2.9\tex/latex/base\article.cls"
 Document Class: article 2018/09/03 v1.4i Standard LaTeX document class
-("C:\Users\SENAJ\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\size10.clo"
+("C:\Program Files\MiKTeX 2.9\tex/latex/base\size10.clo"
 File: size10.clo 2018/09/03 v1.4i Standard LaTeX file (size option)
 )
 \c@part=\count80
@@ -19,30 +19,24 @@ File: size10.clo 2018/09/03 v1.4i Standard LaTeX file (size option)
 \abovecaptionskip=\skip41
 \belowcaptionskip=\skip42
 \bibindent=\dimen102
-) ("C:\Users\SENAJ\AppData\Local\Programs\MiKTeX 2.9\tex/generic/babel\babel.st
-y"
+) ("C:\Program Files\MiKTeX 2.9\tex/generic/babel\babel.sty"
 Package: babel 2019/07/19 3.33 The Babel package
-("C:\Users\SENAJ\AppData\Local\Programs\MiKTeX 2.9\tex/generic/babel\switch.def
-"
+("C:\Program Files\MiKTeX 2.9\tex/generic/babel\switch.def"
 File: switch.def 2019/07/19 3.33 Babel switching mechanism
 )
 *************************************
 * Local config file bblopts.cfg used
 *
-("C:\Users\SENAJ\AppData\Local\Programs\MiKTeX 2.9\tex/latex/arabi\bblopts.cfg"
+("C:\Program Files\MiKTeX 2.9\tex/latex/arabi\bblopts.cfg"
 File: bblopts.cfg 2005/09/08 v0.1 add Arabic and Farsi to "declared" options of
  babel
-)
-("C:\Users\SENAJ\AppData\Local\Programs\MiKTeX 2.9\tex/latex/babel-spanish\span
-ish.ldf"
+) ("C:\Program Files\MiKTeX 2.9\tex/latex/babel-spanish\spanish.ldf"
 Language: spanish.ldf 2016/03/03 v5.0p Spanish support from the babel system
-("C:\Users\SENAJ\AppData\Local\Programs\MiKTeX 2.9\tex/generic/babel\babel.def"
+("C:\Program Files\MiKTeX 2.9\tex/generic/babel\babel.def"
 File: babel.def 2019/07/19 3.33 Babel common definitions
 \babel@savecnt=\count88
 \U@D=\dimen103
-
-("C:\Users\SENAJ\AppData\Local\Programs\MiKTeX 2.9\tex/generic/babel\txtbabel.d
-ef")
+("C:\Program Files\MiKTeX 2.9\tex/generic/babel\txtbabel.def")
 \bbl@dirlevel=\count89
 )
 \es@quottoks=\toks14
@@ -51,20 +45,17 @@ Package babel Info: Making " an active character on input line 561.
 Package babel Info: Making . an active character on input line 662.
 Package babel Info: Making < an active character on input line 707.
 Package babel Info: Making > an active character on input line 707.
-)) ("C:\Users\SENAJ\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\inputenc.s
-ty"
+)) ("C:\Program Files\MiKTeX 2.9\tex/latex/base\inputenc.sty"
 Package: inputenc 2018/08/11 v1.3c Input encoding file
 \inpenc@prehook=\toks15
 \inpenc@posthook=\toks16
-)
-("C:\Users\SENAJ\AppData\Local\Programs\MiKTeX 2.9\tex/latex/multirow\multirow.
-sty"
+) ("C:\Program Files\MiKTeX 2.9\tex/latex/multirow\multirow.sty"
 Package: multirow 2019/05/31 v2.5 Span multiple rows of a table
 \multirow@colwidth=\skip43
 \multirow@cntb=\count91
 \multirow@dima=\skip44
 \bigstrutjot=\dimen104
-) ("C:\Users\SENAJ\AppData\Local\Programs\MiKTeX 2.9\tex/latex/float\float.sty"
+) ("C:\Program Files\MiKTeX 2.9\tex/latex/float\float.sty"
 Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \c@float@type=\count92
 \float@exts=\toks17
@@ -73,39 +64,27 @@ Package: float 2001/11/08 v1.3d Float enhancements (AL)
 \@floatcapt=\box28
 ) (C:/PROGRA~1/R/R-36~1.1/share/texmf/tex/latex\Sweave.sty
 Package: Sweave 
-("C:\Users\SENAJ\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\ifthen.sty"
+("C:\Program Files\MiKTeX 2.9\tex/latex/base\ifthen.sty"
 Package: ifthen 2014/09/29 v1.1c Standard LaTeX ifthen package (DPC)
-)
-("C:\Users\SENAJ\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\graphicx.
-sty"
+) ("C:\Program Files\MiKTeX 2.9\tex/latex/graphics\graphicx.sty"
 Package: graphicx 2017/06/01 v1.1a Enhanced LaTeX Graphics (DPC,SPQR)
-
-("C:\Users\SENAJ\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\keyval.st
-y"
+("C:\Program Files\MiKTeX 2.9\tex/latex/graphics\keyval.sty"
 Package: keyval 2014/10/28 v1.15 key=value parser (DPC)
 \KV@toks@=\toks19
-)
-("C:\Users\SENAJ\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\graphics.
-sty"
+) ("C:\Program Files\MiKTeX 2.9\tex/latex/graphics\graphics.sty"
 Package: graphics 2017/06/25 v1.2c Standard LaTeX Graphics (DPC,SPQR)
-("C:\Users\SENAJ\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics\trig.sty"
+("C:\Program Files\MiKTeX 2.9\tex/latex/graphics\trig.sty"
 Package: trig 2016/01/03 v1.10 sin cos tan (DPC)
-)
-("C:\Users\SENAJ\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics-cfg\graph
-ics.cfg"
+) ("C:\Program Files\MiKTeX 2.9\tex/latex/graphics-cfg\graphics.cfg"
 File: graphics.cfg 2016/06/04 v1.11 sample graphics configuration
 )
 Package graphics Info: Driver file: pdftex.def on input line 99.
-
-("C:\Users\SENAJ\AppData\Local\Programs\MiKTeX 2.9\tex/latex/graphics-def\pdfte
-x.def"
+("C:\Program Files\MiKTeX 2.9\tex/latex/graphics-def\pdftex.def"
 File: pdftex.def 2018/01/08 v1.0l Graphics/color driver for pdftex
 ))
 \Gin@req@height=\dimen105
 \Gin@req@width=\dimen106
-)
-("C:\Users\SENAJ\AppData\Local\Programs\MiKTeX 2.9\tex/latex/fancyvrb\fancyvrb.
-sty"
+) ("C:\Program Files\MiKTeX 2.9\tex/latex/fancyvrb\fancyvrb.sty"
 Package: fancyvrb 2019/01/15
 Style option: `fancyvrb' v3.2a <2019/01/15> (tvz)
 \FV@CodeLineNo=\count93
@@ -114,8 +93,7 @@ Style option: `fancyvrb' v3.2a <2019/01/15> (tvz)
 \c@FancyVerbLine=\count94
 \FV@StepNumber=\count95
 \FV@OutFile=\write3
-) ("C:\Users\SENAJ\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\textcomp.st
-y"
+) ("C:\Program Files\MiKTeX 2.9\tex/latex/base\textcomp.sty"
 Package: textcomp 2018/08/11 v2.0j Standard LaTeX package
 Package textcomp Info: Sub-encoding information:
 (textcomp)               5 = only ISO-Adobe without \textcurrency
@@ -129,11 +107,11 @@ Package textcomp Info: Sub-encoding information:
 (textcomp)             Family '?' is the default used for unknown fonts.
 (textcomp)             See the documentation for details.
 Package textcomp Info: Setting ? sub-encoding to TS1/1 on input line 79.
-("C:\Users\SENAJ\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\ts1enc.def"
+("C:\Program Files\MiKTeX 2.9\tex/latex/base\ts1enc.def"
 File: ts1enc.def 2001/06/05 v3.0e (jk/car/fm) Standard LaTeX file
 Now handling font encoding TS1 ...
 ... processing UTF-8 mapping file for font encoding TS1
-("C:\Users\SENAJ\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\ts1enc.dfu"
+("C:\Program Files\MiKTeX 2.9\tex/latex/base\ts1enc.dfu"
 File: ts1enc.dfu 2018/10/05 v1.2f UTF-8 support for inputenc
    defining Unicode char U+00A2 (decimal 162)
    defining Unicode char U+00A3 (decimal 163)
@@ -269,22 +247,21 @@ Package textcomp Info: Setting pplx sub-encoding to TS1/3 on input line 406.
 Package textcomp Info: Setting pplj sub-encoding to TS1/3 on input line 407.
 Package textcomp Info: Setting ptmx sub-encoding to TS1/4 on input line 408.
 Package textcomp Info: Setting ptmj sub-encoding to TS1/4 on input line 409.
-) ("C:\Users\SENAJ\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\fontenc.sty
-"
+) ("C:\Program Files\MiKTeX 2.9\tex/latex/base\fontenc.sty"
 Package: fontenc 2018/08/11 v2.0j Standard LaTeX package
-("C:\Users\SENAJ\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\t1enc.def"
+("C:\Program Files\MiKTeX 2.9\tex/latex/base\t1enc.def"
 File: t1enc.def 2018/08/11 v2.0j Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
-)) ("C:\Users\SENAJ\AppData\Local\Programs\MiKTeX 2.9\tex/latex/ae\ae.sty"
+)) ("C:\Program Files\MiKTeX 2.9\tex/latex/ae\ae.sty"
 Package: ae 2001/02/12 1.3 Almost European Computer Modern
-("C:\Users\SENAJ\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\fontenc.sty"
+("C:\Program Files\MiKTeX 2.9\tex/latex/base\fontenc.sty"
 Package: fontenc 2018/08/11 v2.0j Standard LaTeX package
-("C:\Users\SENAJ\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\t1enc.def"
+("C:\Program Files\MiKTeX 2.9\tex/latex/base\t1enc.def"
 File: t1enc.def 2018/08/11 v2.0j Standard LaTeX file
 LaTeX Font Info:    Redeclaring font encoding T1 on input line 48.
 )
 LaTeX Font Info:    Try loading font information for T1+aer on input line 105.
-("C:\Users\SENAJ\AppData\Local\Programs\MiKTeX 2.9\tex/latex/ae\t1aer.fd"
+("C:\Program Files\MiKTeX 2.9\tex/latex/ae\t1aer.fd"
 File: t1aer.fd 1997/11/16 Font definitions for T1/aer.
 )))) (G16-p5.aux
 LaTeX Info: Redefining \. on input line 6.
@@ -306,15 +283,13 @@ LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 12.
 LaTeX Font Info:    ... okay on input line 12.
 LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 12.
 LaTeX Font Info:    Try loading font information for TS1+cmr on input line 12.
-("C:\Users\SENAJ\AppData\Local\Programs\MiKTeX 2.9\tex/latex/base\ts1cmr.fd"
+("C:\Program Files\MiKTeX 2.9\tex/latex/base\ts1cmr.fd"
 File: ts1cmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    ... okay on input line 12.
 LaTeX Info: Redefining \. on input line 12.
 LaTeX Info: Redefining \% on input line 12.
-
-("C:\Users\SENAJ\AppData\Local\Programs\MiKTeX 2.9\tex/context/base/mkii\supp-p
-df.mkii"
+("C:\Program Files\MiKTeX 2.9\tex/context/base/mkii\supp-pdf.mkii"
 [Loading MPS to PDF converter (version 2006.09.02).]
 \scratchcounter=\count96
 \scratchdimen=\dimen107
@@ -327,51 +302,29 @@ df.mkii"
 \MPnumerator=\count100
 \makeMPintoPDFobject=\count101
 \everyMPtoPDFconversion=\toks21
-)
-("C:\Users\SENAJ\AppData\Local\Programs\MiKTeX 2.9\tex/latex/oberdiek\epstopdf-
-base.sty"
+) ("C:\Program Files\MiKTeX 2.9\tex/latex/oberdiek\epstopdf-base.sty"
 Package: epstopdf-base 2016/05/15 v2.6 Base part for package epstopdf
-
-("C:\Users\SENAJ\AppData\Local\Programs\MiKTeX 2.9\tex/generic/oberdiek\infware
-rr.sty"
+("C:\Program Files\MiKTeX 2.9\tex/generic/oberdiek\infwarerr.sty"
 Package: infwarerr 2016/05/16 v1.4 Providing info/warning/error messages (HO)
-)
-("C:\Users\SENAJ\AppData\Local\Programs\MiKTeX 2.9\tex/latex/oberdiek\grfext.st
-y"
+) ("C:\Program Files\MiKTeX 2.9\tex/latex/oberdiek\grfext.sty"
 Package: grfext 2016/05/16 v1.2 Manage graphics extensions (HO)
-
-("C:\Users\SENAJ\AppData\Local\Programs\MiKTeX 2.9\tex/generic/oberdiek\kvdefin
-ekeys.sty"
+("C:\Program Files\MiKTeX 2.9\tex/generic/oberdiek\kvdefinekeys.sty"
 Package: kvdefinekeys 2016/05/16 v1.4 Define keys (HO)
-
-("C:\Users\SENAJ\AppData\Local\Programs\MiKTeX 2.9\tex/generic/oberdiek\ltxcmds
-.sty"
+("C:\Program Files\MiKTeX 2.9\tex/generic/oberdiek\ltxcmds.sty"
 Package: ltxcmds 2016/05/16 v1.23 LaTeX kernel commands for general use (HO)
-)))
-("C:\Users\SENAJ\AppData\Local\Programs\MiKTeX 2.9\tex/latex/oberdiek\kvoptions
-.sty"
+))) ("C:\Program Files\MiKTeX 2.9\tex/latex/oberdiek\kvoptions.sty"
 Package: kvoptions 2016/05/16 v3.12 Key value format for package options (HO)
-
-("C:\Users\SENAJ\AppData\Local\Programs\MiKTeX 2.9\tex/generic/oberdiek\kvsetke
-ys.sty"
+("C:\Program Files\MiKTeX 2.9\tex/generic/oberdiek\kvsetkeys.sty"
 Package: kvsetkeys 2016/05/16 v1.17 Key value parser (HO)
-
-("C:\Users\SENAJ\AppData\Local\Programs\MiKTeX 2.9\tex/generic/oberdiek\etexcmd
-s.sty"
+("C:\Program Files\MiKTeX 2.9\tex/generic/oberdiek\etexcmds.sty"
 Package: etexcmds 2016/05/16 v1.6 Avoid name clashes with e-TeX commands (HO)
-
-("C:\Users\SENAJ\AppData\Local\Programs\MiKTeX 2.9\tex/generic/oberdiek\ifluate
-x.sty"
+("C:\Program Files\MiKTeX 2.9\tex/generic/oberdiek\ifluatex.sty"
 Package: ifluatex 2016/05/16 v1.4 Provides the ifluatex switch (HO)
 Package ifluatex Info: LuaTeX not detected.
-))))
-("C:\Users\SENAJ\AppData\Local\Programs\MiKTeX 2.9\tex/generic/oberdiek\pdftexc
-mds.sty"
+)))) ("C:\Program Files\MiKTeX 2.9\tex/generic/oberdiek\pdftexcmds.sty"
 Package: pdftexcmds 2019/07/25 v0.30 Utility functions of pdfTeX for LuaTeX (HO
 )
-
-("C:\Users\SENAJ\AppData\Local\Programs\MiKTeX 2.9\tex/generic/oberdiek\ifpdf.s
-ty"
+("C:\Program Files\MiKTeX 2.9\tex/generic/oberdiek\ifpdf.sty"
 Package: ifpdf 2018/09/07 v3.3 Provides the ifpdf switch
 )
 Package pdftexcmds Info: LuaTeX not detected.
@@ -402,11 +355,12 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <5> on input line 29.
 LaTeX Font Info:    Try loading font information for T1+aett on input line 44.
-("C:\Users\SENAJ\AppData\Local\Programs\MiKTeX 2.9\tex/latex/ae\t1aett.fd"
+("C:\Program Files\MiKTeX 2.9\tex/latex/ae\t1aett.fd"
 File: t1aett.fd 1997/11/16 Font definitions for T1/aett.
 ) [1
 
-{C:/Users/SENAJ/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] [2] [3]
+{C:/Users/Álvaro Zamorano/AppData/Local/MiKTeX/2.9/pdftex/config/pdftex.map}] 
+[2] [3]
 <./tmp/bigotes.png, id=19, 481.8pt x 481.8pt>
 File: ./tmp/bigotes.png Graphic file (type png)
 <use ./tmp/bigotes.png>
@@ -422,25 +376,23 @@ LaTeX Info: Redefining \. on input line 6.
 LaTeX Info: Redefining \% on input line 6.
 ) ) 
 Here is how much of TeX's memory you used:
- 3816 strings out of 492895
- 55700 string characters out of 3123734
+ 3817 strings out of 492895
+ 53710 string characters out of 3133443
  124376 words of memory out of 3000000
- 7632 multiletter control sequences out of 15000+200000
+ 7633 multiletter control sequences out of 15000+200000
  26719 words of font info for 60 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,7n,31p,306b,361s stack positions out of 5000i,500n,10000p,200000b,50000s
-<C:/Users/SENAJ/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfont
-s/cm/cmbx10.pfb><C:/Users/SENAJ/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/p
-ublic/amsfonts/cm/cmbx12.pfb><C:/Users/SENAJ/AppData/Local/Programs/MiKTeX 2.9/
-fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Users/SENAJ/AppData/Local/Progra
-ms/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Users/SENAJ/AppData/
-Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Users/SE
-NAJ/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb>
-<C:/Users/SENAJ/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/c
-m/cmsltt10.pfb><C:/Users/SENAJ/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/pu
-blic/amsfonts/cm/cmsy10.pfb><C:/Users/SENAJ/AppData/Local/Programs/MiKTeX 2.9/f
-onts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on G16-p5.pdf (9 pages, 144442 bytes).
+ 41i,7n,31p,303b,361s stack positions out of 5000i,500n,10000p,200000b,50000s
+<C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx10.pfb><C:/P
+rogram Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmbx12.pfb><C:/Program F
+iles/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmmib10.pfb><C:/Program Files/Mi
+KTeX 2.9/fonts/type1/public/amsfonts/cm/cmr10.pfb><C:/Program Files/MiKTeX 2.9/
+fonts/type1/public/amsfonts/cm/cmr12.pfb><C:/Program Files/MiKTeX 2.9/fonts/typ
+e1/public/amsfonts/cm/cmr17.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public
+/amsfonts/cm/cmsltt10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfo
+nts/cm/cmsy10.pfb><C:/Program Files/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/c
+mtt10.pfb>
+Output written on G16-p5.pdf (9 pages, 147781 bytes).
 PDF statistics:
  71 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
