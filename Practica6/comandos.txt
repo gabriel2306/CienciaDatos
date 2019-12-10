@@ -1,0 +1,16 @@
+library("readr")
+ datos <- read_csv("paises.csv")
+ datos <- data.frame(datos)
+ datos$Pais <- factor(datos$Pais,levels=datos$Pais[order(datos$Salario)])
+ library(ggplot2)
+
+ sp <- ggplot()
+ sp <- sp + geom_bar(data=datos,aes(x=datos$Pais, y=datos$Salario,fill=datos$Pais), stat='identity', position='dodge',show.legend=FALSE)
+ sp <- sp + coord_flip() 
+ sp <- sp + labs(x = "Paises",y="Salario")
+ sp <- sp + ggtitle("Salarios medios mensuales en Europa") + theme(plot.title = element_text(hjust = 0.5))
+ sp <- sp + geom_text(size=3,position = position_stack(vjust=0.5))
+ sp <- sp + scale_fill_manual(values = c("grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50","red","grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50"))
+ sp <- sp + geom_hline(aes(yintercept=mean(datos$Salario)), linetype="dashed", color = "blue") + geom_text(aes(0,mean(datos$Salario),label = "            Media", vjust = -1))
+ sp <- sp + geom_text(aes(datos$Pais,datos$Salario),label=sprintf("           %d",datos$Salario))
+ sp
