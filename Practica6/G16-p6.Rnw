@@ -19,12 +19,12 @@
 
 \subsection{Salarios medios mensuales en Europa.}
 \bigskip
-Hemos hecho un tratamiento de datos correspondiente a los salarios medios mensuales de los países europeos.
+Hemos hecho un tratamiento de datos correspondiente a los salarios medios mensuales de los países de la Unión Europea.
 Lo que buscamos es representar el conjunto de datos de estos salarios medios, para localizar, de forma clara
-y sencilla la posición actual de España con respecto al resto de los países de su alrededor.
+y sencilla la posición actual de España con respecto al resto de los países estudiados.
 
 \bigskip
-Para llevar a cabo esto lo primero que realizamos es importar los datos correspondientes:
+Lo primero que realizamos es importar los datos correspondientes al estudio:
 <<eval=TRUE>>=
 install.packages("readr")
 library("readr")
@@ -33,17 +33,17 @@ datos <- data.frame(datos)
 @
 
 \bigskip
-Para que el diagrama quede lo más claro posible vamos a realizar un \textbf{diagrama de Pareto}. Un diagrama
-de Pareto es un tipo especial de gráfica de barras donde los valores graficados están organizados de mayor a 
+Para que el diagrama quede lo más claro posible vamos a realizar un \textbf{diagrama de Pareto}. Es un tipo 
+especial de gráfica de barras donde los valores graficados están organizados de mayor a 
 menor. Se utiliza para para identificar los defectos que se producen con mayor frecuencia, las causas más 
 comunes de los defectos o las causas más frecuentes de quejas de los clientes. Por lo tanto, ordenamos los
-datos de mayor a menor:
+datos de mayor a menor haciendo uso de la función \texttt{factor.}
 <<eval=TRUE>>=
 datos$Pais <- factor(datos$Pais,levels=datos$Pais[order(datos$Salario)])
 @
 
 \bigskip
-Para representar el diagrama utilizaremos el paquete \textbf{ggplot2}. Lo instalamos y lo inicializamos.
+Para representar el diagrama utilizaremos el paquete \textbf{ggplot2}. Lo instalamos y lo cargamos.
 <<eval=TRUE>>=
 install.packages("ggplot2")
 library("ggplot2")
@@ -66,7 +66,7 @@ diagrama("diagrama1.png",sp)
 
 \bigskip
 Ya que los datos son identificados por nombre, es recomendable que estos se coloquen de la forma más visible
-posible. Por lo tanto, lo que hacemos es rotar el diagrama para que queden los nombres en el eje y, y así
+posible. Por lo tanto, lo que hacemos es \textbf{rotar} el diagrama para que queden los nombres en el eje y, y así
 sean mucho mas visibles. Pasamos las barras de vertical a horizontal.
 <<eval=TRUE,results = hide>>=
 sp <- sp + coord_flip()
@@ -77,7 +77,7 @@ diagrama("diagrama2.png",sp)
 \includegraphics[width=\textwidth]{diagrama2}
 
 \bigskip
-Ahora añadimos las etiquetas y los titulos de cada uno de los ejes de nuestro diagrama y el título del mismo.
+Ahora añadimos las \textbf{etiquetas} y los \textbf{titulos} de cada uno de los ejes de nuestro diagrama y el título del mismo.
 <<eval=TRUE,results = hide>>=
 sp <- sp + labs(x = "Paises",y="Salario")
 sp <- sp + ggtitle(label = "Salarios medios mensuales en la Unión Europea",
@@ -91,8 +91,8 @@ diagrama("diagrama3.png",sp)
 \includegraphics[width=\textwidth]{diagrama3}
 
 \bigskip
-Para que quede de una forma mucho más visual hemos decidido retirar el fondo gris predeterminado y ponerlo blanco.
-Y además ajustamos el eje y para que no quede espacio entre el eje y, y las barras del diagrama con
+Para que quede de una forma mucho más visual hemos decidido retirar el \textbf{fondo} gris predeterminado y ponerlo blanco.
+Además \textbf{ajustamos} el eje y para que no quede espacio entre dicho eje, y las barras del diagrama usando
 \texttt{scale\_y\_continuous}.
 <<eval=TRUE,results = hide>>=
 sp <- sp + theme(panel.background = element_rect(fill = "white"))
@@ -104,8 +104,8 @@ diagrama("diagrama4.png",sp)
 \includegraphics[width=\textwidth]{diagrama4}
 
 \bigskip
-Ahora lo que hacemos es dar el mismo color a todas las barras, excepto a la barra de España. Ya que lo que nos interesa
-es estudiar la posición de España respecto al resto de países, por lo que solo, destacamos esta barra.
+Ahora lo que hacemos es dar el mismo \textbf{color} a todas las barras, excepto a la barra de España. Ya que nos interesa
+su posición respecto al resto de países, por lo que solo destacamos esta barra.
 <<eval=TRUE,results = hide>>=
 sp <- sp + scale_fill_manual(values = c("grey50","grey50","grey50",
         "grey50","grey50","grey50","grey50","grey50","grey50",
@@ -120,7 +120,7 @@ diagrama("diagrama5.png",sp)
 \includegraphics[width=\textwidth]{diagrama5}
 
 \bigskip
-Ahora añadimos una línea que indicará en que lugar queda la media de salarios medios de los paises europeos con
+Ahora añadimos una línea que indicará en que lugar queda la \textbf{media} de salarios medios de los paises europeos con
 \texttt{geom\_hline}.
 <<eval=TRUE,results = hide>>=
 sp <- sp + geom_hline(aes(yintercept=mean(datos$Salario)),color = "blue") + 
@@ -133,8 +133,8 @@ diagrama("diagrama6.png",sp)
 \includegraphics[width=\textwidth]{diagrama6}
 
 \bigskip
-Por último añadimos al lado de cada barra cuál es el valor exacto de cada dato. Así queda mucho más claro cuales
-son los datos que estamos tratando con la función \texttt{geom\_text}.
+Por último añadimos al lado de cada barra cuál es el \textbf{valor exacto} de cada dato. Así queda mucho más claro cuales
+son los datos que estamos tratando, se hace con la función \texttt{geom\_text}.
 <<eval=TRUE,results = hide>>=
 sp <- sp + geom_text(aes(datos$Pais,datos$Salario),
         label=sprintf("           %d",datos$Salario))
@@ -146,8 +146,9 @@ diagrama("diagrama7.png",sp)
 
 \section{Visualización en mapa.}
 \bigskip
-Para visualizar mejor la diferencia de los salarios entre los diferentes países de la Unión Europea, vamos a 
-realizar una visualización en el mapa europeo. Para ello, utilizaremos los paquetes "ggplo2", "maps", "grid" y "rworldmap".
+Para comprender mejor la diferencia de los salarios entre los diferentes países de la Unión Europea, vamos a 
+realizar una visualización en el \textbf{mapa europeo.} Para ello, utilizaremos los paquetes \texttt{ggplot2}, 
+\texttt{maps}, \texttt{grid} y \texttt{rworldmap.}
 <<eval=TRUE>>=
 install.packages("maps")
 install.packages("rworldmap")
@@ -156,16 +157,15 @@ library(rworldmap)
 @
 
 \bigskip
-En primer lugar, leeremos el .csv igual que el anterior pero con los nombres de los países en inglés, ya que los paquetes 
-anteriores los necesitan en inglés.
+En primer lugar, leeremos un \texttt{.csv} igual que el anterior pero con los nombres de los países en inglés, ya que los paquetes 
+anteriores así lo necesitan.
 <<eval=TRUE>>=
 datos <- read_csv("countries.csv")
 datos <- data.frame(datos)
 @
 
 \bigskip
-En segundo lugar, obtenemos las coordenadas de todos los países con la función getMap, guardamos los nombres de los países 
-en un vector y seleccionamos sus índices.
+En segundo lugar se obtienen diferentes datos de \textbf{localización} a partir de las funciones antes mencionadas.
 <<eval=TRUE>>=
 # Obtenemos el mapa del mundo
 worldMap <- getMap()
@@ -178,7 +178,7 @@ indEU <- which(worldMap$NAME%in%europeanUnion)
 @
 
 \bigskip
-En tercer lugar, obtenemos las coordenadas de cada país.
+En tercer lugar, obtenemos las \textbf{coordenadas} de cada uno de los países.
 <<eval=TRUE>>=
 # Longitud y latitud de los bordes de los países
 europeCoords <- lapply(indEU, function(i){
@@ -191,7 +191,8 @@ europeCoords <- do.call("rbind", europeCoords)
 @
 
 \bigskip
-En cuarto lugar, añadimos los salarios de cada país.
+En cuarto lugar, guardamos los salarios en un vector y cada uno de ellos se \textbf{relaciona} con las coordenadas
+del país correspondiente.
 <<eval=TRUE>>=
 value <- datos$Salario
 europeanUnionTable <- data.frame(country = europeanUnion, value = value)
@@ -200,9 +201,9 @@ europeCoords$value <- europeanUnionTable$value[match(europeCoords$region,
 @
 
 \bigskip
-Por último, mostramos por pantalla el mapa con una leyenda que muestra la escala de salarios. A su vez,
-elegimos los colores de la escala de blanco (salario bajo) a negro (salario alto) porque se visualiza 
-mejor que con cualquier otra escala de colores. Por último, añadimos el título y eliminamos el fondo.
+Por último, \textbf{mostramos} por pantalla el mapa acompañado de una leyenda con la escala de salarios. A su vez,
+elegimos los colores de la escala de \texttt{blanco} (salario bajo) a \texttt{negro} (salario alto) ya que se consigue
+una mejor visualización que con cualquier otra escala de colores. Además, añadimos el título y eliminamos el fondo.
 <<eval=TRUE,results = hide>>=
 P <- ggplot() + geom_polygon(data = europeCoords, aes(x = long, y = lat, 
         group = region, fill = value),
@@ -227,8 +228,5 @@ diagrama("mapa.png",P)
 @
 
 \includegraphics[width=\textwidth]{mapa}
-
-
-
 
 \end{document}
