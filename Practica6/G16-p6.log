@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.10.11)  10 DEC 2019 13:09
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (MiKTeX 2.9.7140 64-bit) (preloaded format=pdflatex 2019.10.11)  10 DEC 2019 13:32
 entering extended mode
 **C:/GitHub/CienciaDatos/Practica6/G16-p6.tex
 (C:/GitHub/CienciaDatos/Practica6/G16-p6.tex
@@ -436,18 +436,73 @@ Overfull \hbox (15.0pt too wide) in paragraph at lines 85--86
 [][] 
  []
 
-[2 <./tmp/diagrama1.png (PNG copy)>] [3 <./tmp/diagrama2.png>] (G16-p6.aux
+[2 <./tmp/diagrama1.png (PNG copy)>]
+<./tmp/diagrama3.png, id=19, 481.8pt x 481.8pt>
+File: ./tmp/diagrama3.png Graphic file (type png)
+<use ./tmp/diagrama3.png>
+Package pdftex.def Info: ./tmp/diagrama3.png  used on input line 98.
+(pdftex.def)             Requested size: 345.0pt x 345.00635pt.
+
+Overfull \hbox (15.0pt too wide) in paragraph at lines 98--99
+[][] 
+ []
+
+[3 <./tmp/diagrama2.png>]
+<./tmp/diagrama4.png, id=24, 481.8pt x 481.8pt>
+File: ./tmp/diagrama4.png Graphic file (type png)
+<use ./tmp/diagrama4.png>
+Package pdftex.def Info: ./tmp/diagrama4.png  used on input line 113.
+(pdftex.def)             Requested size: 345.0pt x 345.00635pt.
+
+Overfull \hbox (15.0pt too wide) in paragraph at lines 113--114
+[][] 
+ []
+
+[4 <./tmp/diagrama3.png>]
+<./tmp/diagrama5.png, id=29, 481.8pt x 481.8pt>
+File: ./tmp/diagrama5.png Graphic file (type png)
+<use ./tmp/diagrama5.png>
+Package pdftex.def Info: ./tmp/diagrama5.png  used on input line 126.
+(pdftex.def)             Requested size: 345.0pt x 345.00635pt.
+
+Overfull \hbox (15.0pt too wide) in paragraph at lines 126--127
+[][] 
+ []
+
+[5 <./tmp/diagrama4.png>]
+<./tmp/diagrama6.png, id=34, 481.8pt x 481.8pt>
+File: ./tmp/diagrama6.png Graphic file (type png)
+<use ./tmp/diagrama6.png>
+Package pdftex.def Info: ./tmp/diagrama6.png  used on input line 139.
+(pdftex.def)             Requested size: 345.0pt x 345.00635pt.
+
+Overfull \hbox (15.0pt too wide) in paragraph at lines 139--140
+[][] 
+ []
+
+[6 <./tmp/diagrama5.png>]
+<./tmp/diagrama7.png, id=39, 481.8pt x 481.8pt>
+File: ./tmp/diagrama7.png Graphic file (type png)
+<use ./tmp/diagrama7.png>
+Package pdftex.def Info: ./tmp/diagrama7.png  used on input line 152.
+(pdftex.def)             Requested size: 345.0pt x 345.00635pt.
+
+Overfull \hbox (15.0pt too wide) in paragraph at lines 152--153
+[][] 
+ []
+
+[7 <./tmp/diagrama6.png>] [8 <./tmp/diagrama7.png>] (G16-p6.aux
 LaTeX Info: Redefining \. on input line 6.
 LaTeX Info: Redefining \% on input line 6.
 ) ) 
 Here is how much of TeX's memory you used:
- 3831 strings out of 492895
- 55854 string characters out of 3123734
+ 3856 strings out of 492895
+ 56514 string characters out of 3123734
  122376 words of memory out of 3000000
- 7639 multiletter control sequences out of 15000+200000
+ 7659 multiletter control sequences out of 15000+200000
  27017 words of font info for 61 fonts, out of 3000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,6n,31p,309b,361s stack positions out of 5000i,500n,10000p,200000b,50000s
+ 41i,6n,31p,355b,361s stack positions out of 5000i,500n,10000p,200000b,50000s
  <C:\Users\SENAJ\AppData\Local\MiKTeX\2.9\fonts/pk/ljfour/jknappen/ec/dpi600
 \tcst1000.pk><C:/Users/SENAJ/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/publ
 ic/amsfonts/cm/cmbx10.pfb><C:/Users/SENAJ/AppData/Local/Programs/MiKTeX 2.9/fon
@@ -458,9 +513,9 @@ AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cmr17.pfb><C:/
 Users/SENAJ/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public/amsfonts/cm/cm
 sltt10.pfb><C:/Users/SENAJ/AppData/Local/Programs/MiKTeX 2.9/fonts/type1/public
 /amsfonts/cm/cmtt10.pfb>
-Output written on G16-p6.pdf (3 pages, 110063 bytes).
+Output written on G16-p6.pdf (8 pages, 152559 bytes).
 PDF statistics:
- 49 PDF objects out of 1000 (max. 8388607)
+ 76 PDF objects out of 1000 (max. 8388607)
  0 named destinations out of 1000 (max. 500000)
- 15 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 40 words of extra memory for PDF output out of 10000 (max. 10000000)
 

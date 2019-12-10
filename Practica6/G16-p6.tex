@@ -84,5 +84,71 @@ sean mucho mas visibles. Pasamos las barras de vertical a horizontal.
 
 \includegraphics[width=\textwidth]{diagrama2}
 
+\bigskip
+Ahora añadimos las etiquetas y los titulos de cada uno de los ejes de nuestro diagrama y el título del mismo.
+\begin{Schunk}
+\begin{Sinput}
+> sp <- sp + labs(x = "Paises",y="Salario")
+> sp <- sp + ggtitle(label = "Salarios medios mensuales en la Unión Europea",subtitle="[Datos de 2017]") + theme(plot.title = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))
+> source("./Funciones/diagrama.R")
+> diagrama("diagrama3.png",sp)
+\end{Sinput}
+\end{Schunk}
+
+\includegraphics[width=\textwidth]{diagrama3}
+
+\bigskip
+Para que quede de una forma mucho más visual hemos decidido retirar el fondo gris predeterminado y ponerlo blanco.
+Y además ajustamos el eje y para que no quede espacio entre el eje y, y las barras del diagrama con
+\texttt{scale\_y\_continuous}.
+\begin{Schunk}
+\begin{Sinput}
+> sp <- sp + theme(panel.background = element_rect(fill = "white"))
+> sp <- sp + scale_y_continuous(limits = c(0,4000) ,expand = c(0, 0))
+> source("./Funciones/diagrama.R")
+> diagrama("diagrama4.png",sp)
+\end{Sinput}
+\end{Schunk}
+
+\includegraphics[width=\textwidth]{diagrama4}
+
+\bigskip
+Ahora lo que hacemos es dar el mismo color a todas las barras, excepto a la barra de España. Ya que lo que nos interesa
+es estudiar la posición de España respecto al resto de países, por lo que solo, destacamos esta barra.
+\begin{Schunk}
+\begin{Sinput}
+> sp <- sp + scale_fill_manual(values = c("grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50","red","grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50"))
+> source("./Funciones/diagrama.R")
+> diagrama("diagrama5.png",sp)
+\end{Sinput}
+\end{Schunk}
+
+\includegraphics[width=\textwidth]{diagrama5}
+
+\bigskip
+Ahora añadimos una línea que indicará en que lugar queda la media de salarios medios de los paises europeos con
+\texttt{geom\_hline}.
+\begin{Schunk}
+\begin{Sinput}
+> sp <- sp + geom_hline(aes(yintercept=mean(datos$Salario)),color = "blue") + geom_text(aes(0,mean(datos$Salario),label = "            Media", vjust = -1))
+> source("./Funciones/diagrama.R")
+> diagrama("diagrama6.png",sp)
+\end{Sinput}
+\end{Schunk}
+
+\includegraphics[width=\textwidth]{diagrama6}
+
+\bigskip
+Por último añadimos al lado de cada barra cuál es el valor exacto de cada dato. Así queda mucho más claro cuales
+son los datos que estamos tratando con la función \texttt{geom\_text}.
+\begin{Schunk}
+\begin{Sinput}
+> sp <- sp + geom_text(aes(datos$Pais,datos$Salario),label=sprintf("           %d",datos$Salario))
+> source("./Funciones/diagrama.R")
+> diagrama("diagrama7.png",sp)
+\end{Sinput}
+\end{Schunk}
+
+\includegraphics[width=\textwidth]{diagrama7}
 
 \end{document}
