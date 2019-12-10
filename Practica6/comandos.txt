@@ -8,9 +8,31 @@ library("readr")
  sp <- sp + geom_bar(data=datos,aes(x=datos$Pais, y=datos$Salario,fill=datos$Pais), stat='identity', position='dodge',show.legend=FALSE)
  sp <- sp + coord_flip() 
  sp <- sp + labs(x = "Paises",y="Salario")
- sp <- sp + ggtitle("Salarios medios mensuales en Europa") + theme(plot.title = element_text(hjust = 0.5))
+ sp <- sp + ggtitle(label = "Salarios medios mensuales en Europa",subtitle="[Datos de 2017]") + theme(plot.title = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))
+ sp <- sp + theme(panel.background = element_rect(fill = "white"))
+ sp <- sp  + scale_y_continuous(limits = c(0,4000) ,expand = c(0, 0))
  sp <- sp + geom_text(size=3,position = position_stack(vjust=0.5))
  sp <- sp + scale_fill_manual(values = c("grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50","red","grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50"))
- sp <- sp + geom_hline(aes(yintercept=mean(datos$Salario)), linetype="dashed", color = "blue") + geom_text(aes(0,mean(datos$Salario),label = "            Media", vjust = -1))
+ sp <- sp + geom_hline(aes(yintercept=mean(datos$Salario)),color = "blue") + geom_text(aes(0,mean(datos$Salario),label = "            Media", vjust = -1))
  sp <- sp + geom_text(aes(datos$Pais,datos$Salario),label=sprintf("           %d",datos$Salario))
  sp
+
+
+ datos <- read_csv("countries.csv")
+ datos <- data.frame(datos)
+
+ # Plot the map
+P <- ggplot() + geom_polygon(data = europeCoords, aes(x = long, y = lat, group = region, fill = value),
+                             colour = "black", size = 0.1) +
+  coord_map(xlim = c(-13, 35),  ylim = c(32, 71))
+
+P <- P + scale_fill_gradient(name = "Growth Rate", low = "#FF0000FF", high = "#FFFF00FF", na.value = "grey50")
+
+
+P <- P + theme(#panel.grid.minor = element_line(colour = NA), panel.grid.minor = element_line(colour = NA),
+               #panel.background = element_rect(fill = NA, colour = NA),
+               axis.text.x = element_blank(),
+               axis.text.y = element_blank(), axis.ticks.x = element_blank(),
+               axis.ticks.y = element_blank(), axis.title = element_blank(),
+               #rect = element_blank(),
+               plot.margin = unit(0 * c(-1.5, -1.5, -1.5, -1.5), "lines"))
