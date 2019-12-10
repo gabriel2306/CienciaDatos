@@ -15,7 +15,7 @@
 
 \graphicspath{ {./tmp/} }
 
-\section{Visualización.}
+\section{Visualización en diagrama de barras.}
 
 \subsection{Salarios medios mensuales en Europa.}
 \bigskip
@@ -54,7 +54,9 @@ Inicializamos el diagrama e introducimos los datos. Inicialmente nos saldrán lo
 de diferentes colores al llamar a la función \texttt{geom\_bar}.
 <<eval=TRUE,results = hide>>=
 sp <- ggplot()
-sp <- sp + geom_bar(data=datos,aes(x=datos$Pais, y=datos$Salario,fill=datos$Pais), stat='identity', position='dodge',show.legend=FALSE)
+sp <- sp + geom_bar(data=datos,aes(x=datos$Pais, y=datos$Salario,
+        fill=datos$Pais), stat='identity', position='dodge',
+        show.legend=FALSE)
 
 source("./Funciones/diagrama.R")
 diagrama("diagrama1.png",sp)
@@ -78,7 +80,10 @@ diagrama("diagrama2.png",sp)
 Ahora añadimos las etiquetas y los titulos de cada uno de los ejes de nuestro diagrama y el título del mismo.
 <<eval=TRUE,results = hide>>=
 sp <- sp + labs(x = "Paises",y="Salario")
-sp <- sp + ggtitle(label = "Salarios medios mensuales en la Unión Europea",subtitle="[Datos de 2017]") + theme(plot.title = element_text(hjust = 0.5),plot.subtitle = element_text(hjust = 0.5))
+sp <- sp + ggtitle(label = "Salarios medios mensuales en la Unión Europea",
+        subtitle="[Datos de 2017]") + 
+        theme(plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5))
 source("./Funciones/diagrama.R")
 diagrama("diagrama3.png",sp)
 @
@@ -102,7 +107,12 @@ diagrama("diagrama4.png",sp)
 Ahora lo que hacemos es dar el mismo color a todas las barras, excepto a la barra de España. Ya que lo que nos interesa
 es estudiar la posición de España respecto al resto de países, por lo que solo, destacamos esta barra.
 <<eval=TRUE,results = hide>>=
-sp <- sp + scale_fill_manual(values = c("grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50","red","grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50","grey50"))
+sp <- sp + scale_fill_manual(values = c("grey50","grey50","grey50",
+        "grey50","grey50","grey50","grey50","grey50","grey50",
+        "grey50","grey50","grey50","grey50","grey50",
+        "grey50","red","grey50","grey50","grey50","grey50",
+        "grey50","grey50","grey50","grey50","grey50","grey50",
+        "grey50","grey50"))
 source("./Funciones/diagrama.R")
 diagrama("diagrama5.png",sp)
 @
@@ -113,7 +123,9 @@ diagrama("diagrama5.png",sp)
 Ahora añadimos una línea que indicará en que lugar queda la media de salarios medios de los paises europeos con
 \texttt{geom\_hline}.
 <<eval=TRUE,results = hide>>=
-sp <- sp + geom_hline(aes(yintercept=mean(datos$Salario)),color = "blue") + geom_text(aes(0,mean(datos$Salario),label = "            Media", vjust = -1))
+sp <- sp + geom_hline(aes(yintercept=mean(datos$Salario)),color = "blue") + 
+        geom_text(aes(0,mean(datos$Salario),
+        label = "            Media", vjust = -1))
 source("./Funciones/diagrama.R")
 diagrama("diagrama6.png",sp)
 @
@@ -124,11 +136,99 @@ diagrama("diagrama6.png",sp)
 Por último añadimos al lado de cada barra cuál es el valor exacto de cada dato. Así queda mucho más claro cuales
 son los datos que estamos tratando con la función \texttt{geom\_text}.
 <<eval=TRUE,results = hide>>=
-sp <- sp + geom_text(aes(datos$Pais,datos$Salario),label=sprintf("           %d",datos$Salario))
+sp <- sp + geom_text(aes(datos$Pais,datos$Salario),
+        label=sprintf("           %d",datos$Salario))
 source("./Funciones/diagrama.R")
 diagrama("diagrama7.png",sp)
 @
 
 \includegraphics[width=\textwidth]{diagrama7}
+
+\section{Visualización en mapa.}
+\bigskip
+Para visualizar mejor la diferencia de los salarios entre los diferentes países de la Unión Europea, vamos a 
+realizar una visualización en el mapa europeo. Para ello, utilizaremos los paquetes "ggplo2", "maps", "grid" y "rworldmap".
+<<eval=TRUE>>=
+install.packages("maps")
+install.packages("rworldmap")
+library(maps)
+library(rworldmap)
+@
+
+\bigskip
+En primer lugar, leeremos el .csv igual que el anterior pero con los nombres de los países en inglés, ya que los paquetes 
+anteriores los necesitan en inglés.
+<<eval=TRUE>>=
+datos <- read_csv("countries.csv")
+datos <- data.frame(datos)
+@
+
+\bigskip
+En segundo lugar, obtenemos las coordenadas de todos los países con la función getMap, guardamos los nombres de los países 
+en un vector y seleccionamos sus índices.
+<<eval=TRUE>>=
+# Obtenemos el mapa del mundo
+worldMap <- getMap()
+
+# Países de la Unión Europea
+europeanUnion <- datos$Pais
+
+# Seleccionamos los índices de los países europeos
+indEU <- which(worldMap$NAME%in%europeanUnion)
+@
+
+\bigskip
+En tercer lugar, obtenemos las coordenadas de cada país.
+<<eval=TRUE>>=
+# Longitud y latitud de los bordes de los países
+europeCoords <- lapply(indEU, function(i){
+  df <- data.frame(worldMap@polygons[[i]]@Polygons[[1]]@coords)
+  df$region =as.character(worldMap$NAME[i])
+  colnames(df) <- list("long", "lat", "region")
+  return(df)
+})
+europeCoords <- do.call("rbind", europeCoords)
+@
+
+\bigskip
+En cuarto lugar, añadimos los salarios de cada país.
+<<eval=TRUE>>=
+value <- datos$Salario
+europeanUnionTable <- data.frame(country = europeanUnion, value = value)
+europeCoords$value <- europeanUnionTable$value[match(europeCoords$region,
+        europeanUnionTable$country)]
+@
+
+\bigskip
+Por último, mostramos por pantalla el mapa con una leyenda que muestra la escala de salarios. A su vez,
+elegimos los colores de la escala de blanco (salario bajo) a negro (salario alto) porque se visualiza 
+mejor que con cualquier otra escala de colores. Por último, añadimos el título y eliminamos el fondo.
+<<eval=TRUE,results = hide>>=
+P <- ggplot() + geom_polygon(data = europeCoords, aes(x = long, y = lat, 
+        group = region, fill = value),
+        colour = "black", size = 0.1) +
+        coord_map(xlim = c(-13, 35),  ylim = c(32, 71))
+
+P <- P + scale_fill_gradient(name = "Salario Medio", low = "#FFFFFF", 
+        high = "#000000", na.value = "grey50")
+
+
+P <- P + theme(axis.text.x = element_blank(),
+        axis.text.y = element_blank(), axis.ticks.x = element_blank(),
+        axis.ticks.y = element_blank(), axis.title = element_blank(),
+        panel.background = element_rect(fill = "white"),
+        plot.margin = unit(0 * c(-1.5, -1.5, -1.5, -1.5), "lines"))
+
+P <- P + ggtitle(label = "Salarios medios mensuales en la Unión Europea",
+        subtitle="[Datos de 2017]") + theme(plot.title = element_text(hjust = 0.5),
+        plot.subtitle = element_text(hjust = 0.5))
+
+diagrama("mapa.png",P)
+@
+
+\includegraphics[width=\textwidth]{mapa}
+
+
+
 
 \end{document}
